@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpwtpkyvf7juq"]
+[gd_scene load_steps=10 format=3 uid="uid://dpwtpkyvf7juq"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_c4p7c"]
 [ext_resource type="Texture2D" uid="uid://cujqgow6w4nmk" path="res://assets/player/player_export.png" id="2_o0k82"]
 [ext_resource type="Texture2D" uid="uid://cpa4hj6a8x5mq" path="res://assets/player/player_hand_export.png" id="3_bosfo"]
+[ext_resource type="Script" path="res://scenes/player/state_machine.gd" id="4_rnkx0"]
+[ext_resource type="Script" path="res://scenes/player/idle.gd" id="5_yjn2x"]
+[ext_resource type="Script" path="res://scenes/player/move.gd" id="6_cqvk3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_036ok"]
 radius = 4.0
@@ -20,12 +23,13 @@ _data = {
 collision_layer = 2
 script = ExtResource("1_c4p7c")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_036ok")
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -11)
+metadata/_edit_lock_ = true
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 libraries = {
@@ -35,7 +39,24 @@ autoplay = "idle"
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_o0k82")
+metadata/_edit_lock_ = true
 
-[node name="ArmSprite" type="Sprite2D" parent="."]
-position = Vector2(-1, 0)
+[node name="ArmPivot" type="Marker2D" parent="."]
+position = Vector2(-1, -3)
+metadata/_edit_group_ = true
+
+[node name="ArmSprite" type="Sprite2D" parent="ArmPivot"]
+position = Vector2(3, 0)
+rotation = -1.5708
 texture = ExtResource("3_bosfo")
+metadata/_edit_lock_ = true
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_rnkx0")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5_yjn2x")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("6_cqvk3")

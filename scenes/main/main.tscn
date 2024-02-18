@@ -13,7 +13,7 @@ offset_top = -564.0
 offset_right = -1147.0
 offset_bottom = -492.0
 scale = Vector2(37.0216, 16.9952)
-color = Color(0.886275, 0.756863, 0.862745, 0.92549)
+color = Color(0.647059, 0.827451, 0.611765, 1)
 metadata/_edit_lock_ = true
 
 [node name="LevelTileMap" parent="." instance=ExtResource("2_45t53")]

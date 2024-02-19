@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2cp54aqb1i3t"]
+
+[ext_resource type="Texture2D" uid="uid://dw4sp6so76tde" path="res://assets/enemies/dust_slime/idle.png" id="1_5a0e7"]
+[ext_resource type="Script" path="res://scenes/enemies/dust_slime.gd" id="1_ph6e0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cby8d"]
+radius = 7.0
+
+[node name="DustSlime" type="CharacterBody2D"]
+script = ExtResource("1_ph6e0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_cby8d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5a0e7")

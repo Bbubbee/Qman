@@ -43,7 +43,6 @@ func _input(event: InputEvent) -> void:
 ## State transition. 
 ## Note: You can't change states from the enter function! 
 func on_child_transition(state: State, new_state_name: String) -> void: 
-	#print(str(state)+" -> "+new_state_name)
 	if state != current_state: return
 			
 	var new_state = states.get(new_state_name.to_lower())

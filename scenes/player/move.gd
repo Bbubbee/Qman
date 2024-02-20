@@ -1,7 +1,12 @@
 extends State
 
 
-func physics_process(delta: float): 
+
+func enter(): 
+	actor.animator.play("idle")
+
+
+func physics_process(delta: float): 	
 	# Handle player movement. 
 	var direction := Input.get_axis("left", "right")
 	# Move in the given direction when move is pressed. 
@@ -18,6 +23,9 @@ func physics_process(delta: float):
 	# Apply gravity.
 	if not actor.is_on_floor():
 		actor.velocity.y += actor.gravity * delta
+	
+	if actor.attack_incoming: 
+		transition.emit(self, "damaged")
 	
 
 

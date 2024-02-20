@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dpwtpkyvf7juq"]
+[gd_scene load_steps=18 format=3 uid="uid://dpwtpkyvf7juq"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_c4p7c"]
 [ext_resource type="Texture2D" uid="uid://bh14o5l46fehi" path="res://assets/player/player_idle-Sheet.png" id="2_rsih1"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" path="res://scenes/player/move.gd" id="6_cqvk3"]
 [ext_resource type="Script" path="res://scenes/player/aim.gd" id="7_kie8v"]
 [ext_resource type="Script" path="res://scenes/player/jump.gd" id="7_tk513"]
+[ext_resource type="Script" path="res://scenes/player/damaged.gd" id="8_8xkh7"]
+[ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://components/health_component.tscn" id="9_x8egt"]
+[ext_resource type="PackedScene" uid="uid://dy1nyvrmak4dq" path="res://components/hitbox_component.tscn" id="10_6gnjj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_036ok"]
 radius = 4.0
@@ -27,6 +30,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_qrxqo"]
 resource_name = "idle"
@@ -45,17 +60,39 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_oquhl"]
+resource_name = "hurt"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.168627, 0.239216, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ay21g"]
 _data = {
 "RESET": SubResource("Animation_8swt7"),
+"hurt": SubResource("Animation_oquhl"),
 "idle": SubResource("Animation_qrxqo")
 }
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2dvcn"]
+radius = 4.0
+height = 16.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_c4p7c")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_036ok")
 metadata/_edit_lock_ = true
 
@@ -101,9 +138,28 @@ script = ExtResource("6_cqvk3")
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("7_tk513")
 
+[node name="Damaged" type="Node" parent="StateMachine"]
+script = ExtResource("8_8xkh7")
+
 [node name="AttackStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_rnkx0")
 initial_state = NodePath("Aim")
 
 [node name="Aim" type="Node" parent="AttackStateMachine"]
 script = ExtResource("7_kie8v")
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="HealthComponent" parent="Components" node_paths=PackedStringArray("actor") instance=ExtResource("9_x8egt")]
+actor = NodePath("../..")
+
+[node name="HitboxComponent" parent="Components" node_paths=PackedStringArray("health_component") instance=ExtResource("10_6gnjj")]
+visible = false
+collision_layer = 2
+collision_mask = 5
+health_component = NodePath("../HealthComponent")
+
+[node name="Collider" parent="Components/HitboxComponent" index="0"]
+shape = SubResource("CapsuleShape2D_2dvcn")
+
+[editable path="Components/HitboxComponent"]

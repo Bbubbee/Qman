@@ -1,12 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://bn0vy17ie83yo"]
+[gd_scene load_steps=4 format=3 uid="uid://bn0vy17ie83yo"]
 
 [ext_resource type="Script" path="res://scenes/player/actions/gust.gd" id="1_5wq1s"]
+[ext_resource type="PackedScene" uid="uid://y0nu0gji8rea" path="res://components/attack_component.tscn" id="2_map46"]
 
-[node name="Gust" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_78klv"]
+radius = 0.5
+height = 2.0
+
+[node name="Gust" type="Area2D"]
 scale = Vector2(2, 2)
+collision_layer = 8
+collision_mask = 5
 script = ExtResource("1_5wq1s")
 speed = 350.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("CapsuleShape2D_78klv")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(0, -1, 1, 0, 0, 1)
 metadata/_edit_lock_ = true
+
+[node name="AttackComponent" parent="." instance=ExtResource("2_map46")]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

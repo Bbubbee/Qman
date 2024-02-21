@@ -3,9 +3,11 @@ class_name State
 
 signal transition  # Use me to transition states. 
 
-var actor  # Owner of this state. 
+var actor  # Parent of this state. 
 
-## Note: You can't change states in the enter function! 
+## Note: You can't change states in the enter/exit function! 
+## If you think a state might change in the enter/exit
+## function, declare a variable in that state to check. 
 func enter():
 	pass
 	

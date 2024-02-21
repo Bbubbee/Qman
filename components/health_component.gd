@@ -12,6 +12,8 @@ func take_damage(attack: AttackComponent):
 	if actor:
 		if "attack_incoming" in actor: 
 			actor.attack_incoming = attack
+			
+			
 	
 	if health <= 0: 
 		actor.queue_free()

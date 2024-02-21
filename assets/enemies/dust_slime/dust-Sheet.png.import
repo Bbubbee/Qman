@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw4sp6so76tde"
-path="res://.godot/imported/idle.png-ca93fb4836bf2825a8611af55ec26b91.ctex"
+uid="uid://blp0i1i1an3fo"
+path="res://.godot/imported/dust-Sheet.png-8323eeb452066f98f66954ee1dd28767.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/dust_slime/idle.png"
-dest_files=["res://.godot/imported/idle.png-ca93fb4836bf2825a8611af55ec26b91.ctex"]
+source_file="res://assets/enemies/dust_slime/dust-Sheet.png"
+dest_files=["res://.godot/imported/dust-Sheet.png-8323eeb452066f98f66954ee1dd28767.ctex"]
 
 [params]
 

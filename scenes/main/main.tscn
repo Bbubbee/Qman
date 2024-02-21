@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv83i6rv3yt8n"]
+[gd_scene load_steps=6 format=3 uid="uid://bv83i6rv3yt8n"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_8xiv0"]
 [ext_resource type="PackedScene" uid="uid://d0ruhrtm1drso" path="res://scenes/tiles/level_tile_map.tscn" id="2_45t53"]
 [ext_resource type="PackedScene" uid="uid://dpwtpkyvf7juq" path="res://scenes/player/player.tscn" id="3_o4a5t"]
-[ext_resource type="PackedScene" uid="uid://d2cp54aqb1i3t" path="res://scenes/enemies/dust_slime.tscn" id="4_rfy55"]
+[ext_resource type="PackedScene" uid="uid://bdxw4ul5106p4" path="res://scenes/enemies/dust/dust.tscn" id="4_cgpj8"]
+[ext_resource type="PackedScene" uid="uid://c1tmlhlu2k430" path="res://scenes/enemies/dust_baby/dust_baby.tscn" id="5_00mne"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8xiv0")
@@ -24,5 +25,8 @@ metadata/_edit_lock_ = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_o4a5t")]
 
-[node name="DustSlime" parent="." instance=ExtResource("4_rfy55")]
-position = Vector2(95, 70)
+[node name="DustBaby" parent="." instance=ExtResource("5_00mne")]
+position = Vector2(119, 60)
+
+[node name="Dust" parent="." instance=ExtResource("4_cgpj8")]
+position = Vector2(216, 12)

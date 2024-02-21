@@ -30,8 +30,8 @@ func init(actor):
 				
 func _process(delta: float) -> void:
 	if current_state: current_state.process(delta)
-		
-		
+
+
 func _physics_process(delta: float) -> void:
 	if current_state: current_state.physics_process(delta)
 
@@ -44,12 +44,12 @@ func _input(event: InputEvent) -> void:
 ## Note: You can't change states from the enter function! 
 func on_child_transition(state: State, new_state_name: String) -> void: 
 	if state != current_state: return
-			
+	
+	# Checks if the new state is invalid. 
 	var new_state = states.get(new_state_name.to_lower())
 	if not new_state: return
 	
+	# Leave the current state and go to the next. 
 	if current_state: current_state.exit()
-	
 	new_state.enter()
-	
 	current_state = new_state

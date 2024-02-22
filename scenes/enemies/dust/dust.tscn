@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://d2cp54aqb1i3t" path="res://scenes/enemies/basic_enemy/enemy.tscn" id="1_pvnsd"]
 [ext_resource type="Texture2D" uid="uid://blp0i1i1an3fo" path="res://assets/enemies/dust_slime/dust-Sheet.png" id="2_ycphn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_soad3"]
-size = Vector2(13, 4)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1wfi"]
+size = Vector2(14, 8)
 
 [sub_resource type="Animation" id="Animation_xnvqg"]
 length = 0.001
@@ -90,15 +90,16 @@ _data = {
 "idle": SubResource("Animation_2axxu")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cabq7"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0pt5f"]
 radius = 4.0
-height = 16.0
+height = 14.0
 
 [node name="Dust" instance=ExtResource("1_pvnsd")]
 
-[node name="Collider" parent="." index="0"]
-position = Vector2(-0.5, 6)
-shape = SubResource("RectangleShape2D_soad3")
+[node name="Hitbox" parent="." index="0"]
+visible = false
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_v1wfi")
 
 [node name="Sprite" parent="General" index="0"]
 texture = ExtResource("2_ycphn")
@@ -109,7 +110,13 @@ libraries = {
 "": SubResource("AnimationLibrary_ykw1s")
 }
 
-[node name="Collider" parent="Components/HitboxComponent" index="0"]
-shape = SubResource("CapsuleShape2D_cabq7")
+[node name="Hitbox" parent="Components" index="2"]
+collision_layer = 4
+collision_mask = 0
 
-[editable path="Components/HitboxComponent"]
+[node name="Collider" parent="Components/Hitbox" index="0"]
+position = Vector2(7.10543e-15, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0pt5f")
+
+[editable path="Components/Hitbox"]

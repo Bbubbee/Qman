@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://scenes/player/states/jump.gd" id="7_tk513"]
 [ext_resource type="Script" path="res://scenes/player/states/damaged.gd" id="8_8xkh7"]
 [ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://components/health_component.tscn" id="9_x8egt"]
-[ext_resource type="PackedScene" uid="uid://dy1nyvrmak4dq" path="res://components/hitbox_component.tscn" id="10_6gnjj"]
+[ext_resource type="PackedScene" uid="uid://bmqdf4kabond7" path="res://components/newattacks/hurtbox.tscn" id="11_2lm7y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_036ok"]
 radius = 4.0
@@ -83,12 +83,12 @@ _data = {
 "idle": SubResource("Animation_qrxqo")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2dvcn"]
-radius = 4.0
-height = 16.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mpg6y"]
+radius = 3.0
+height = 14.0
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 2
+collision_layer = 0
 script = ExtResource("1_c4p7c")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
@@ -152,14 +152,13 @@ script = ExtResource("7_kie8v")
 
 [node name="HealthComponent" parent="Components" node_paths=PackedStringArray("actor") instance=ExtResource("9_x8egt")]
 actor = NodePath("../..")
+max_health = 20.0
 
-[node name="HitboxComponent" parent="Components" node_paths=PackedStringArray("health_component") instance=ExtResource("10_6gnjj")]
-visible = false
-collision_layer = 2
-collision_mask = 5
-health_component = NodePath("../HealthComponent")
+[node name="Hurtbox" parent="Components" instance=ExtResource("11_2lm7y")]
+collision_layer = 0
+collision_mask = 4
 
-[node name="Collider" parent="Components/HitboxComponent" index="0"]
-shape = SubResource("CapsuleShape2D_2dvcn")
+[node name="Collider" parent="Components/Hurtbox" index="0"]
+shape = SubResource("CapsuleShape2D_mpg6y")
 
-[editable path="Components/HitboxComponent"]
+[editable path="Components/Hurtbox"]

@@ -16,4 +16,3 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready() -> void:
 	state_machine.init(self)
 
-

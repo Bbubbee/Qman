@@ -1,19 +1,78 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdxw4ul5106p4"]
+[gd_scene load_steps=10 format=3 uid="uid://bdxw4ul5106p4"]
 
 [ext_resource type="PackedScene" uid="uid://d2cp54aqb1i3t" path="res://scenes/enemies/basic_enemy/enemy.tscn" id="1_pvnsd"]
 [ext_resource type="Texture2D" uid="uid://blp0i1i1an3fo" path="res://assets/enemies/dust_slime/dust-Sheet.png" id="2_ycphn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_coyb0"]
-size = Vector2(14, 2)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_soad3"]
+size = Vector2(13, 4)
 
-[sub_resource type="Animation" id="Animation_wbvi1"]
+[sub_resource type="Animation" id="Animation_xnvqg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("General/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("General/Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j84pq"]
+resource_name = "damaged"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("General/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.360784), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_al7c6"]
+resource_name = "death"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("General/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2axxu"]
 resource_name = "idle"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("General/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -23,25 +82,12 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_ruib8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hyvkd"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ykw1s"]
 _data = {
-"RESET": SubResource("Animation_ruib8"),
-"idle": SubResource("Animation_wbvi1")
+"RESET": SubResource("Animation_xnvqg"),
+"damaged": SubResource("Animation_j84pq"),
+"death": SubResource("Animation_al7c6"),
+"idle": SubResource("Animation_2axxu")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cabq7"]
@@ -50,17 +96,17 @@ height = 16.0
 
 [node name="Dust" instance=ExtResource("1_pvnsd")]
 
-[node name="Sprite" parent="." index="0"]
+[node name="Collider" parent="." index="0"]
+position = Vector2(-0.5, 6)
+shape = SubResource("RectangleShape2D_soad3")
+
+[node name="Sprite" parent="General" index="0"]
 texture = ExtResource("2_ycphn")
 hframes = 2
 
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, 7)
-shape = SubResource("RectangleShape2D_coyb0")
-
-[node name="Animator" parent="." index="2"]
+[node name="Animator" parent="General" index="1"]
 libraries = {
-"": SubResource("AnimationLibrary_hyvkd")
+"": SubResource("AnimationLibrary_ykw1s")
 }
 
 [node name="Collider" parent="Components/HitboxComponent" index="0"]

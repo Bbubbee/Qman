@@ -16,7 +16,8 @@ func physics_process(delta: float) -> void:
 	if actor.attack_incoming: 
 		transition.emit(self, "damaged")
 	
+	if actor.has_died: 
+		transition.emit(self, "death")
 
-#func _on_animator_animation_finished(_anim_name: StringName) -> void:
-	#actor.animator.play("idle")
-
+func _on_animator_animation_finished(anim_name: StringName) -> void:
+	actor.animator.play("idle")

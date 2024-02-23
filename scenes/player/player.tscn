@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://dpwtpkyvf7juq"]
+[gd_scene load_steps=19 format=3 uid="uid://dpwtpkyvf7juq"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_c4p7c"]
+[ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="2_jxt3h"]
 [ext_resource type="Texture2D" uid="uid://bh14o5l46fehi" path="res://assets/player/player_idle-Sheet.png" id="2_rsih1"]
 [ext_resource type="Texture2D" uid="uid://cpa4hj6a8x5mq" path="res://assets/player/player_hand_export.png" id="3_bosfo"]
 [ext_resource type="Script" path="res://scenes/player/states/state_machine.gd" id="4_rnkx0"]
@@ -9,8 +10,8 @@
 [ext_resource type="Script" path="res://scenes/player/states/aim.gd" id="7_kie8v"]
 [ext_resource type="Script" path="res://scenes/player/states/jump.gd" id="7_tk513"]
 [ext_resource type="Script" path="res://scenes/player/states/damaged.gd" id="8_8xkh7"]
-[ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://components/health_component.tscn" id="9_x8egt"]
-[ext_resource type="PackedScene" uid="uid://bmqdf4kabond7" path="res://components/newattacks/hurtbox.tscn" id="11_2lm7y"]
+[ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://components/h_boxes/health_component.tscn" id="9_x8egt"]
+[ext_resource type="PackedScene" uid="uid://bmqdf4kabond7" path="res://components/h_boxes/hurtbox.tscn" id="11_2lm7y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_036ok"]
 radius = 4.0
@@ -92,12 +93,11 @@ collision_layer = 0
 script = ExtResource("1_c4p7c")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CapsuleShape2D_036ok")
-metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -11)
+script = ExtResource("2_jxt3h")
 metadata/_edit_lock_ = true
 
 [node name="Animator" type="AnimationPlayer" parent="."]
@@ -154,11 +154,13 @@ script = ExtResource("7_kie8v")
 actor = NodePath("../..")
 max_health = 20.0
 
-[node name="Hurtbox" parent="Components" instance=ExtResource("11_2lm7y")]
-collision_layer = 0
+[node name="Hurtbox" parent="Components" node_paths=PackedStringArray("health_component") instance=ExtResource("11_2lm7y")]
 collision_mask = 4
+health_component = NodePath("../HealthComponent")
 
 [node name="Collider" parent="Components/Hurtbox" index="0"]
 shape = SubResource("CapsuleShape2D_mpg6y")
+
+[connection signal="animation_finished" from="Animator" to="StateMachine/Move" method="_on_animator_animation_finished"]
 
 [editable path="Components/Hurtbox"]

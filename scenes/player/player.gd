@@ -13,7 +13,7 @@ const SPEED = 200.0
 
 signal damaged
 
-var attack_incoming: AttackComponent
+var attack_incoming: Hitbox
 	# Used to determine when to go to the damaged state. 
 	# Made true in health component.
 

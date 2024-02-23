@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://lge6t38xhjjm"]
+
+[ext_resource type="Script" path="res://components/h_boxes/hurt_hit_box.gd" id="1_ydcvu"]
+
+[node name="HurtHitBox" type="Area2D"]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_ydcvu")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+debug_color = Color(0.741176, 0.219608, 1, 0.419608)
+
+[connection signal="area_entered" from="." to="." method="_on_hitbox_entered"]

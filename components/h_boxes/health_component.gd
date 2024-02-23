@@ -6,7 +6,7 @@ class_name HealthComponent
 @onready var health: float = max_health
 
 
-func take_damage(attack: AttackComponent): 
+func take_damage(attack: Hitbox): 
 	# Damage the actor. 
 	health -= attack.damage
 	
@@ -19,6 +19,7 @@ func take_damage(attack: AttackComponent):
 	# The actor has died. 
 	if health <= 0: 
 		# Handle death functionality here, if exists. 
+		# Usuall this means transitioning into a death state. 
 		if "has_died" in actor: 
 			actor.has_died = true
 		

@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2cp54aqb1i3t"]
+[gd_scene load_steps=12 format=3 uid="uid://d2cp54aqb1i3t"]
 
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy.gd" id="1_fs0av"]
-[ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://components/health_component.tscn" id="4_6btmt"]
+[ext_resource type="PackedScene" uid="uid://lge6t38xhjjm" path="res://components/h_boxes/hurt_hit_box.tscn" id="3_a6rne"]
+[ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://components/h_boxes/health_component.tscn" id="4_6btmt"]
 [ext_resource type="Script" path="res://scenes/player/states/state_machine.gd" id="5_clrhi"]
-[ext_resource type="PackedScene" uid="uid://b8odsjult6uvb" path="res://components/newattacks/hitbox.tscn" id="5_koa8y"]
-[ext_resource type="Script" path="res://components/attack_component.gd" id="5_xst02"]
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_wander.gd" id="7_v07kp"]
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_death_state.gd" id="8_pybyw"]
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_damaged.gd" id="8_v0he8"]
@@ -67,7 +66,7 @@ _data = {
 collision_layer = 0
 script = ExtResource("1_fs0av")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="."]
 editor_description = "The hitbox and physics of this enemy."
 position = Vector2(0, 1)
 metadata/_edit_lock_ = true
@@ -89,10 +88,10 @@ metadata/_edit_lock_ = true
 [node name="HealthComponent" parent="Components" node_paths=PackedStringArray("actor") instance=ExtResource("4_6btmt")]
 actor = NodePath("../..")
 
-[node name="AttackComponent" type="Node2D" parent="Components"]
-script = ExtResource("5_xst02")
-
-[node name="Hitbox" parent="Components" instance=ExtResource("5_koa8y")]
+[node name="HurtHitBox" parent="Components" node_paths=PackedStringArray("health_component") instance=ExtResource("3_a6rne")]
+collision_layer = 4
+collision_mask = 8
+health_component = NodePath("../HealthComponent")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_clrhi")
@@ -109,5 +108,3 @@ script = ExtResource("8_pybyw")
 
 [connection signal="animation_finished" from="General/Animator" to="StateMachine/Wander" method="_on_animator_animation_finished"]
 [connection signal="animation_finished" from="General/Animator" to="StateMachine/Death" method="_on_animator_animation_finished"]
-
-[editable path="Components/Hitbox"]

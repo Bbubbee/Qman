@@ -1,21 +1,27 @@
 extends State
 
-# A cool down because I want to transition before the 
-# animation ends. 
-var cooldown: float = 0.25
+# A cool down because I want to transition before the animation ends. 
+var cooldown: float = 0.2
 var timer: float
 var animator: AnimationPlayer
 
 
 func enter(): 
 	animator = actor.animator
-	actor.velocity.x = 0
+	#actor.velocity.x = 0
 	animator.play("damaged") 
 	actor.attack_incoming = null
 	timer = cooldown
+	
+	# Knockback. 
+	actor.velocity.x = 100
+	
+	
 
 
-func process(delta: float) -> void:
+func physics_process(delta: float) -> void:
+	actor.move_and_slide()
+	
 	if actor.has_died: 
 		transition.emit(self, "death")
 		

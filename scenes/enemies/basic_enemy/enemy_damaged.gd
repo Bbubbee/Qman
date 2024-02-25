@@ -6,15 +6,19 @@ var timer: float
 var animator: AnimationPlayer
 
 
-func enter(): 
+func enter(_enter_params = null): 
 	animator = actor.animator
 	#actor.velocity.x = 0
 	animator.play("damaged") 
-	actor.attack_incoming = null
 	timer = cooldown
 	
 	# Knockback. 
-	actor.velocity.x = 100
+	#actor.velocity.x = 100
+	actor.velocity = actor.attack_incoming.direction * 100
+	
+	actor.attack_incoming = null
+	
+	
 	
 	
 

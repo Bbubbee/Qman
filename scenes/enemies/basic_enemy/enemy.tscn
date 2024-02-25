@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2cp54aqb1i3t"]
+[gd_scene load_steps=13 format=3 uid="uid://d2cp54aqb1i3t"]
 
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy.gd" id="1_fs0av"]
 [ext_resource type="PackedScene" uid="uid://lge6t38xhjjm" path="res://components/h_boxes/hurt_hit_box.tscn" id="3_a6rne"]
 [ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://components/h_boxes/health_component.tscn" id="4_6btmt"]
 [ext_resource type="Script" path="res://scenes/player/states/state_machine.gd" id="5_clrhi"]
+[ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_follow_state.gd" id="6_8tppr"]
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_wander.gd" id="7_v07kp"]
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_death_state.gd" id="8_pybyw"]
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_damaged.gd" id="8_v0he8"]
@@ -99,6 +100,9 @@ initial_state = NodePath("Wander")
 
 [node name="Wander" type="Node" parent="StateMachine"]
 script = ExtResource("7_v07kp")
+
+[node name="Follow" type="Node" parent="StateMachine"]
+script = ExtResource("6_8tppr")
 
 [node name="Damaged" type="Node" parent="StateMachine"]
 script = ExtResource("8_v0he8")

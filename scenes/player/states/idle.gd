@@ -1,7 +1,7 @@
 extends State
 
 
-func enter(): 
+func enter(_enter_params = null): 
 	actor.velocity.x = 0
 
 
@@ -19,5 +19,5 @@ func physics_process(delta: float) -> void:
 		actor.velocity.y += actor.gravity * delta
 	actor.move_and_slide()
 	
-	if actor.attack_incoming: 
-		transition.emit(self, "damaged")
+	#if actor.attack_incoming: 
+		#transition.emit(self, "damaged")

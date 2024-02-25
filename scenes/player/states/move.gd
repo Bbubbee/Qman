@@ -2,7 +2,7 @@ extends State
 
 
 
-func enter(): 
+func enter(_enter_params = null): 
 	# Only play the move animation if other animations are done.
 	if not actor.animator.is_playing():
 		actor.animator.play("idle")
@@ -27,8 +27,8 @@ func physics_process(delta: float):
 		actor.velocity.y += actor.gravity * delta
 	
 	# Handle damaged.
-	if actor.attack_incoming: 
-		transition.emit(self, "damaged")
+	#if actor.attack_incoming: 
+		#transition.emit(self, "damaged")
 	
 
 func on_input(event: InputEvent): 

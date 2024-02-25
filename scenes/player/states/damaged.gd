@@ -6,10 +6,12 @@ var cooldown: float = 0.15
 var cooldown_timer: float
 
 
-func enter():
+func enter(_enter_params = null):
+	var attack = _enter_params
+	print(attack)
+	print("entered damaged state")
 	cooldown_timer = cooldown
 	actor.animator.play("hurt")
-	actor.attack_incoming = null
 
 
 func physics_process(delta: float) -> void:

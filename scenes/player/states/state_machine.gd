@@ -5,6 +5,10 @@ var current_state: State
 
 @export var initial_state : State
 
+# These are both used to check if we are done transitioning between states. 
+# See on_child_transition and force_transition for how. 
+signal done_transitioning
+var finished_transitioning: bool = true 
 	
 ## Readies the state machine. 
 func _ready(): 
@@ -25,7 +29,7 @@ func init(actor):
 	# Sets initial state. 
 	if initial_state: 
 		current_state = initial_state
-		current_state.enter()
+		current_state.enter(null)
 
 				
 func _process(delta: float) -> void:
@@ -42,14 +46,47 @@ func _input(event: InputEvent) -> void:
 
 ## State transition. 
 ## Note: You can't change states from the enter function! 
-func on_child_transition(state: State, new_state_name: String) -> void: 
-	if state != current_state: return
+func on_child_transition(state: State, new_state_name: String, enter_params = null) -> void: 
+	finished_transitioning = false
+	
+	if state != current_state: 
+		finished_transitioning = true
+		return
 	
 	# Checks if the new state is invalid. 
 	var new_state = states.get(new_state_name.to_lower())
-	if not new_state: return
+	if not new_state: 
+		finished_transitioning = true		
+		return
 	
 	# Leave the current state and go to the next. 
 	if current_state: current_state.exit()
-	new_state.enter()
+	new_state.enter(enter_params)
 	current_state = new_state
+	
+	finished_transitioning = true
+	done_transitioning.emit()
+
+
+## Safe forced transition. 
+## Checks if the 
+func force_transition(new_state_name: String, enter_params): 
+	# 
+	if finished_transitioning: 
+		if current_state :
+			current_state.transition.emit(current_state, new_state_name, enter_params)
+	else: 
+		await done_transitioning
+		if current_state :
+			current_state.transition.emit(current_state, new_state_name, enter_params)
+			
+		
+		
+	
+	
+	
+	
+
+
+
+

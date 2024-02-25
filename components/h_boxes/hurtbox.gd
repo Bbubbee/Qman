@@ -10,6 +10,9 @@ class_name Hurtbox
 func _on_hitbox_entered(hitbox: Hitbox) -> void:
 	if not hitbox and not health_component: return 
 	
+	# Set the direction of the hitbox. 
+	#print(hitbox.global_position)
+	
 	health_component.take_damage(hitbox)
 		
 	

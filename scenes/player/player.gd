@@ -13,7 +13,7 @@ const SPEED = 200.0
 
 signal damaged
 
-var attack_incoming: Hitbox
+#var attack_incoming: Hitbox
 	# Used to determine when to go to the damaged state. 
 	# Made true in health component.
 
@@ -25,14 +25,10 @@ func _ready() -> void:
 	attack_state_machine.init(self)
 
 
-
-	
-
-
-
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		state_machine.force_transition("lol")
 
 
-
-
-
-
+func _on_health_component_take_dmg_test(attack: Hitbox) -> void:
+	state_machine.force_transition("damaged", attack)

@@ -1,8 +1,7 @@
 extends State
 
 
-func enter():
-	print("im dead")
+func enter(_enter_params = null):
 	actor.animator.play("death")
 	
 

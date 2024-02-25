@@ -14,5 +14,9 @@ extends Hitbox
 func _on_hitbox_entered(hitbox: Hitbox) -> void:
 	if not hitbox and not health_component: return 
 	
+	# Get the direction of the hitbox. 
+	var direction = self.global_position - hitbox.global_position
+	hitbox.direction = direction.normalized()
+	
 	health_component.take_damage(hitbox)
 	

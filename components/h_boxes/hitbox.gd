@@ -14,7 +14,7 @@ Remember:
 """
 
 @export var damage: float = 1.0
-@export var knocback: float = 0.0
+@export var knockback: float = 100.0
 var direction
 	# The direction in which actors will be knocked back.
 

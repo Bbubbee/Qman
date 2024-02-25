@@ -15,20 +15,12 @@ func enter(_enter_params = null):
 	
 	# Knockback. 
 	#actor.velocity.x = 100
-	actor.velocity = attack.direction * 100
-	
-
-	
-	
-	
+	actor.velocity = attack.direction * attack.knockback
 	
 
 
 func physics_process(delta: float) -> void:
 	actor.move_and_slide()
-	
-	if actor.has_died: 
-		transition.emit(self, "death")
 		
 	# Transition to wander after a cooldown. 
 	timer -= delta 

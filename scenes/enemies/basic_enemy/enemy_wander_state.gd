@@ -27,8 +27,6 @@ func physics_process(delta: float) -> void:
 	# Wander. 
 	actor.velocity.x = move_direction * actor.SPEED
 	
-	if actor.has_died: 
-		transition.emit(self, "death")
 	
 	# Follow the player if close enough. 
 	if player: 

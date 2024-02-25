@@ -18,8 +18,8 @@ func on_input(event: InputEvent) -> void:
 		var gust = GUST.instantiate()
 		
 		var direction = actor.get_global_mouse_position() - actor.global_position
-		gust.global_position = actor.bullet_marker.global_position
-		gust.direction = direction.normalized()
+		direction = direction.normalized()
+		gust.init(direction, actor.bullet_marker.global_position)
 		
 		var root = get_tree().get_root()
 		root.add_child(gust)

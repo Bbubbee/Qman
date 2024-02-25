@@ -25,5 +25,5 @@ func _ready() -> void:
 	attack_state_machine.init(self)
 	
 
-func _on_health_component_handle_attack(attack: Hitbox) -> void:
+func _on_health_component_handle_attack(attack: Hitbox, _has_died: bool = false) -> void:
 		state_machine.force_transition("damaged", attack)

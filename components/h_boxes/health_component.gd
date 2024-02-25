@@ -5,14 +5,14 @@ class_name HealthComponent
 @export var max_health: float = 5.0
 @onready var health: float = max_health
 
-signal take_dmg_test(attack: Hitbox)
+signal handle_attack(attack: Hitbox)
 
 
 func take_damage(attack: Hitbox): 
 	# Damage the actor. 
 	health -= attack.damage
 	
-	take_dmg_test.emit(attack)
+	handle_attack.emit(attack)
 	
 	# Handle functionality of getting hit here, if exists. 
 	# Usually this means transitioning into a damaged state. 

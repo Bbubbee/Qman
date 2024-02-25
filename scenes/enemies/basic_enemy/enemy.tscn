@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://components/h_boxes/health_component.tscn" id="4_6btmt"]
 [ext_resource type="Script" path="res://scenes/player/states/state_machine.gd" id="5_clrhi"]
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_follow_state.gd" id="6_8tppr"]
-[ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_wander.gd" id="7_v07kp"]
+[ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_wander_state.gd" id="7_v07kp"]
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_death_state.gd" id="8_pybyw"]
-[ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_damaged.gd" id="8_v0he8"]
+[ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_damaged_state.gd" id="8_v0he8"]
 
 [sub_resource type="Animation" id="Animation_rgu46"]
 length = 0.001
@@ -112,3 +112,4 @@ script = ExtResource("8_pybyw")
 
 [connection signal="animation_finished" from="General/Animator" to="StateMachine/Wander" method="_on_animator_animation_finished"]
 [connection signal="animation_finished" from="General/Animator" to="StateMachine/Death" method="_on_animator_animation_finished"]
+[connection signal="handle_attack" from="Components/HealthComponent" to="." method="_on_health_component_handle_attack"]

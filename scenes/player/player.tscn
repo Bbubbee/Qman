@@ -162,6 +162,6 @@ health_component = NodePath("../HealthComponent")
 shape = SubResource("CapsuleShape2D_mpg6y")
 
 [connection signal="animation_finished" from="Animator" to="StateMachine/Move" method="_on_animator_animation_finished"]
-[connection signal="take_dmg_test" from="Components/HealthComponent" to="." method="_on_health_component_take_dmg_test"]
+[connection signal="handle_attack" from="Components/HealthComponent" to="." method="_on_health_component_handle_attack"]
 
 [editable path="Components/Hurtbox"]

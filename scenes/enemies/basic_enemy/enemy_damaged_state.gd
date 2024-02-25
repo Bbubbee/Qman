@@ -7,6 +7,7 @@ var animator: AnimationPlayer
 
 
 func enter(_enter_params = null): 
+	var attack = _enter_params
 	animator = actor.animator
 	#actor.velocity.x = 0
 	animator.play("damaged") 
@@ -14,9 +15,9 @@ func enter(_enter_params = null):
 	
 	# Knockback. 
 	#actor.velocity.x = 100
-	actor.velocity = actor.attack_incoming.direction * 100
+	actor.velocity = attack.direction * 100
 	
-	actor.attack_incoming = null
+
 	
 	
 	

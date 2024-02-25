@@ -27,9 +27,6 @@ func physics_process(delta: float) -> void:
 	# Wander. 
 	actor.velocity.x = move_direction * actor.SPEED
 	
-	if actor.attack_incoming: 
-		transition.emit(self, "damaged")
-	
 	if actor.has_died: 
 		transition.emit(self, "death")
 	
@@ -39,7 +36,7 @@ func physics_process(delta: float) -> void:
 		if direction.length() < 75:  
 			transition.emit(self, "follow") 
 
-func _on_animator_animation_finished(anim_name: StringName) -> void:
+func _on_animator_animation_finished(_anim_name: StringName) -> void:
 	actor.animator.play("idle")
 
 ## Sets the direction the enemy will wander and the time they will wander

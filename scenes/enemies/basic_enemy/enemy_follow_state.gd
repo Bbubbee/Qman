@@ -12,6 +12,9 @@ func physics_process(delta: float):
 	if not actor.is_on_floor(): actor.velocity.y += actor.gravity * delta
 	actor.move_and_slide()
 	
+	if not player: 
+		transition.emit(self, "wander")
+	
 	# Move towards the player. 
 	var direction = player.global_position - actor.global_position 
 

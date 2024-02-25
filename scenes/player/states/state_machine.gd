@@ -5,9 +5,6 @@ var current_state: State
 
 @export var initial_state : State
 
-# These are both used to check if we are done transitioning between states. 
-# See on_child_transition and force_transition for how. 
-signal done_transitioning
 var finished_transitioning: bool = true 
 	
 ## Readies the state machine. 
@@ -65,21 +62,21 @@ func on_child_transition(state: State, new_state_name: String, enter_params = nu
 	current_state = new_state
 	
 	finished_transitioning = true
-	done_transitioning.emit()
 
 
 ## Safe forced transition. 
-## Checks if the 
-func force_transition(new_state_name: String, enter_params): 
-	# 
-	if finished_transitioning: 
-		if current_state :
-			current_state.transition.emit(current_state, new_state_name, enter_params)
-	else: 
-		await done_transitioning
-		if current_state :
-			current_state.transition.emit(current_state, new_state_name, enter_params)
-			
+func force_transition(new_state_name: String, enter_params): 	
+	# Warning. Ensure finished_transitioning is set to true so this doesn't loop
+	# forever. 
+	var backup = 50
+	while not finished_transitioning:
+		print("force transition is looping")
+		backup -= 1 
+		if backup < 0:
+			break
+	
+	current_state.transition.emit(current_state, new_state_name, enter_params)
+		
 		
 		
 	

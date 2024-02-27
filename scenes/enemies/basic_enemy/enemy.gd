@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 20
+const DUST_PARTICLE = preload("res://scenes/dust_particles/dust_particle.tscn")
 
 @onready var state_machine: Node = $StateMachine
 @onready var sprite_2d: Sprite2D = $General/Sprite

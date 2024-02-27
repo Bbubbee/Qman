@@ -17,6 +17,7 @@ func take_damage(attack: Hitbox):
 	# Handle the direction of knockback. 
 	var direction = (actor.global_position - attack.global_position).normalized()
 	attack.direction = direction
+	print(direction)
 	
 	if health >= 0: 
 		handle_attack.emit(attack, false)

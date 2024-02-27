@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct7roso4rgv7o"]
+
+[ext_resource type="Script" path="res://scenes/dust_particles/dust_particle.gd" id="1_hxhb6"]
+
+[node name="DustParticle" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 9
+script = ExtResource("1_hxhb6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 0, 0, 0, 2, 0, 2, 2, 0, 2)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+scale = Vector2(0.240001, 0.240001)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 8, 0, 8)

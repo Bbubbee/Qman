@@ -109,7 +109,7 @@ libraries = {
 }
 
 [node name="HealthComponent" parent="Components" index="0"]
-max_health = 10.0
+max_health = 2.08165e-12
 
 [node name="Collider" parent="Components/HurtHitBox" index="0"]
 position = Vector2(0.5, 4.5)

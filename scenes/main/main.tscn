@@ -34,5 +34,14 @@ position = Vector2(306, 68)
 [node name="DustBaby" parent="Actors" instance=ExtResource("5_00mne")]
 position = Vector2(134, 59)
 
+[node name="DustBaby2" parent="Actors" instance=ExtResource("5_00mne")]
+position = Vector2(134, 59)
+
+[node name="DustBaby3" parent="Actors" instance=ExtResource("5_00mne")]
+position = Vector2(134, 59)
+
+[node name="DustBaby4" parent="Actors" instance=ExtResource("5_00mne")]
+position = Vector2(134, 59)
+
 [node name="ParticleSpawner" type="Node2D" parent="."]
 script = ExtResource("6_laqpe")

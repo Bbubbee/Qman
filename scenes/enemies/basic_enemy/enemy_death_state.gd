@@ -4,7 +4,7 @@ extends State
 func enter(_enter_params = null):
 	actor.animator.play("death")
 	
-	Events.spawn_particles.emit(actor.position)
+	Events.spawn_particles.emit(actor.position, 10)
 	
 	# Spawn a bunch of dust particles
 	#for x in randi_range(3, 15):

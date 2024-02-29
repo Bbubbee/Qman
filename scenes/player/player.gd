@@ -26,4 +26,7 @@ func _ready() -> void:
 	
 
 func _on_health_component_handle_attack(attack: Hitbox, _has_died: bool = false) -> void:
-		state_machine.force_transition("damaged", attack)
+	state_machine.force_transition("damaged", attack)
+
+func _on_aim_fired_weapon(direction) -> void:
+	state_machine.force_transition("knockback", direction)

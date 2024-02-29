@@ -1,6 +1,10 @@
 extends State
 
 const GUST = preload('res://scenes/player/actions/gust.tscn')
+signal fired_weapon(direction: Vector2)
+var can_shoot: bool = true
+@onready var attack_timer: Timer = $AttackTimer
+
 
 func physics_process(_delta: float):
 	var mouse_pos = actor.get_global_mouse_position()
@@ -9,17 +13,27 @@ func physics_process(_delta: float):
 	# Make the arm aim at the mouse. 
 	actor.arm_pivot.look_at(mouse_pos)
 	
-	# Face the sprite towards the mouse.
+	# Flip the sprite to face the correct direction.
 	actor.sprite.flip_h = mouse_pos.x < pos.x 
 	
 
 func on_input(event: InputEvent) -> void:
 	if event.is_action_pressed('spit'):
-		var gust = GUST.instantiate()
-		
-		var direction = actor.get_global_mouse_position() - actor.global_position
-		direction = direction.normalized()
-		gust.init(direction, actor.bullet_marker.global_position)
-		
-		var root = get_tree().get_root()
-		root.add_child(gust)
+		if can_shoot: 
+			can_shoot = false
+			attack_timer.start()
+			
+			var gust = GUST.instantiate()
+			
+			var direction = actor.get_global_mouse_position() - actor.global_position
+			direction = direction.normalized()
+			gust.init(direction, actor.bullet_marker.global_position)
+			
+			var root = get_tree().get_root()
+			root.add_child(gust)
+			
+			fired_weapon.emit(direction)
+
+
+func _on_attack_timer_timeout() -> void:
+	can_shoot = true

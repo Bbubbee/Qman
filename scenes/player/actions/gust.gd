@@ -6,7 +6,7 @@ var direction: Vector2
 
 func init(dir: Vector2, pos: Vector2): 
 	self.direction = dir
-	global_position = pos 
+	self.global_position = pos 
 
 func _physics_process(delta: float) -> void:
 	global_position += (speed * direction) * delta
@@ -14,4 +14,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_entered(_area: Area2D) -> void:
+	queue_free()
+
+
+func _on_timer_timeout() -> void:
 	queue_free()

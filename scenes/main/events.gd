@@ -1,5 +1,5 @@
 extends Node
 
-signal spawn_particles(pos: Vector2, count: int)
+signal spawn_particles(pos: Vector2, count: int, dir: Vector2)
 
 

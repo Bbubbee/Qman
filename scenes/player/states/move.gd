@@ -23,8 +23,7 @@ func physics_process(delta: float):
 		transition.emit(self, "idle")
 	
 	# Apply gravity.
-	if not actor.is_on_floor():
-		actor.velocity.y += actor.gravity * delta
+	if not actor.is_on_floor(): actor.velocity.y += actor.gravity * delta
 	
 	# Handle damaged.
 	#if actor.attack_incoming: 

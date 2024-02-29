@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bv83i6rv3yt8n"]
+[gd_scene load_steps=8 format=3 uid="uid://bv83i6rv3yt8n"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_8xiv0"]
 [ext_resource type="PackedScene" uid="uid://d0ruhrtm1drso" path="res://scenes/tiles/level_tile_map.tscn" id="2_45t53"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bdxw4ul5106p4" path="res://scenes/enemies/dust/spitter.tscn" id="4_cgpj8"]
 [ext_resource type="PackedScene" uid="uid://c1tmlhlu2k430" path="res://scenes/enemies/baby/dust_baby.tscn" id="5_00mne"]
 [ext_resource type="Script" path="res://scenes/main/particle_spawner.gd" id="6_laqpe"]
+[ext_resource type="Texture2D" uid="uid://e2be3nx8ew8c" path="res://assets/other/lamp-post.png" id="7_iembb"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8xiv0")
@@ -35,13 +36,29 @@ position = Vector2(306, 68)
 position = Vector2(134, 59)
 
 [node name="DustBaby2" parent="Actors" instance=ExtResource("5_00mne")]
-position = Vector2(134, 59)
+position = Vector2(156, 59)
 
 [node name="DustBaby3" parent="Actors" instance=ExtResource("5_00mne")]
-position = Vector2(134, 59)
+position = Vector2(180, 59)
 
 [node name="DustBaby4" parent="Actors" instance=ExtResource("5_00mne")]
-position = Vector2(134, 59)
+position = Vector2(209, 61)
+
+[node name="DustBaby5" parent="Actors" instance=ExtResource("5_00mne")]
+position = Vector2(-41, 49)
+
+[node name="DustBaby6" parent="Actors" instance=ExtResource("5_00mne")]
+position = Vector2(-107, 49)
+
+[node name="DustBaby7" parent="Actors" instance=ExtResource("5_00mne")]
+position = Vector2(-155, 49)
+
+[node name="DustBaby8" parent="Actors" instance=ExtResource("5_00mne")]
+position = Vector2(-207, 49)
 
 [node name="ParticleSpawner" type="Node2D" parent="."]
 script = ExtResource("6_laqpe")
+
+[node name="Lamp-post" type="Sprite2D" parent="."]
+position = Vector2(-76, 80)
+texture = ExtResource("7_iembb")

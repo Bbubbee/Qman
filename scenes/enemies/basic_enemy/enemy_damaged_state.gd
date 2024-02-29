@@ -14,7 +14,6 @@ func enter(_enter_params = null):
 	timer = cooldown
 	
 	# Knockback. 
-	#actor.velocity.x = 100
 	actor.velocity = attack.direction * attack.knockback
 	
 

@@ -10,8 +10,9 @@ func _ready() -> void:
 
 
 ## Spawn a set amount of particles based on the count. 
-func _on_spawn_particles(pos: Vector2, count: int): 
-	for i in randi_range(count, (count+(count*0.35)) ):
+func _on_spawn_particles(pos: Vector2, count: int, dir: Vector2): 
+	for i in randi_range(count, (count+(count*0.4)) ):
 		var dust = DUST_PARTICLE.instantiate()
-		dust.position = pos + Vector2(5, 0) 		
+		dust.position = pos		
+		dust.direction = dir
 		self.add_child(dust) 

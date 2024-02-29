@@ -1,43 +1,18 @@
 extends RigidBody2D
 
+var direction: Vector2
 
 
-func _ready() -> void:
-	var x = randf_range(100, 200)
-	var y = randf_range(-100, -200)
-	apply_impulse(Vector2(x, y), self.position)
-#
-#const SPEED = 400.0
-#const JUMP_VELOCITY = -400.0
-#
-## Get the gravity from the project settings to be synced with RigidBody nodes.
-#var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
-#
-#func _ready() -> void:
-	#velocity.y = JUMP_VELOCITY
-	#velocity.x = SPEED
-	#
-#
-#
-#func init(direction: Vector2): 
-	#pass
-	#
-#
-#
-#func _physics_process(delta: float) -> void:
-	##velocity.x = move_toward(velocity.x, 0, 1)
-	#
-	## Move the x velocity to zero by gravity (or some value) * delta. 
-	#if velocity.x > 0:
-		#velocity.x = maxf(velocity.x - gravity * delta, 0)
-	#elif velocity.x < 0: 
-		#velocity.x = minf(velocity.x + gravity * delta, 0)
-	#else: 
-		#velocity.x = 0
-	#
-	## Add the gravity.
-	#if not is_on_floor():
-		#velocity.y += gravity * delta
+func _ready() -> void:	
+	if direction.x > 0: 
+		direction.x = randf_range(direction.x, direction.x+200)
+		self.position = self.position + Vector2(5, 0) 
+	else: 
+		direction.x = randf_range(direction.x, direction.x-200)
+		self.position = self.position - Vector2(5, 0) 
+		
+		
+	direction.y = randf_range(direction.y, direction.y-200)
 
-
-	#move_and_slide()
+	apply_impulse(direction, self.position)
+	

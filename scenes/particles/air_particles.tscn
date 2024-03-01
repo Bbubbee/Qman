@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmlou5wadoskf"]
+
+[ext_resource type="Script" path="res://scenes/particles/air_particles.gd" id="1_7g5s1"]
+
+[sub_resource type="Gradient" id="Gradient_wah5h"]
+offsets = PackedFloat32Array(0, 0.978328)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bs7sx"]
+gradient = SubResource("Gradient_wah5h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qtv64"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 10.0
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+color_ramp = SubResource("GradientTexture1D_bs7sx")
+
+[node name="AirParticles" type="GPUParticles2D"]
+position = Vector2(8, -1)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_qtv64")
+lifetime = 0.3
+one_shot = true
+script = ExtResource("1_7g5s1")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

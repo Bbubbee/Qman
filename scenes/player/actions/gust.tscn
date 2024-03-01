@@ -1,35 +1,82 @@
-[gd_scene load_steps=4 format=3 uid="uid://bn0vy17ie83yo"]
+[gd_scene load_steps=7 format=3 uid="uid://bn0vy17ie83yo"]
 
 [ext_resource type="Script" path="res://scenes/player/actions/gust.gd" id="1_5wq1s"]
 [ext_resource type="PackedScene" uid="uid://b8odsjult6uvb" path="res://components/h_boxes/hitbox.tscn" id="2_q8jho"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8gx3"]
-size = Vector2(1, 2)
+size = Vector2(2.5, 4)
+
+[sub_resource type="Animation" id="Animation_i2kux"]
+resource_name = "fade"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sf38t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6awjw"]
+_data = {
+"RESET": SubResource("Animation_sf38t"),
+"fade": SubResource("Animation_i2kux")
+}
 
 [node name="Gust" type="Node2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_5wq1s")
-speed = 350.0
+speed = 200.0
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(0, -1, 1, 0, 0, 1)
+polygon = PackedVector2Array(2.5, 0, 2, -1, 1, -2, 0, -2, 0, -1, 1, 0, 0, 1, 0, 2, 1, 2, 2, 1)
 metadata/_edit_lock_ = true
 
 [node name="Hitbox" parent="." instance=ExtResource("2_q8jho")]
+visible = false
 collision_layer = 8
 collision_mask = 5
 knockback = 125.0
+metadata/_edit_lock_ = true
 
 [node name="Collider" parent="Hitbox" index="0"]
-position = Vector2(0.5, 0)
+visible = false
+position = Vector2(1.25, 0)
 shape = SubResource("RectangleShape2D_h8gx3")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.3
 one_shot = true
 autostart = true
 
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6awjw")
+}
+autoplay = "fade"
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="Animator" to="." method="_on_animator_animation_finished"]
 
 [editable path="Hitbox"]

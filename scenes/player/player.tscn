@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://dpwtpkyvf7juq"]
+[gd_scene load_steps=21 format=3 uid="uid://dpwtpkyvf7juq"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_c4p7c"]
 [ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="2_jxt3h"]
 [ext_resource type="Texture2D" uid="uid://bh14o5l46fehi" path="res://assets/player/player_idle-Sheet.png" id="2_rsih1"]
 [ext_resource type="Texture2D" uid="uid://cpa4hj6a8x5mq" path="res://assets/player/player_hand_export.png" id="3_bosfo"]
+[ext_resource type="Script" path="res://scenes/player/arm_pivot.gd" id="4_6uptp"]
 [ext_resource type="Script" path="res://scenes/player/states/state_machine.gd" id="4_rnkx0"]
 [ext_resource type="Script" path="res://scenes/player/states/idle.gd" id="5_yjn2x"]
 [ext_resource type="Script" path="res://scenes/player/states/move.gd" id="6_cqvk3"]
@@ -90,11 +91,10 @@ radius = 3.0
 height = 14.0
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 2
 script = ExtResource("1_c4p7c")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CapsuleShape2D_036ok")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -116,7 +116,7 @@ metadata/_edit_lock_ = true
 
 [node name="ArmPivot" type="Marker2D" parent="."]
 position = Vector2(0, -2)
-metadata/_edit_group_ = true
+script = ExtResource("4_6uptp")
 
 [node name="ArmSprite" type="Sprite2D" parent="ArmPivot"]
 position = Vector2(3, 0)
@@ -170,6 +170,7 @@ actor = NodePath("../..")
 max_health = 20.0
 
 [node name="Hurtbox" parent="Components" node_paths=PackedStringArray("health_component") instance=ExtResource("11_2lm7y")]
+visible = false
 collision_mask = 4
 health_component = NodePath("../HealthComponent")
 

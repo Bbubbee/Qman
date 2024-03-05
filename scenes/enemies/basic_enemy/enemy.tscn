@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2cp54aqb1i3t"]
+[gd_scene load_steps=14 format=3 uid="uid://d2cp54aqb1i3t"]
 
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy.gd" id="1_fs0av"]
 [ext_resource type="PackedScene" uid="uid://lge6t38xhjjm" path="res://components/h_boxes/hurt_hit_box.tscn" id="3_a6rne"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_wander_state.gd" id="7_v07kp"]
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_death_state.gd" id="8_pybyw"]
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_damaged_state.gd" id="8_v0he8"]
+[ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_attack_state.gd" id="9_0kpic"]
 
 [sub_resource type="Animation" id="Animation_rgu46"]
 length = 0.001
@@ -109,6 +110,9 @@ script = ExtResource("8_v0he8")
 
 [node name="Death" type="Node" parent="StateMachine"]
 script = ExtResource("8_pybyw")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("9_0kpic")
 
 [connection signal="animation_finished" from="General/Animator" to="StateMachine/Wander" method="_on_animator_animation_finished"]
 [connection signal="animation_finished" from="General/Animator" to="StateMachine/Death" method="_on_animator_animation_finished"]

@@ -27,7 +27,6 @@ func physics_process(delta: float) -> void:
 	# Wander. 
 	actor.velocity.x = move_direction * actor.SPEED
 	
-	
 	# Follow the player if close enough. 
 	if player: 
 		var direction = player.global_position - actor.global_position
@@ -41,7 +40,10 @@ func _on_animator_animation_finished(_anim_name: StringName) -> void:
 ## in that direction. 
 func randomise_wander(): 
 	move_direction = randi_range(0, 1) 
-	if move_direction == 0: move_direction = -1
+	actor.facing_right = true
+	if move_direction == 0: 
+		move_direction = -1
+		actor.facing_right = false
 	wander_time = randf_range(1, 3)
 	
 

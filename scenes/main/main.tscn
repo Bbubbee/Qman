@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_8xiv0"]
 [ext_resource type="PackedScene" uid="uid://dpwtpkyvf7juq" path="res://scenes/player/player.tscn" id="3_o4a5t"]
-[ext_resource type="PackedScene" uid="uid://bdxw4ul5106p4" path="res://scenes/enemies/dust/spitter.tscn" id="4_cgpj8"]
+[ext_resource type="PackedScene" uid="uid://3wstfv8sq6h5" path="res://scenes/enemies/dust/dust.tscn" id="4_cgpj8"]
 [ext_resource type="PackedScene" uid="uid://c1tmlhlu2k430" path="res://scenes/enemies/baby/dust_baby.tscn" id="5_00mne"]
 [ext_resource type="Script" path="res://scenes/main/particle_spawner.gd" id="6_laqpe"]
 [ext_resource type="Texture2D" uid="uid://e2be3nx8ew8c" path="res://assets/other/lamp-post.png" id="7_iembb"]
@@ -28,9 +28,6 @@ metadata/_edit_lock_ = true
 [node name="Dust" parent="Actors" instance=ExtResource("4_cgpj8")]
 position = Vector2(306, 68)
 
-[node name="DustBaby" parent="Actors" instance=ExtResource("5_00mne")]
-position = Vector2(134, 59)
-
 [node name="DustBaby2" parent="Actors" instance=ExtResource("5_00mne")]
 position = Vector2(156, 59)
 
@@ -39,9 +36,6 @@ position = Vector2(180, 59)
 
 [node name="DustBaby4" parent="Actors" instance=ExtResource("5_00mne")]
 position = Vector2(209, 61)
-
-[node name="DustBaby5" parent="Actors" instance=ExtResource("5_00mne")]
-position = Vector2(-41, 49)
 
 [node name="DustBaby6" parent="Actors" instance=ExtResource("5_00mne")]
 position = Vector2(-107, 49)

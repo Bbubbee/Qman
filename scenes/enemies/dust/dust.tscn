@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdxw4ul5106p4"]
+[gd_scene load_steps=10 format=3 uid="uid://3wstfv8sq6h5"]
 
 [ext_resource type="PackedScene" uid="uid://d2cp54aqb1i3t" path="res://scenes/enemies/basic_enemy/enemy.tscn" id="1_pvnsd"]
 [ext_resource type="Texture2D" uid="uid://blp0i1i1an3fo" path="res://assets/enemies/dust_slime/dust-Sheet.png" id="2_ycphn"]

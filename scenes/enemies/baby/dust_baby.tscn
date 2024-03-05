@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1tmlhlu2k430"]
+[gd_scene load_steps=11 format=3 uid="uid://c1tmlhlu2k430"]
 
 [ext_resource type="PackedScene" uid="uid://d2cp54aqb1i3t" path="res://scenes/enemies/basic_enemy/enemy.tscn" id="1_dbb4b"]
 [ext_resource type="Texture2D" uid="uid://kg21ha1refg0" path="res://assets/enemies/dust_slime/dust_baby_idle-Sheet.png" id="2_76uyx"]
+[ext_resource type="Script" path="res://scenes/enemies/baby/baby_attack_state.gd" id="3_2l0cj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vxl5"]
 size = Vector2(7, 7)
@@ -115,5 +116,16 @@ max_health = 2.08165e-12
 position = Vector2(0.5, 4.5)
 shape = SubResource("RectangleShape2D_qx3m0")
 metadata/_edit_lock_ = true
+
+[node name="Attack" parent="StateMachine" index="4"]
+script = ExtResource("3_2l0cj")
+jump_force = Vector2(100, 140)
+attack_duration = 0.8
+
+[node name="WindupTimer" type="Timer" parent="StateMachine/Attack" index="0"]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="StateMachine/Attack/WindupTimer" to="StateMachine/Attack" method="_on_windup_timer_timeout"]
 
 [editable path="Components/HurtHitBox"]

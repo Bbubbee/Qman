@@ -8,6 +8,8 @@ const DUST_PARTICLE = preload("res://scenes/dust_particles/dust_particle.tscn")
 @onready var animator: AnimationPlayer = $General/Animator
 @onready var hurt_hit_box: HurtHitBox = $Components/HurtHitBox
 
+var facing_right: bool = true 
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 

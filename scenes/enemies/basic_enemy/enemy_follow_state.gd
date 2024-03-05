@@ -1,6 +1,7 @@
 extends State
 
 var player: CharacterBody2D
+@export var attack_range: float = 20.0
 
 func enter(_enter_params = null):
 	var level = get_tree().current_scene
@@ -15,11 +16,17 @@ func physics_process(delta: float):
 	# Move towards the player. 
 	var direction = player.global_position - actor.global_position 
 
-	# Stop moving 25 pixels away from the player
-	if direction.x > 0: 
-		actor.velocity.x = 1 * actor.SPEED 
+	# Stop moving x pixels away from the player.
+	if direction.length() > attack_range: 
+		if direction.x > 0:
+			actor.velocity.x = 1 * actor.SPEED
+			actor.facing_right = true
+		else: 
+			actor.velocity.x = -1 * actor.SPEED  
+			actor.facing_right = false
+			
 	else: 
-		actor.velocity.x = -1 * actor.SPEED  
+		transition.emit(self, "attack")
 
 	# Once the player is too far away, go to the idle state. 
 	if direction.length() > 100:

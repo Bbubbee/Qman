@@ -11,6 +11,7 @@ func enter(_enter_params = null):
 
 func process(_delta: float) -> void:
 	if play_once: 
+		actor.disable_hitbox()
 		play_once = false 
 		Events.spawn_particles.emit(actor.position, 10, direction)		
 		

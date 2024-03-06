@@ -1,5 +1,6 @@
 extends State
 
+@export var sight_range: float = 50.0
 var wander_time: float 
 var move_direction: int
 var player: Player
@@ -30,7 +31,7 @@ func physics_process(delta: float) -> void:
 	# Follow the player if close enough. 
 	if player: 
 		var direction = player.global_position - actor.global_position
-		if direction.length() < 75:  
+		if direction.length() < sight_range:  
 			transition.emit(self, "follow") 
 
 func _on_animator_animation_finished(_anim_name: StringName) -> void:

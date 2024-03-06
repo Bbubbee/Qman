@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://3wstfv8sq6h5"]
+[gd_scene load_steps=11 format=3 uid="uid://3wstfv8sq6h5"]
 
 [ext_resource type="PackedScene" uid="uid://d2cp54aqb1i3t" path="res://scenes/enemies/basic_enemy/enemy.tscn" id="1_pvnsd"]
-[ext_resource type="Texture2D" uid="uid://blp0i1i1an3fo" path="res://assets/enemies/dust_slime/dust-Sheet.png" id="2_ycphn"]
+[ext_resource type="Texture2D" uid="uid://blp0i1i1an3fo" path="res://assets/enemies/dust/dust-Sheet.png" id="2_ycphn"]
+[ext_resource type="Script" path="res://scenes/enemies/dust/dust_attack_state.gd" id="3_eli6g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awn4u"]
 size = Vector2(14, 8)
@@ -109,9 +110,25 @@ libraries = {
 "": SubResource("AnimationLibrary_ykw1s")
 }
 
+[node name="HealthComponent" parent="Components" index="0"]
+max_health = 4.0
+
 [node name="Collider" parent="Components/HurtHitBox" index="0"]
 position = Vector2(0, 4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2npwt")
+
+[node name="Wander" parent="StateMachine" index="0"]
+sight_range = 130.0
+
+[node name="Follow" parent="StateMachine" index="1"]
+attack_range = 120.0
+
+[node name="Attack" parent="StateMachine" index="4"]
+script = ExtResource("3_eli6g")
+attack_duration = 2.0
+
+[node name="AttackMarker" type="Marker2D" parent="." index="4"]
+position = Vector2(-10, 4)
 
 [editable path="Components/HurtHitBox"]

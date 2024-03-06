@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8gn2ld6v3oa4"]
+
+[ext_resource type="PackedScene" uid="uid://sixg7r07na5k" path="res://scenes/projectiles/base_projectile.tscn" id="1_5hwhj"]
+[ext_resource type="Script" path="res://scenes/projectiles/dust_ball.gd" id="2_k0ujd"]
+[ext_resource type="PackedScene" uid="uid://lge6t38xhjjm" path="res://components/h_boxes/hurt_hit_box.tscn" id="3_2l01q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k7oh2"]
+radius = 4.0
+
+[node name="DustBall" instance=ExtResource("1_5hwhj")]
+script = ExtResource("2_k0ujd")
+speed = 70.0
+
+[node name="HurtHitBox" parent="." index="1" instance=ExtResource("3_2l01q")]
+collision_layer = 4
+collision_mask = 10
+
+[node name="Collider" parent="HurtHitBox" index="0"]
+shape = SubResource("CircleShape2D_k7oh2")
+
+[connection signal="area_entered" from="HurtHitBox" to="." method="_on_hurt_hit_box_area_entered"]
+
+[editable path="HurtHitBox"]

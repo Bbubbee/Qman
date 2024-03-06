@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blp0i1i1an3fo"
-path="res://.godot/imported/dust-Sheet.png-8323eeb452066f98f66954ee1dd28767.ctex"
+uid="uid://l0m3emin34mf"
+path="res://.godot/imported/dust-ball.png-2d73b10e341661bfa5189141d8c7890f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/dust_slime/dust-Sheet.png"
-dest_files=["res://.godot/imported/dust-Sheet.png-8323eeb452066f98f66954ee1dd28767.ctex"]
+source_file="res://assets/enemies/dust/dust-ball.png"
+dest_files=["res://.godot/imported/dust-ball.png-2d73b10e341661bfa5189141d8c7890f.ctex"]
 
 [params]
 

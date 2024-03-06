@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://sixg7r07na5k"]
+
+[ext_resource type="Script" path="res://scenes/projectiles/base_projectile.gd" id="1_73w1f"]
+[ext_resource type="Texture2D" uid="uid://l0m3emin34mf" path="res://assets/enemies/dust/dust-ball.png" id="1_i24of"]
+
+[node name="BaseProjectile" type="Node2D"]
+script = ExtResource("1_73w1f")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_i24of")

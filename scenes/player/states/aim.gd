@@ -8,6 +8,9 @@ var can_shoot: bool = true
 
 func physics_process(_delta: float):
 	var mouse_pos = actor.get_global_mouse_position()
+	mouse_pos.x = floor(mouse_pos.x)
+	mouse_pos.y = floor(mouse_pos.y)
+	
 	var pos = actor.global_position
 	
 	# Make the arm aim at the mouse. 
@@ -25,8 +28,7 @@ func on_input(event: InputEvent) -> void:
 			
 			var gust = GUST.instantiate()
 			
-			var direction = actor.get_global_mouse_position() - actor.global_position
-			direction = direction.normalized()
+			var direction = (actor.get_global_mouse_position() - actor.global_position).normalized()
 			gust.init(direction, actor.bullet_marker.global_position)
 			
 			var root = get_tree().get_root()

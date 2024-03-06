@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://kg21ha1refg0"
-path="res://.godot/imported/dust_baby_idle-Sheet.png-2bfdabde71d9a7e5b8cbb33b854e29f3.ctex"
+path="res://.godot/imported/dust_baby_idle-Sheet.png-f7ee03553a9b4299ff35d07218c84723.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/dust_slime/dust_baby_idle-Sheet.png"
-dest_files=["res://.godot/imported/dust_baby_idle-Sheet.png-2bfdabde71d9a7e5b8cbb33b854e29f3.ctex"]
+source_file="res://assets/enemies/dust/dust_baby_idle-Sheet.png"
+dest_files=["res://.godot/imported/dust_baby_idle-Sheet.png-f7ee03553a9b4299ff35d07218c84723.ctex"]
 
 [params]
 

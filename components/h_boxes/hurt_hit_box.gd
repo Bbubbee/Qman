@@ -12,9 +12,10 @@ extends Hitbox
 
 
 func _on_hitbox_entered(hitbox: Hitbox) -> void:
-	if not hitbox and not health_component: return 
+	if not hitbox: return 
+	
+	if health_component: health_component.take_damage(hitbox)
 	
 	# Get the direction of the hitbox. 
 	
-	health_component.take_damage(hitbox)
 	

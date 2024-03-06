@@ -26,16 +26,7 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="Actors" instance=ExtResource("3_o4a5t")]
 
 [node name="Dust" parent="Actors" instance=ExtResource("4_cgpj8")]
-position = Vector2(306, 68)
-
-[node name="DustBaby2" parent="Actors" instance=ExtResource("5_00mne")]
-position = Vector2(156, 59)
-
-[node name="DustBaby3" parent="Actors" instance=ExtResource("5_00mne")]
-position = Vector2(180, 59)
-
-[node name="DustBaby4" parent="Actors" instance=ExtResource("5_00mne")]
-position = Vector2(209, 61)
+position = Vector2(185, 68)
 
 [node name="DustBaby6" parent="Actors" instance=ExtResource("5_00mne")]
 position = Vector2(-107, 49)

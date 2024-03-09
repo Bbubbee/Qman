@@ -25,10 +25,6 @@ func physics_process(delta: float):
 	# Apply gravity.
 	if not actor.is_on_floor(): actor.velocity.y += actor.gravity * delta
 	
-	# Handle damaged.
-	#if actor.attack_incoming: 
-		#transition.emit(self, "damaged")
-	
 
 func on_input(event: InputEvent): 
 	if event.is_action_pressed("jump") and actor.is_on_floor():

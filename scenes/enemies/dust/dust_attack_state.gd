@@ -38,8 +38,6 @@ func fire_attack():
 	var attack_marker_pos = attack_marker.global_position
 	if direction > Vector2.ZERO:
 		attack_marker_pos.x += 20 
-	else: 
-		print("facing left")
 	
 	dust_ball.init(direction, attack_marker_pos)
 	

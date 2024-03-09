@@ -18,6 +18,7 @@ func physics_process(_delta: float):
 	
 	# Flip the sprite to face the correct direction.
 	actor.sprite.flip_h = mouse_pos.x < pos.x 
+	actor.arm_sprite.flip_h = mouse_pos.x < pos.x 
 	
 
 func on_input(event: InputEvent) -> void:

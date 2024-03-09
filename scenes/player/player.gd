@@ -10,6 +10,7 @@ const SPEED = 200.0
 @onready var sprite: Sprite2D = $Sprite
 @onready var bullet_marker: Marker2D = $ArmPivot/BulletMarker
 @onready var animator: AnimationPlayer = $Animator
+@onready var arm_sprite: Sprite2D = $ArmPivot/ArmSprite
 
 signal damaged
 

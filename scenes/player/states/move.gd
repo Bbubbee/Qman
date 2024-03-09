@@ -4,8 +4,16 @@ extends State
 
 func enter(_enter_params = null): 
 	# Only play the move animation if other animations are done.
-	if not actor.animator.is_playing():
-		actor.animator.play("idle")
+	#
+	#if actor.animator.current_animation == "idle":
+		#print("current animation is idle")
+		#actor.animator.play("run")
+	#else: 
+		#print("current animation is something else")		
+		#actor.animator.queue("run")
+	#actor.animator.play("run")
+	
+	actor.animator.play("run")
 
 
 func physics_process(delta: float): 	
@@ -32,5 +40,7 @@ func on_input(event: InputEvent):
 
 
 ## Another animation has finished. Play move animation now. 
-func _on_animator_animation_finished(_anim_name: StringName) -> void:
-	actor.animator.play('idle')
+func _on_animator_animation_finished(anim_name: StringName) -> void:
+	pass
+	#if anim_name == "damaged":
+		#actor.animator.play('run')

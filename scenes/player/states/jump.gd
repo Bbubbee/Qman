@@ -3,7 +3,27 @@ extends State
 @export var jump_height: float = 200 	
 
 
-func physics_process(_delta: float) -> void:
+func enter(_enter_params = null):
+	actor.animator.play("jump")
 	actor.velocity.y = -jump_height
-	transition.emit(self, "move") 
+	
+
+func physics_process(delta: float) -> void:
+	# Apply gravity.
+	if not actor.is_on_floor(): 
+		actor.velocity.y += actor.gravity * delta
+	
+	# Handle player movement. 
+	var direction := Input.get_axis("left", "right")
+	# Move in the given direction when move is pressed. 
+	if direction: actor.velocity.x = direction * actor.SPEED
+	# Not moving. Graudally lower velocity to 0.
+	else: actor.velocity.x = move_toward(actor.velocity.x, 0, actor.SPEED)
+
+	actor.move_and_slide()
+	
+	if actor.is_on_floor(): transition.emit(self, "move") 
+	
+	
+	
 	

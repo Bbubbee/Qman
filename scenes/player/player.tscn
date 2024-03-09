@@ -1,9 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://dpwtpkyvf7juq"]
+[gd_scene load_steps=23 format=3 uid="uid://dpwtpkyvf7juq"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_c4p7c"]
 [ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="2_jxt3h"]
-[ext_resource type="Texture2D" uid="uid://bh14o5l46fehi" path="res://assets/player/player_idle-Sheet.png" id="2_rsih1"]
 [ext_resource type="Texture2D" uid="uid://cpa4hj6a8x5mq" path="res://assets/player/player_hand_export.png" id="3_bosfo"]
+[ext_resource type="Texture2D" uid="uid://dnecivjvqvi" path="res://assets/player/qman-Sheet.png" id="3_wud74"]
 [ext_resource type="Script" path="res://scenes/player/arm_pivot.gd" id="4_6uptp"]
 [ext_resource type="Script" path="res://scenes/player/states/state_machine.gd" id="4_rnkx0"]
 [ext_resource type="Script" path="res://scenes/player/states/idle.gd" id="5_yjn2x"]
@@ -79,11 +79,48 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_4iei8"]
+resource_name = "run"
+length = 0.45
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_1abkr"]
+resource_name = "jump"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ay21g"]
 _data = {
 "RESET": SubResource("Animation_8swt7"),
 "hurt": SubResource("Animation_oquhl"),
-"idle": SubResource("Animation_qrxqo")
+"idle": SubResource("Animation_qrxqo"),
+"jump": SubResource("Animation_1abkr"),
+"run": SubResource("Animation_4iei8")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mpg6y"]
@@ -108,16 +145,15 @@ metadata/_edit_lock_ = true
 libraries = {
 "": SubResource("AnimationLibrary_ay21g")
 }
-autoplay = "idle"
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_rsih1")
-hframes = 2
+texture = ExtResource("3_wud74")
+hframes = 8
 frame = 1
 metadata/_edit_lock_ = true
 
 [node name="ArmPivot" type="Marker2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(-1, -2)
 script = ExtResource("4_6uptp")
 
 [node name="ArmSprite" type="Sprite2D" parent="ArmPivot"]

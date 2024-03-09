@@ -21,8 +21,8 @@ Events="*res://scenes/main/events.gd"
 
 [display]
 
-window/size/viewport_width=192
-window/size/viewport_height=108
+window/size/viewport_width=288
+window/size/viewport_height=162
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="viewport"
@@ -73,6 +73,10 @@ spit={
 2d_physics/layer_5="hitboxes_general"
 2d_physics/layer_6="hurtboxes_general"
 2d_physics/layer_7="particles"
+
+[physics]
+
+common/physics_jitter_fix=2.0
 
 [rendering]
 

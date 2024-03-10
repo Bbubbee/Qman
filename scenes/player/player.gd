@@ -2,9 +2,9 @@ extends CharacterBody2D
 class_name Player
 
 
-const SPEED = 180.0
-const acceleration: float = 20.0
-const friction: float = 25.0
+const SPEED = 160.0
+const acceleration: float = 1200.0
+const friction: float = 1300.0
 
 @onready var arm_pivot: Marker2D = $ArmPivot
 @onready var state_machine: Node = $StateMachine

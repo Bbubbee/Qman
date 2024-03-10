@@ -25,9 +25,9 @@ func physics_process(delta: float):
 	# Handle player movement. 
 	var direction := Input.get_axis("left", "right")
 	# Move in the given direction when move is pressed. 
-	if direction: actor.velocity.x = move_toward(actor.velocity.x, direction * actor.SPEED, actor.acceleration)
+	if direction: actor.velocity.x = move_toward(actor.velocity.x, direction * actor.SPEED, delta * actor.acceleration)
 	# Not moving. Graudally lower velocity to 0.
-	else: actor.velocity.x = move_toward(actor.velocity.x, 0, actor.friction)
+	else: actor.velocity.x = move_toward(actor.velocity.x, 0, delta * actor.friction)
 	
 	# The player has stopped moving, go back to idle. 
 	if actor.velocity.x == 0: 
@@ -36,7 +36,7 @@ func physics_process(delta: float):
 	# Apply gravity.
 	if not actor.is_on_floor(): actor.velocity.y += actor.gravity * delta
 	
-	
+	# Handle coyote timer.
 	if actor.is_on_floor() and not can_jump: 
 		can_jump = true 
 	elif can_jump and coyote_timer.is_stopped():

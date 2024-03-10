@@ -16,9 +16,9 @@ func physics_process(delta: float) -> void:
 	# Handle player movement. 
 	var direction := Input.get_axis("left", "right")
 	# Move in the given direction when move is pressed. 
-	if direction: actor.velocity.x = move_toward(actor.velocity.x, direction * actor.SPEED, actor.acceleration)
+	if direction: actor.velocity.x = move_toward(actor.velocity.x, direction * actor.SPEED, delta * actor.acceleration)
 	# Not moving. Graudally lower velocity to 0.
-	else: actor.velocity.x = move_toward(actor.velocity.x, 0, actor.friction)
+	else: actor.velocity.x = move_toward(actor.velocity.x, 0, actor.friction * delta)
 
 	actor.move_and_slide()
 	

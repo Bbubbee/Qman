@@ -2,7 +2,7 @@ extends State
 
 
 var direction 
-var force = 100
+@export var force: float = 100
 
 var x
 var y
@@ -13,12 +13,20 @@ func enter(_enter_params = null):
 	knockback_timer.start()
 	direction = _enter_params
 	
+	if not actor.is_on_floor(): 
+		actor.animator.play("jump")
+	else: 
+		actor.animator.play("move")
+	
 
 func physics_process(delta: float) -> void: 		
 	x = -direction.x * force
 	y = -direction.y * force
 	
-	actor.velocity = Vector2(x, y)
+	# Only knockback if player is not on the floor 
+	# and is shooting steeply into the ground.
+	if not actor.is_on_floor() and y < -40:
+		actor.velocity = Vector2(x, y)
 	
 	# Handle gravity.
 	if not actor.is_on_floor(): actor.velocity.y += actor.gravity * delta
@@ -27,4 +35,5 @@ func physics_process(delta: float) -> void:
 
 
 func _on_knockback_timer_timeout() -> void:
-		transition.emit(self, "move")
+	transition.emit(self, "move")
+		

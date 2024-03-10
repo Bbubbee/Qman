@@ -187,6 +187,7 @@ script = ExtResource("8_8xkh7")
 
 [node name="Knockback" type="Node" parent="StateMachine"]
 script = ExtResource("10_4n77r")
+force = 125.0
 
 [node name="KnockbackTimer" type="Timer" parent="StateMachine/Knockback"]
 wait_time = 0.1

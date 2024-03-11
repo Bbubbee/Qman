@@ -55,7 +55,7 @@ metadata/_edit_lock_ = true
 [node name="Hitbox" parent="." instance=ExtResource("2_q8jho")]
 visible = false
 collision_layer = 8
-collision_mask = 4
+collision_mask = 68
 knockback = 125.0
 metadata/_edit_lock_ = true
 
@@ -73,6 +73,7 @@ autostart = true
 libraries = {
 "": SubResource("AnimationLibrary_6awjw")
 }
+autoplay = "fade"
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

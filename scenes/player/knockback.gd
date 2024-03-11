@@ -13,11 +13,6 @@ func enter(_enter_params = null):
 	knockback_timer.start()
 	direction = _enter_params
 	
-	if not actor.is_on_floor(): 
-		actor.animator.play("jump")
-	else: 
-		actor.animator.play("move")
-	
 
 func physics_process(delta: float) -> void: 		
 	x = -direction.x * force

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx653ymdbb2na"]
+
+[ext_resource type="PackedScene" uid="uid://dm62js8kc86u2" path="res://scenes/tiles/tile_map_two.tscn" id="1_i6gev"]
+[ext_resource type="Script" path="res://scenes/test/test_block.gd" id="2_kntve"]
+[ext_resource type="PackedScene" uid="uid://dpwtpkyvf7juq" path="res://scenes/player/player.tscn" id="2_slbxr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8ldd"]
+
+[node name="TestLevel" instance=ExtResource("1_i6gev")]
+
+[node name="Player" parent="." index="0" instance=ExtResource("2_slbxr")]
+
+[node name="TestBlock" type="RigidBody2D" parent="." index="1"]
+collision_layer = 64
+collision_mask = 65
+mass = 0.1
+script = ExtResource("2_kntve")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestBlock" index="0"]
+shape = SubResource("RectangleShape2D_b8ldd")
+
+[node name="TestBlock2" type="RigidBody2D" parent="." index="2"]
+position = Vector2(165, 94)
+collision_layer = 64
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestBlock2" index="0"]
+shape = SubResource("RectangleShape2D_b8ldd")

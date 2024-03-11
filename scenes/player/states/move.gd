@@ -58,7 +58,7 @@ func on_input(event: InputEvent):
 
 
 ## Another animation has finished. Play move animation now. 
-func _on_animator_animation_finished(anim_name: StringName) -> void:
+func _on_animator_animation_finished(_anim_name: StringName) -> void:
 	pass
 	#if anim_name == "damaged":
 		#actor.animator.play('run')

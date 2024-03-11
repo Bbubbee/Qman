@@ -17,9 +17,14 @@ func physics_process(_delta: float):
 	actor.arm_pivot.look_at(mouse_pos)
 	
 	# Flip the sprite to face the correct direction.
-	actor.sprite.flip_h = mouse_pos.x < pos.x 
-	actor.arm_sprite.flip_h = mouse_pos.x < pos.x 
-	
+	if mouse_pos.x > pos.x:
+		actor.sprite.flip_h = false
+		actor.arm_sprite.flip_h = false
+		actor.arm_pivot.position.x = -1
+	else: 
+		actor.sprite.flip_h = true
+		actor.arm_sprite.flip_h = true
+		actor.arm_pivot.position.x = 1
 
 func on_input(event: InputEvent) -> void:
 	if event.is_action_pressed('spit'):

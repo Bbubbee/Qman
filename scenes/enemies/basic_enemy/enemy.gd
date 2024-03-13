@@ -16,6 +16,9 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready() -> void:
 	state_machine.init(self)
+	
+	Events.player_died.connect(disable)
+	
 
 
 func _on_health_component_handle_attack(attack: Hitbox, has_died: bool = false) -> void:	
@@ -28,4 +31,8 @@ func _on_health_component_handle_attack(attack: Hitbox, has_died: bool = false) 
 func disable_hitbox():
 	hurt_hit_box.monitorable = false 
 	hurt_hit_box.monitoring = false 
+
+
+func disable(): 
+	state_machine.force_transition("wander")
 		

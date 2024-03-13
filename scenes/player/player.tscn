@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dpwtpkyvf7juq"]
+[gd_scene load_steps=25 format=3 uid="uid://dpwtpkyvf7juq"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_c4p7c"]
 [ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="2_jxt3h"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://components/h_boxes/health_component.tscn" id="9_x8egt"]
 [ext_resource type="Script" path="res://scenes/player/knockback.gd" id="10_4n77r"]
 [ext_resource type="PackedScene" uid="uid://bmqdf4kabond7" path="res://components/h_boxes/hurtbox.tscn" id="11_2lm7y"]
+[ext_resource type="Script" path="res://scenes/player/player_death_state.gd" id="12_balr0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_036ok"]
 radius = 4.0
@@ -44,6 +45,47 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ArmPivot/ArmSprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sgxr3"]
+resource_name = "death"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ArmPivot/ArmSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_oquhl"]
@@ -116,6 +158,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ay21g"]
 _data = {
 "RESET": SubResource("Animation_8swt7"),
+"death": SubResource("Animation_sgxr3"),
 "hurt": SubResource("Animation_oquhl"),
 "idle": SubResource("Animation_qrxqo"),
 "jump": SubResource("Animation_1abkr"),
@@ -129,42 +172,6 @@ height = 14.0
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_c4p7c")
-
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
-shape = SubResource("CapsuleShape2D_036ok")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(2.08165e-12, -20)
-scale = Vector2(0.75, 0.75)
-position_smoothing_speed = 10.0
-script = ExtResource("2_jxt3h")
-metadata/_edit_lock_ = true
-
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("3_wud74")
-hframes = 8
-frame = 1
-metadata/_edit_lock_ = true
-
-[node name="Animator" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ay21g")
-}
-
-[node name="ArmPivot" type="Marker2D" parent="."]
-position = Vector2(-1, -2)
-rotation = 0.113446
-script = ExtResource("4_6uptp")
-
-[node name="ArmSprite" type="Sprite2D" parent="ArmPivot"]
-position = Vector2(3, 0)
-rotation = -1.5708
-texture = ExtResource("3_bosfo")
-metadata/_edit_lock_ = true
-
-[node name="BulletMarker" type="Marker2D" parent="ArmPivot"]
-position = Vector2(7, -1)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_rnkx0")
@@ -195,6 +202,9 @@ wait_time = 0.1
 one_shot = true
 autostart = true
 
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("12_balr0")
+
 [node name="AttackStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_rnkx0")
 initial_state = NodePath("Aim")
@@ -207,11 +217,47 @@ wait_time = 0.4
 one_shot = true
 autostart = true
 
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_036ok")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(2.08165e-12, -20)
+scale = Vector2(0.75, 0.75)
+position_smoothing_speed = 10.0
+script = ExtResource("2_jxt3h")
+metadata/_edit_lock_ = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_wud74")
+hframes = 12
+frame = 1
+metadata/_edit_lock_ = true
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ay21g")
+}
+
+[node name="ArmPivot" type="Marker2D" parent="."]
+position = Vector2(-1, -2)
+rotation = 0.113446
+script = ExtResource("4_6uptp")
+
+[node name="ArmSprite" type="Sprite2D" parent="ArmPivot"]
+position = Vector2(3, 0)
+rotation = -1.5708
+texture = ExtResource("3_bosfo")
+metadata/_edit_lock_ = true
+
+[node name="BulletMarker" type="Marker2D" parent="ArmPivot"]
+position = Vector2(7, -1)
+
 [node name="Components" type="Node2D" parent="."]
 
 [node name="HealthComponent" parent="Components" node_paths=PackedStringArray("actor") instance=ExtResource("9_x8egt")]
 actor = NodePath("../..")
-max_health = 20.0
+max_health = 3.0
 
 [node name="Hurtbox" parent="Components" node_paths=PackedStringArray("health_component") instance=ExtResource("11_2lm7y")]
 visible = false
@@ -222,11 +268,11 @@ health_component = NodePath("../HealthComponent")
 [node name="Collider" parent="Components/Hurtbox" index="0"]
 shape = SubResource("CapsuleShape2D_mpg6y")
 
-[connection signal="animation_finished" from="Animator" to="StateMachine/Move" method="_on_animator_animation_finished"]
 [connection signal="timeout" from="StateMachine/Move/CoyoteTimer" to="StateMachine/Move" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Knockback/KnockbackTimer" to="StateMachine/Knockback" method="_on_knockback_timer_timeout"]
 [connection signal="fired_weapon" from="AttackStateMachine/Aim" to="." method="_on_aim_fired_weapon"]
 [connection signal="timeout" from="AttackStateMachine/Aim/AttackTimer" to="AttackStateMachine/Aim" method="_on_attack_timer_timeout"]
+[connection signal="animation_finished" from="Animator" to="StateMachine/Move" method="_on_animator_animation_finished"]
 [connection signal="handle_attack" from="Components/HealthComponent" to="." method="_on_health_component_handle_attack"]
 
 [editable path="Components/Hurtbox"]

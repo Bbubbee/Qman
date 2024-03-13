@@ -2,6 +2,7 @@ extends Node
 
 var states: Dictionary = {}
 var current_state: State 
+var disabled: bool = false 
 
 @export var initial_state : State
 
@@ -30,14 +31,17 @@ func init(actor):
 
 				
 func _process(delta: float) -> void:
+	if disabled: return
 	if current_state: current_state.process(delta)
 
 
 func _physics_process(delta: float) -> void:
+	if disabled: return
 	if current_state: current_state.physics_process(delta)
 
 
 func _input(event: InputEvent) -> void:
+	if disabled: return
 	if current_state: current_state.on_input(event) 
 
 

@@ -27,8 +27,12 @@ func physics_process(delta: float) -> void:
 	if not actor.is_on_floor(): actor.velocity.y += actor.gravity * delta
 	
 	actor.move_and_slide()
+	
+	transition.emit(self, "move")
+	
 
 
 func _on_knockback_timer_timeout() -> void:
-	transition.emit(self, "move")
+	#transition.emit(self, "move")
+	pass
 		

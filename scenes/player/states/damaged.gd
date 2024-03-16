@@ -9,7 +9,7 @@ var cooldown_timer: float
 func enter(_enter_params = null):
 	var attack = _enter_params
 	cooldown_timer = cooldown
-	actor.animator.play("hurt")
+	actor.animator_2.play("hurt")
 	actor.velocity = attack.direction * attack.knockback
 
 

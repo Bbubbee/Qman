@@ -7,17 +7,7 @@ var coyote_time = 0.2
 
 @onready var coyote_timer = $CoyoteTimer
 
-func enter(_enter_params = null): 
-	# Only play the move animation if other animations are done.
-	#
-	#if actor.animator.current_animation == "idle":
-		#print("current animation is idle")
-		#actor.animator.play("run")
-	#else: 
-		#print("current animation is something else")		
-		#actor.animator.queue("run")
-	#actor.animator.play("run")
-	
+func enter(_enter_params = null): 	
 	actor.animator.play("run")
 
 

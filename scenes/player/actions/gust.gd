@@ -17,16 +17,11 @@ func _physics_process(delta: float) -> void:
 	
 	# Get collisions. 
 	var bodies = hitbox.get_overlapping_bodies()
-	#print(bodies)
 	for i in bodies: 
-		if i.collision_layer == 7:
-			print(direction)
 		
 		var y = direction.y
 		if y > 0: y = -y
 		i.apply_force(Vector2(direction.x * force, y*force), -direction)
-		print("body")
-		print(i)
 	
 	
 	

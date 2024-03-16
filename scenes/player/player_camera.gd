@@ -1,18 +1,26 @@
 extends Camera2D
 
+#var zoom_in: bool = false
+#var zoom_speed = Vector2(0.1, 0.1)
+#
+#func _ready() -> void:
+	#Events.player_died.connect(player_died) 
+#
+#
+#func _physics_process(delta: float) -> void:
+	#zoom += zoom_speed * delta
+	#return
+	## Zoom in towards player. 
+	#if zoom_in:
+		#while zoom <= Vector2(2, 2):
+			#zoom += zoom_speed * delta
+#
+#func player_died(): 
+	#return 
+	#zoom_in = true
+	#return
+	#while zoom <= Vector2(2, 2):
+		#print(zoom)
+		#zoom += zoom_speed
 
-#const DEAD_ZONE = 60
-#
-#
-#func _input(event: InputEvent):
-	#if event is InputEventMouseMotion:
-		#var _target = event.position - Vector2(192, 108) * 0.5
-		#
-		#
-		##self.position = event.position - Vector2(192, 108) * 0.5
-		#
-		#if _target.length() < DEAD_ZONE:
-			#self.position = Vector2.ZERO
-		#else:
-			#self.position = _target.normalized() * (_target.length() - DEAD_ZONE) * 0.5
-		#
+	#zoom_in = true

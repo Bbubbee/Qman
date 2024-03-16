@@ -13,7 +13,6 @@ signal handle_attack(attack: Hitbox, has_died: bool)
 
 func take_damage(attack: Hitbox): 
 	health -= attack.damage
-	print(health)
 	
 	# Handle the direction of knockback. 
 	var direction = (actor.global_position - attack.global_position).normalized()

@@ -25,7 +25,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("General/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -37,7 +37,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/path = NodePath("General/Sprite:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -49,7 +49,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ArmPivot/ArmSprite:modulate")
+tracks/2/path = NodePath("General/ArmPivot/ArmSprite:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -66,7 +66,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("General/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -78,7 +78,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ArmPivot/ArmSprite:modulate")
+tracks/1/path = NodePath("General/ArmPivot/ArmSprite:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -94,7 +94,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/path = NodePath("General/Sprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -111,7 +111,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("General/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -128,7 +128,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("General/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -145,7 +145,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("General/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -170,7 +170,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/path = NodePath("General/Sprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -182,7 +182,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ArmPivot/ArmSprite:modulate")
+tracks/1/path = NodePath("General/ArmPivot/ArmSprite:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -198,7 +198,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/path = NodePath("General/Sprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -210,7 +210,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ArmPivot/ArmSprite:modulate")
+tracks/1/path = NodePath("General/ArmPivot/ArmSprite:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -233,6 +233,10 @@ height = 14.0
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_c4p7c")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_036ok")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_rnkx0")
@@ -278,43 +282,44 @@ wait_time = 0.4
 one_shot = true
 autostart = true
 
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
-shape = SubResource("CapsuleShape2D_036ok")
+[node name="General" type="Node2D" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="General"]
 position = Vector2(2.08165e-12, -20)
 scale = Vector2(0.75, 0.75)
 position_smoothing_speed = 10.0
 script = ExtResource("2_jxt3h")
 metadata/_edit_lock_ = true
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="General"]
 texture = ExtResource("3_wud74")
 hframes = 12
 frame = 1
 metadata/_edit_lock_ = true
 
-[node name="ArmPivot" type="Marker2D" parent="."]
+[node name="ArmPivot" type="Marker2D" parent="General"]
 position = Vector2(-1, -2)
 rotation = 0.113446
+scale = Vector2(1, 1)
 script = ExtResource("4_6uptp")
 
-[node name="ArmSprite" type="Sprite2D" parent="ArmPivot"]
+[node name="ArmSprite" type="Sprite2D" parent="General/ArmPivot"]
 position = Vector2(3, 0)
 rotation = -1.5708
 texture = ExtResource("3_bosfo")
 metadata/_edit_lock_ = true
 
-[node name="BulletMarker" type="Marker2D" parent="ArmPivot"]
+[node name="BulletMarker" type="Marker2D" parent="General/ArmPivot"]
 position = Vector2(7, -1)
 
-[node name="Animator" type="AnimationPlayer" parent="."]
+[node name="Animator" type="AnimationPlayer" parent="General"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_ay21g")
 }
 
-[node name="Animator2" type="AnimationPlayer" parent="."]
+[node name="Animator2" type="AnimationPlayer" parent="General"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_vfjjg")
 }
@@ -334,11 +339,21 @@ health_component = NodePath("../HealthComponent")
 [node name="Collider" parent="Components/Hurtbox" index="0"]
 shape = SubResource("CapsuleShape2D_mpg6y")
 
+[node name="UI" type="Node2D" parent="."]
+
+[node name="RespawnButton" type="Button" parent="UI"]
+offset_left = -38.0
+offset_top = -48.0
+offset_right = 40.0
+offset_bottom = -17.0
+text = "Respawn"
+
 [connection signal="timeout" from="StateMachine/Move/CoyoteTimer" to="StateMachine/Move" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Knockback/KnockbackTimer" to="StateMachine/Knockback" method="_on_knockback_timer_timeout"]
 [connection signal="fired_weapon" from="AttackStateMachine/Aim" to="." method="_on_aim_fired_weapon"]
 [connection signal="timeout" from="AttackStateMachine/Aim/AttackTimer" to="AttackStateMachine/Aim" method="_on_attack_timer_timeout"]
-[connection signal="animation_finished" from="Animator" to="StateMachine/Move" method="_on_animator_animation_finished"]
+[connection signal="animation_finished" from="General/Animator" to="StateMachine/Move" method="_on_animator_animation_finished"]
 [connection signal="handle_attack" from="Components/HealthComponent" to="." method="_on_health_component_handle_attack"]
+[connection signal="pressed" from="UI/RespawnButton" to="." method="_on_respawn_button_pressed"]
 
 [editable path="Components/Hurtbox"]

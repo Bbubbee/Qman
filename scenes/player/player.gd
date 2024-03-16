@@ -6,14 +6,20 @@ const SPEED = 160.0
 const acceleration: float = 1200.0
 const friction: float = 1300.0
 
-@onready var arm_pivot: Marker2D = $ArmPivot
+## State Machines
 @onready var state_machine: Node = $StateMachine
 @onready var attack_state_machine: Node = $AttackStateMachine
-@onready var sprite: Sprite2D = $Sprite
-@onready var bullet_marker: Marker2D = $ArmPivot/BulletMarker
-@onready var animator: AnimationPlayer = $Animator
-@onready var arm_sprite: Sprite2D = $ArmPivot/ArmSprite
-@onready var animator_2: AnimationPlayer = $Animator2
+
+## General
+@onready var arm_pivot: Marker2D = $General/ArmPivot
+@onready var sprite: Sprite2D = $General/Sprite
+@onready var bullet_marker: Marker2D = $General/ArmPivot/BulletMarker
+@onready var animator: AnimationPlayer = $General/Animator
+@onready var arm_sprite: Sprite2D = $General/ArmPivot/ArmSprite
+@onready var animator_2: AnimationPlayer = $General/Animator2
+
+## UI 
+@onready var respawn_button = $UI/RespawnButton
 
 signal damaged
 
@@ -22,6 +28,7 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready() -> void:
+	respawn_button.visible = false
 	state_machine.init(self)
 	attack_state_machine.init(self)	
 
@@ -42,10 +49,10 @@ func _on_aim_fired_weapon(direction) -> void:
 func die(): 
 	state_machine.disabled = true 
 	attack_state_machine.disabled = true 
+	respawn_button.visible = true
 	Events.player_died.emit()
+	
 
-
-	
-	
-	
-	
+func _on_respawn_button_pressed():
+	print("button pressed")
+	Events.start_level.emit() 

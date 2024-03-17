@@ -22,7 +22,7 @@ func _ready() -> void:
 	
 	Events.player_died.connect(disable)
 	
-
+ 
 
 func _on_health_component_handle_attack(attack: Hitbox, has_died: bool = false) -> void:	
 	if has_died: 		

@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+## Global resources
+const UNITS = preload("res://utilitites/resources/units.tres")
 
 const SPEED = 160.0
 const acceleration: float = 1200.0
@@ -29,10 +31,16 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready() -> void:
+	#UNITS.player = self
 	respawn_button.visible = false
 	state_machine.init(self)
 	attack_state_machine.init(self)	
 
+func _enter_tree():
+	UNITS.player = self
+#
+#func _exit_tree():
+	#UNITS.player = null
 
 func _on_health_component_handle_attack(attack: Hitbox, has_died: bool = false) -> void:
 	heart_container.deplete_heart()		
@@ -50,6 +58,7 @@ func _on_aim_fired_weapon(direction) -> void:
 
 
 func die(): 
+	UNITS.player = null
 	state_machine.disabled = true 
 	attack_state_machine.disabled = true 
 	respawn_button.visible = true

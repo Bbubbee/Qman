@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://sixg7r07na5k" path="res://scenes/projectiles/base_projectile.tscn" id="1_5hwhj"]
 [ext_resource type="Script" path="res://scenes/projectiles/dust_ball.gd" id="2_k0ujd"]
-[ext_resource type="PackedScene" uid="uid://lge6t38xhjjm" path="res://components/h_boxes/hurt_hit_box.tscn" id="3_2l01q"]
+[ext_resource type="PackedScene" uid="uid://lge6t38xhjjm" path="res://utilitites/components/hurt_hit_box.tscn" id="3_2l01q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k7oh2"]
 radius = 4.0

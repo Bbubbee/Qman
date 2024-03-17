@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+## Global resources 
+const UNITS = preload("res://utilitites/resources/units.tres")
+
 const SPEED = 20
 const DUST_PARTICLE = preload("res://scenes/dust_particles/dust_particle.tscn")
 

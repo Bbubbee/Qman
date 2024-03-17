@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bn0vy17ie83yo"]
 
 [ext_resource type="Script" path="res://scenes/player/actions/gust.gd" id="1_5wq1s"]
-[ext_resource type="PackedScene" uid="uid://b8odsjult6uvb" path="res://components/h_boxes/hitbox.tscn" id="2_q8jho"]
+[ext_resource type="PackedScene" uid="uid://b8odsjult6uvb" path="res://utilitites/components/hitbox.tscn" id="2_q8jho"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8gx3"]
 size = Vector2(2.5, 4)

@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://do3hj52unlk05" path="res://assets/enemies/tentacles/tentacle-Sheet.png" id="1_eg6d3"]
 [ext_resource type="Script" path="res://scenes/enemies/tentacle/tentacle.gd" id="2_3eyvd"]
-[ext_resource type="PackedScene" uid="uid://lge6t38xhjjm" path="res://components/h_boxes/hurt_hit_box.tscn" id="3_w8fgj"]
-[ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://components/h_boxes/health_component.tscn" id="4_f8eyn"]
+[ext_resource type="PackedScene" uid="uid://lge6t38xhjjm" path="res://utilitites/components/hurt_hit_box.tscn" id="3_w8fgj"]
+[ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://utilitites/components/health_component.tscn" id="4_f8eyn"]
 
 [sub_resource type="Animation" id="Animation_0q67e"]
 length = 0.001

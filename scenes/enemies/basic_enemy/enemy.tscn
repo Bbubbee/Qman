@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://d2cp54aqb1i3t"]
 
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy.gd" id="1_fs0av"]
-[ext_resource type="PackedScene" uid="uid://lge6t38xhjjm" path="res://components/h_boxes/hurt_hit_box.tscn" id="3_a6rne"]
-[ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://components/h_boxes/health_component.tscn" id="4_6btmt"]
+[ext_resource type="PackedScene" uid="uid://lge6t38xhjjm" path="res://utilitites/components/hurt_hit_box.tscn" id="3_a6rne"]
+[ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://utilitites/components/health_component.tscn" id="4_6btmt"]
 [ext_resource type="Script" path="res://scenes/player/states/state_machine.gd" id="5_clrhi"]
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_follow_state.gd" id="6_8tppr"]
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy_wander_state.gd" id="7_v07kp"]

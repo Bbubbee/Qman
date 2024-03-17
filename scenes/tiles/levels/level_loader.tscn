@@ -9,9 +9,9 @@
 script = ExtResource("1_2psal")
 LEVEL = ExtResource("3_6vbrl")
 
+[node name="ParticleSpawner" parent="." instance=ExtResource("2_juvhq")]
+metadata/_edit_lock_ = true
+
 [node name="PlayerSpawner" type="Node2D" parent="."]
 position = Vector2(-114, 135)
 script = ExtResource("1_cj3nj")
-
-[node name="ParticleSpawner" parent="." instance=ExtResource("2_juvhq")]
-metadata/_edit_lock_ = true

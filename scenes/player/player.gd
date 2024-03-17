@@ -20,6 +20,7 @@ const friction: float = 1300.0
 
 ## UI 
 @onready var respawn_button = $UI/RespawnButton
+@onready var heart_container = $UI/HeartContainer
 
 signal damaged
 
@@ -34,6 +35,8 @@ func _ready() -> void:
 
 
 func _on_health_component_handle_attack(attack: Hitbox, has_died: bool = false) -> void:
+	heart_container.deplete_heart()		
+	
 	if has_died: 
 		state_machine.force_transition("death", attack)
 	else: 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dpwtpkyvf7juq"]
+[gd_scene load_steps=29 format=3 uid="uid://dpwtpkyvf7juq"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_c4p7c"]
 [ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="2_jxt3h"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scenes/player/knockback.gd" id="10_4n77r"]
 [ext_resource type="PackedScene" uid="uid://bmqdf4kabond7" path="res://components/h_boxes/hurtbox.tscn" id="11_2lm7y"]
 [ext_resource type="Script" path="res://scenes/player/player_death_state.gd" id="12_balr0"]
+[ext_resource type="Script" path="res://scenes/player/ui/heart_container.gd" id="16_hwllt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_036ok"]
 radius = 4.0
@@ -300,7 +301,6 @@ metadata/_edit_lock_ = true
 [node name="ArmPivot" type="Marker2D" parent="General"]
 position = Vector2(-1, -2)
 rotation = 0.113446
-scale = Vector2(1, 1)
 script = ExtResource("4_6uptp")
 
 [node name="ArmSprite" type="Sprite2D" parent="General/ArmPivot"]
@@ -339,14 +339,23 @@ health_component = NodePath("../HealthComponent")
 [node name="Collider" parent="Components/Hurtbox" index="0"]
 shape = SubResource("CapsuleShape2D_mpg6y")
 
-[node name="UI" type="Node2D" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 
 [node name="RespawnButton" type="Button" parent="UI"]
-offset_left = -38.0
-offset_top = -48.0
-offset_right = 40.0
-offset_bottom = -17.0
+offset_left = 108.0
+offset_top = 48.0
+offset_right = 186.0
+offset_bottom = 79.0
 text = "Respawn"
+
+[node name="HeartContainer" type="HBoxContainer" parent="UI" node_paths=PackedStringArray("health_component")]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 22.0
+offset_bottom = 22.0
+theme_override_constants/separation = 2
+script = ExtResource("16_hwllt")
+health_component = NodePath("../../Components/HealthComponent")
 
 [connection signal="timeout" from="StateMachine/Move/CoyoteTimer" to="StateMachine/Move" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Knockback/KnockbackTimer" to="StateMachine/Knockback" method="_on_knockback_timer_timeout"]

@@ -4,7 +4,6 @@ extends State
 var can_jump: bool = false 
 var coyote_time = 0.2
 
-
 @onready var coyote_timer = $CoyoteTimer
 
 func enter(_enter_params = null): 	
@@ -26,6 +25,13 @@ func physics_process(delta: float):
 	# Apply gravity.
 	if not actor.is_on_floor(): actor.velocity.y += actor.gravity * delta
 	
+	handle_jump() 
+	
+	actor.move_and_slide()
+	
+	
+	
+func handle_jump(): 
 	# Handle coyote timer.
 	if actor.is_on_floor() and not can_jump: 
 		can_jump = true 
@@ -34,12 +40,7 @@ func physics_process(delta: float):
 	
 	# Don't let the player fall during coyote time. 
 	if coyote_timer.time_left > 0: 
-		actor.velocity.y = 0
-	
-	actor.move_and_slide()
-	
-	
-	
+		actor.velocity.y = 0 
 
 func on_input(event: InputEvent): 
 	if event.is_action_pressed("jump") and can_jump:

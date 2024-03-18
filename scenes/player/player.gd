@@ -38,9 +38,6 @@ func _ready() -> void:
 
 func _enter_tree():
 	UNITS.player = self
-#
-#func _exit_tree():
-	#UNITS.player = null
 
 func _on_health_component_handle_attack(attack: Hitbox, has_died: bool = false) -> void:
 	heart_container.deplete_heart()		

@@ -12,20 +12,22 @@ func enter(_enter_params = null):
 	
 # Note: 
 # Process will eventually transition back to the wanders state. 
-#func process(delta: float) -> void:
-	#pass
+func process(delta: float) -> void:
+	pass
 	
 func physics_process(delta: float) -> void:
 	# Handle gravity. 
 	if not actor.is_on_floor(): actor.velocity.y += actor.gravity * delta
 	
 
-	# Once the baby has jumped, go back to idle. 
-	#if actor.is_on_floor() and has_jumped: 
-		#has_jumped = false
-		#transition.emit(self, "wander") 
+	
 		
 	actor.move_and_slide()
+	
+	# Once the baby has jumped, go back to idle. 
+	if actor.is_on_floor() and has_jumped: 
+		has_jumped = false
+		transition.emit(self, "wander") 
 	
 
 

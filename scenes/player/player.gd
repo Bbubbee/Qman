@@ -65,3 +65,39 @@ func die():
 func _on_respawn_button_pressed():
 	print("button pressed")
 	Events.start_level.emit() 
+	
+###########################################
+## State Machine Acessible Code 
+###########################################
+
+func handle_movement(delta): 
+	# Handle player movement. 
+	var direction := Input.get_axis("left", "right")
+	# Move in the given direction when move is pressed. 
+	if direction: velocity.x = move_toward(velocity.x, direction * SPEED, delta * acceleration)
+	# Not moving. Graudally lower velocity to 0.
+	else: velocity.x = move_toward(velocity.x, 0, delta * friction)
+
+func handle_gravity(delta):
+	if not is_on_floor(): velocity.y += gravity * delta
+	
+"""
+	Handle Jump
+"""
+@onready var coyote_timer: Timer = $General/CoyoteTimer
+var coyote_time: float = 0.25
+var can_jump = false
+
+func handle_jump(): 
+	# Handle coyote timer.
+	if is_on_floor() and not can_jump: 
+		can_jump = true 
+	elif can_jump and coyote_timer.is_stopped():
+		coyote_timer.start(coyote_time)
+	
+	# Don't let the player fall during coyote time. 
+	if coyote_timer.time_left > 0: 
+		velocity.y = 0 
+
+func _on_coyote_timer_timeout() -> void:
+	can_jump = false

@@ -12,7 +12,7 @@ func enter(_enter_params = null):
 	
 # Note: 
 # Process will eventually transition back to the wanders state. 
-func process(delta: float) -> void:
+func process(_delta: float) -> void:
 	pass
 	
 func physics_process(delta: float) -> void:

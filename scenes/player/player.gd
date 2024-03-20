@@ -40,12 +40,24 @@ func _enter_tree():
 	UNITS.player = self
 
 func _on_health_component_handle_attack(attack: Hitbox, has_died: bool = false) -> void:
-	heart_container.deplete_heart()		
 	
+	# Invulnernable state. 
+	if is_invulnerable: return
+	
+	heart_container.deplete_heart()	
 	if has_died: 
 		state_machine.force_transition("death", attack)
 	else: 
 		state_machine.force_transition("damaged", attack)
+
+@onready var invulnerable_timer: Timer = $General/InvulnerableTimer
+var is_invulnerable: bool = false
+func enter_invulnerable_state():
+	is_invulnerable = true
+	invulnerable_timer.start() 
+
+func _on_invulnerable_timer_timeout() -> void:
+	is_invulnerable = false
 
 
 ## Fire particles in the direction of the air bullet. 
@@ -85,7 +97,7 @@ func handle_gravity(delta):
 	Handle Jump
 """
 @onready var coyote_timer: Timer = $General/CoyoteTimer
-var coyote_time: float = 0.25
+var coyote_time: float = 0.2
 var can_jump = false
 
 func handle_jump(): 
@@ -101,3 +113,6 @@ func handle_jump():
 
 func _on_coyote_timer_timeout() -> void:
 	can_jump = false
+
+
+

@@ -12,7 +12,11 @@ signal handle_attack(attack: Hitbox, has_died: bool)
 
 
 func take_damage(attack: Hitbox): 
-	health -= attack.damage
+	if "is_invulnerable" in actor: 
+		if not actor.is_invulnerable: 
+			health -= attack.damage
+	else: 
+		health -= attack.damage
 	
 	# Handle the direction of knockback. 
 	var direction = (actor.global_position - attack.global_position).normalized()

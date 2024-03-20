@@ -4,6 +4,9 @@ extends State
 
 
 func enter(_enter_params = null):
+	# Restart the coyote timer. 
+	actor.coyote_timer.stop()
+
 	actor.animator.play("jump")
 	actor.velocity.y = -jump_height
 	

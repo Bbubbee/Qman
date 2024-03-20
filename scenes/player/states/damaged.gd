@@ -11,6 +11,7 @@ func enter(_enter_params = null):
 	cooldown_timer = cooldown
 	actor.animator_2.play("hurt")
 	actor.velocity = attack.direction * attack.knockback
+	actor.enter_invulnerable_state()
 
 
 func physics_process(delta: float) -> void:

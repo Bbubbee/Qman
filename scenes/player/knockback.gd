@@ -19,6 +19,8 @@ func physics_process(delta: float) -> void:
 		actor.velocity = Vector2(x, y)
 	
 	actor.handle_gravity(delta)
+	actor.handle_movement(delta)
+	
 	actor.move_and_slide()
 	
 	transition.emit(self, "move")

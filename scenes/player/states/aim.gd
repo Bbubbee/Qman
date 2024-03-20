@@ -5,6 +5,8 @@ signal fired_weapon(direction: Vector2)
 var can_shoot: bool = true
 @onready var attack_timer: Timer = $AttackTimer
 
+@export var suck: Node2D
+
 
 func physics_process(_delta: float):
 	var mouse_pos = actor.get_global_mouse_position()
@@ -26,6 +28,15 @@ func physics_process(_delta: float):
 		actor.arm_sprite.flip_h = true
 		actor.arm_pivot.position.x = 1
 
+	handle_suck()
+
+func handle_suck(): 
+	if Input.is_action_pressed('suck'):
+		var direction = (actor.get_global_mouse_position() - actor.bullet_marker.global_position)
+		
+		suck.suck(-direction, actor.bullet_marker.global_position)
+	
+
 func on_input(event: InputEvent) -> void:
 	if event.is_action_pressed('spit'):
 		if can_shoot: 
@@ -41,6 +52,9 @@ func on_input(event: InputEvent) -> void:
 			root.add_child(gust)
 			
 			fired_weapon.emit(direction)
+	
+	if event.is_action_pressed("suck"):
+		print('suck')
 
 
 func _on_attack_timer_timeout() -> void:

@@ -5,6 +5,7 @@ extends State
 
 func enter(_enter_params = null):
 	# Restart the coyote timer. 
+	actor.can_jump = false
 	actor.coyote_timer.stop()
 
 	actor.animator.play("jump")

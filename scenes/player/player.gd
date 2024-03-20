@@ -29,6 +29,10 @@ signal damaged
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+# DEBUG: 
+#func _physics_process(delta):
+	#print(state_machine.current_state)
+	#$General/Label = str(state_machine.current_state)
 
 func _ready() -> void:
 	#UNITS.player = self

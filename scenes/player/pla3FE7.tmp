@@ -328,12 +328,8 @@ wait_time = 1.5
 one_shot = true
 
 [node name="Label" type="Label" parent="General"]
-visible = false
-offset_left = -19.0
-offset_top = -31.0
-offset_right = 21.0
-offset_bottom = -8.0
-theme_override_font_sizes/font_size = 11
+offset_right = 40.0
+offset_bottom = 23.0
 text = "State
 "
 

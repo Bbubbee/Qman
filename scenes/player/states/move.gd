@@ -10,26 +10,14 @@ func physics_process(delta: float):
 	actor.handle_gravity(delta)
 	
 	# The player has stopped moving, go back to idle. 
-	if actor.velocity.x == 0: 
-		transition.emit(self, "idle")
+	if actor.velocity.x == 0: transition.emit(self, "idle")
 	
 	actor.handle_jump() 
 	actor.move_and_slide()
-	
-"""
-	Handle jump requirements: 
-		- variables = can_jump, coyote time 
-		- process jump
-		- input check (must check this here)
-			- thus, process jump must return something 
-			- or another function must exist to check if can jump 
-"""
-	
 	
 
 
 func on_input(event: InputEvent): 
 	if event.is_action_pressed("jump") and actor.can_jump:
-		actor.can_jump = false
 		transition.emit(self, "jump") 
 

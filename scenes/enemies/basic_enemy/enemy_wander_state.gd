@@ -19,11 +19,8 @@ func physics_process(delta: float) -> void:
 	
 	# Handle gravity. 
 	if not actor.is_on_floor(): actor.velocity.y += actor.gravity * delta
-	
 
-	
 	if not actor.floor_detector_ray.is_colliding(): 
-		print("flipping direction")
 		move_direction *= -1
 	
 	actor.move_and_slide()

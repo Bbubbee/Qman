@@ -113,6 +113,7 @@ _data = {
 size = Vector2(14, 32)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_246iy"]
+b = Vector2(0, 37)
 
 [node name="TrapDoor" type="Node2D"]
 script = ExtResource("1_nsjw0")
@@ -140,7 +141,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2(-32, 6)
+position = Vector2(-77, -21)
 shape = SubResource("SegmentShape2D_246iy")
 debug_color = Color(0, 0.647059, 0.227451, 0.419608)
 

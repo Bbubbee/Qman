@@ -85,6 +85,10 @@ libraries = {
 "": SubResource("AnimationLibrary_lh164")
 }
 
+[node name="FloorDetectorRay" type="RayCast2D" parent="General"]
+target_position = Vector2(0, 8)
+hit_from_inside = true
+
 [node name="Components" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 

@@ -17,10 +17,11 @@ func _physics_process(delta: float) -> void:
 	
 	# Get collisions. 
 	var bodies = hitbox.get_overlapping_bodies()
-	for i in bodies: 
-		var y = direction.y
-		if y > 0: y = -y
-		i.apply_force(direction*force, -direction)
+	for i in bodies:
+		if i is DustParticle:
+			var y = direction.y
+			if y > 0: y = -y
+			i.apply_force(direction*force, -direction)
 	
 	
 	

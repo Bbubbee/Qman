@@ -8,7 +8,7 @@ extends Node2D
 
 ## The player is in the room. 
 ## Spawn the door to trap them inside. 
-func _on_area_2d_area_entered(area):
+func _on_area_2d_area_entered(_area):
 	player_detector.queue_free()
 	static_body_2d.collision_layer = 1
 	animation_player.play("spawn")

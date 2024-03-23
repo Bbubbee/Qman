@@ -10,6 +10,8 @@ const DUST_PARTICLE = preload("res://scenes/dust_particles/dust_particle.tscn")
 @onready var sprite_2d: Sprite2D = $General/Sprite
 @onready var animator: AnimationPlayer = $General/Animator
 @onready var hurt_hit_box: HurtHitBox = $Components/HurtHitBox
+@onready var floor_detector_ray = $General/FloorDetectorRay
+
 
 
 var facing_right: bool = true 
@@ -38,4 +40,16 @@ func disable_hitbox():
 
 func disable(): 
 	state_machine.force_transition("wander")
+
+func _physics_process(delta):
+	flip_enemy()
+
+func flip_enemy():
+	if facing_right: 
+		sprite_2d.flip_h = true
+		floor_detector_ray.scale.x = 1
+	else:
+		sprite_2d.flip_h = false 
+		floor_detector_ray.scale.x = -1
+		
 		

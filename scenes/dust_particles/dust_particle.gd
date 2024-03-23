@@ -1,4 +1,5 @@
 extends RigidBody2D
+class_name DustParticle
 
 var direction: Vector2
 

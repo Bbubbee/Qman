@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://dci2im2w6dlc0"]
-
-[node name="GustTwo" type="Node2D"]
-
-[node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(2.5, 0, 2, -1, 1, -2, 0, -2, 0, -1, 1, 0, 0, 1, 0, 2, 1, 2, 2, 1)
-metadata/_edit_lock_ = true

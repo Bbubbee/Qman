@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_8xiv0"]
 [ext_resource type="PackedScene" uid="uid://dpwtpkyvf7juq" path="res://scenes/player/player.tscn" id="3_o4a5t"]
 [ext_resource type="PackedScene" uid="uid://3wstfv8sq6h5" path="res://scenes/enemies/dust/dust.tscn" id="4_cgpj8"]
-[ext_resource type="PackedScene" uid="uid://c1tmlhlu2k430" path="res://scenes/enemies/baby/dust_baby.tscn" id="5_00mne"]
+[ext_resource type="PackedScene" uid="uid://c1tmlhlu2k430" path="res://scenes/enemies/baby/baby.tscn" id="5_00mne"]
 [ext_resource type="PackedScene" uid="uid://c01jlcn82vbrf" path="res://scenes/particles/particle_spawner.tscn" id="5_glfa5"]
 [ext_resource type="Texture2D" uid="uid://e2be3nx8ew8c" path="res://assets/other/lamp-post.png" id="7_iembb"]
-[ext_resource type="PackedScene" uid="uid://dm62js8kc86u2" path="res://scenes/tiles/tile_map_two.tscn" id="7_im8on"]
+[ext_resource type="PackedScene" uid="uid://dm62js8kc86u2" path="res://scenes/tiles/tile_map.tscn" id="7_im8on"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8xiv0")

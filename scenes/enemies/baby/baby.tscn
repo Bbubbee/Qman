@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://c1tmlhlu2k430"]
 
-[ext_resource type="PackedScene" uid="uid://d2cp54aqb1i3t" path="res://scenes/enemies/basic_enemy/enemy.tscn" id="1_dbb4b"]
-[ext_resource type="Texture2D" uid="uid://kg21ha1refg0" path="res://assets/enemies/dust/dust_baby_idle-Sheet.png" id="2_76uyx"]
-[ext_resource type="Script" path="res://scenes/enemies/baby/baby_attack_state.gd" id="3_2l0cj"]
+[ext_resource type="PackedScene" uid="uid://d2cp54aqb1i3t" path="res://scenes/enemies/basic_enemy/enemy.tscn" id="1_oum6t"]
+[ext_resource type="Texture2D" uid="uid://kg21ha1refg0" path="res://assets/enemies/dust/dust_baby_idle-Sheet.png" id="2_lilli"]
+[ext_resource type="Script" path="res://scenes/enemies/baby/baby_attack_state.gd" id="3_33wpk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vxl5"]
 size = Vector2(7, 7)
@@ -94,14 +94,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx3m0"]
 size = Vector2(7, 7)
 
-[node name="Baby" instance=ExtResource("1_dbb4b")]
+[node name="Baby" instance=ExtResource("1_oum6t")]
 
 [node name="Collider" parent="." index="0"]
 position = Vector2(0.5, 4.5)
 shape = SubResource("RectangleShape2D_5vxl5")
 
 [node name="Sprite" parent="General" index="0"]
-texture = ExtResource("2_76uyx")
+texture = ExtResource("2_lilli")
 hframes = 2
 
 [node name="Animator" parent="General" index="1"]
@@ -124,7 +124,7 @@ sight_range = 100.0
 attack_range = 80.0
 
 [node name="Attack" parent="StateMachine" index="4"]
-script = ExtResource("3_2l0cj")
+script = ExtResource("3_33wpk")
 jump_force = Vector2(250, 170)
 attack_duration = 1.0
 

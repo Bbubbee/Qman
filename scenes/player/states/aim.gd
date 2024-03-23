@@ -53,8 +53,6 @@ func on_input(event: InputEvent) -> void:
 			
 			fired_weapon.emit(direction)
 	
-	if event.is_action_pressed("suck"):
-		print('suck')
 
 
 func _on_attack_timer_timeout() -> void:

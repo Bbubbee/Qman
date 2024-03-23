@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://utilitites/components/health_component.tscn" id="9_x8egt"]
 [ext_resource type="Script" path="res://scenes/player/knockback.gd" id="10_4n77r"]
 [ext_resource type="PackedScene" uid="uid://bmqdf4kabond7" path="res://utilitites/components/hurtbox.tscn" id="11_2lm7y"]
-[ext_resource type="Script" path="res://scenes/player/player_death_state.gd" id="12_balr0"]
+[ext_resource type="Script" path="res://scenes/player/states/player_death_state.gd" id="12_balr0"]
 [ext_resource type="PackedScene" uid="uid://canmvxganapi8" path="res://scenes/player/actions/suck.tscn" id="14_2n4eo"]
 [ext_resource type="Script" path="res://scenes/player/ui/heart_container.gd" id="16_hwllt"]
 
@@ -306,7 +306,6 @@ metadata/_edit_lock_ = true
 [node name="Suck" parent="General/ArmPivot" instance=ExtResource("14_2n4eo")]
 position = Vector2(1.21998, 1.87394)
 rotation = -0.113446
-scale = Vector2(1, 1)
 
 [node name="BulletMarker" type="Marker2D" parent="General/ArmPivot"]
 position = Vector2(7, -1)

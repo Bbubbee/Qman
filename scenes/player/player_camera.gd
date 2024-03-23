@@ -20,7 +20,6 @@ extends Camera2D
 	#zoom_in = true
 	#return
 	#while zoom <= Vector2(2, 2):
-		#print(zoom)
 		#zoom += zoom_speed
 
 	#zoom_in = true

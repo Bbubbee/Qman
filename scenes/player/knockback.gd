@@ -8,8 +8,6 @@ var direction: Vector2
 func enter(_enter_params = null): 
 	direction = _enter_params
 	
-
-func physics_process(delta: float) -> void: 		
 	var x = -direction.x * force
 	var y = -direction.y * force
 	
@@ -17,12 +15,16 @@ func physics_process(delta: float) -> void:
 	# and is shooting steeply into the ground.
 	if not actor.is_on_floor() and y < -40:
 		actor.velocity = Vector2(x, y)
+
+func physics_process(delta: float) -> void: 		
+
 	
 	actor.handle_gravity(delta)
 	actor.handle_movement(delta)
+	actor.handle_jump()
 	actor.move_and_slide()
 	
-	transition.emit(self, "move")
+	if actor.is_on_floor(): transition.emit(self, "move") 
 	
 	
 func on_input(event: InputEvent): 

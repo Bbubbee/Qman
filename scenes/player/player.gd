@@ -94,11 +94,18 @@ func handle_gravity(delta):
 	
 """
 	Handle Jump
+	
+	Requirements: 
+		- Call handle_jump() in the states physics_process. 
+		- Check if can_jump before jumping. 
 """
 @onready var coyote_timer: Timer = $General/CoyoteTimer
 var coyote_time: float = 0.2
 var can_jump = false
 
+## Handles when the player can jump. 
+## If the player is on the floor, they can jump. 
+## If they walk off a platform, they have a coyote timer to jump.
 func handle_jump(): 
 	# Handle coyote timer.
 	if is_on_floor() and not can_jump: 

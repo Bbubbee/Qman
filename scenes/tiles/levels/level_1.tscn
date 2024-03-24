@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://3a4330t3ia27"]
+[gd_scene load_steps=6 format=3 uid="uid://3a4330t3ia27"]
 
 [ext_resource type="PackedScene" uid="uid://dm62js8kc86u2" path="res://scenes/tiles/tile_map.tscn" id="1_hnoqa"]
 [ext_resource type="PackedScene" uid="uid://beb10acuoygs" path="res://scenes/enemies/tentacle/tentacle.tscn" id="3_37r8l"]
+[ext_resource type="PackedScene" uid="uid://c8ekdnejnudmt" path="res://scenes/environment/trap_door_spawner.tscn" id="4_lygip"]
 [ext_resource type="PackedScene" uid="uid://b5is6mbcsu08l" path="res://scenes/environment/trap_door.tscn" id="4_okwud"]
 [ext_resource type="PackedScene" uid="uid://c1tmlhlu2k430" path="res://scenes/enemies/baby/baby.tscn" id="5_p1rpk"]
 
@@ -65,5 +66,13 @@ position = Vector2(563, -23)
 [node name="Baby2" parent="Level1Actors" index="14" instance=ExtResource("5_p1rpk")]
 position = Vector2(657, 199)
 
-[node name="TrapDoor" parent="Level1Actors" index="15" instance=ExtResource("4_okwud")]
-position = Vector2(-67, -208)
+[node name="TrapDoorSpawner" parent="Level1Actors" index="15" instance=ExtResource("4_lygip")]
+position = Vector2(-344, -210)
+
+[node name="TrapDoor" parent="Level1Actors/TrapDoorSpawner/TrapDoors" index="0" instance=ExtResource("4_okwud")]
+position = Vector2(274, 2)
+
+[node name="TrapDoor2" parent="Level1Actors/TrapDoorSpawner/TrapDoors" index="1" instance=ExtResource("4_okwud")]
+position = Vector2(-248, 2)
+
+[editable path="Level1Actors/TrapDoorSpawner"]

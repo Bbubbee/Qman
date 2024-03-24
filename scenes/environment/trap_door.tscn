@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5is6mbcsu08l"]
+[gd_scene load_steps=9 format=3 uid="uid://b5is6mbcsu08l"]
 
 [ext_resource type="Texture2D" uid="uid://fk6jnb85w7w0" path="res://assets/other/trapdoor-Sheet.png" id="1_8rfdr"]
 [ext_resource type="Script" path="res://scenes/environment/trap_door.gd" id="1_nsjw0"]
@@ -112,9 +112,6 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_356pv"]
 size = Vector2(14, 32)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_246iy"]
-b = Vector2(0, 37)
-
 [node name="TrapDoor" type="Node2D"]
 script = ExtResource("1_nsjw0")
 
@@ -135,14 +132,3 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_356pv")
-
-[node name="PlayerDetector" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2(-77, -21)
-shape = SubResource("SegmentShape2D_246iy")
-debug_color = Color(0, 0.647059, 0.227451, 0.419608)
-
-[connection signal="area_entered" from="PlayerDetector" to="." method="_on_area_2d_area_entered"]

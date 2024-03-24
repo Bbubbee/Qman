@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var animation_player = $AnimationPlayer
-@onready var player_detector = $PlayerDetector
 @onready var static_body_2d = $StaticBody2D
 
 

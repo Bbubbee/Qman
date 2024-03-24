@@ -13,7 +13,6 @@ const DUST_PARTICLE = preload("res://scenes/dust_particles/dust_particle.tscn")
 @onready var floor_detector_ray = $General/FloorDetectorRay
 
 
-
 var facing_right: bool = true 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -24,13 +23,10 @@ func _ready() -> void:
 	
 	Events.player_died.connect(disable)
 	
- 
 
 func _on_health_component_handle_attack(attack: Hitbox, has_died: bool = false) -> void:	
-	if has_died: 		
-		state_machine.force_transition("death", attack)
-	else: 
-		state_machine.force_transition("damaged", attack)
+	if has_died: state_machine.force_transition("death", attack)
+	else: state_machine.force_transition("damaged", attack)
 
 
 func disable_hitbox():
@@ -41,15 +37,28 @@ func disable_hitbox():
 func disable(): 
 	state_machine.force_transition("wander")
 
-func _physics_process(delta):
-	flip_enemy()
 
-func flip_enemy():
+func _physics_process(_delta):
+	face_player()
+
+
+func face_player():
 	if facing_right: 
 		sprite_2d.flip_h = true
 		floor_detector_ray.scale.x = 1
 	else:
 		sprite_2d.flip_h = false 
 		floor_detector_ray.scale.x = -1
+
+
+func get_player_direction(): 
+	pass
+	
+	
+func handle_gravity(delta): 
+	if not is_on_floor(): velocity.y += gravity * delta
+	
+	
+	
 		
 		

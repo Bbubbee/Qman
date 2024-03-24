@@ -5,7 +5,7 @@ var is_sucking: bool = false
 var force = 15
 
 
-func suck(direction: Vector2, position: Vector2): 
+func suck(direction: Vector2, pos: Vector2): 
 	var bodies = area_2d.get_overlapping_bodies()
 	for i in bodies: 
-		i.apply_force(direction, -position)
+		i.apply_force(direction, -pos)

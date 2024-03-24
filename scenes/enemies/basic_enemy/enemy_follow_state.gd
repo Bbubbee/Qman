@@ -10,7 +10,7 @@ func enter(_enter_params = null):
 
 func physics_process(delta: float):
 	# Handle gravity. 
-	if not actor.is_on_floor(): actor.velocity.y += actor.gravity * delta
+	actor.handle_gravity(delta) 
 	actor.move_and_slide()
 	
 	# Player logic. 
@@ -22,11 +22,6 @@ func physics_process(delta: float):
 	# Move towards the player. 
 	var direction = player.global_position - actor.global_position 
 	
-	# Make sprite face player.
-	if player.global_position > actor.global_position:
-		actor.sprite_2d.flip_h = true 
-	else:
-		actor.sprite_2d.flip_h = false
 		
 
 	# Stop moving x pixels away from the player.

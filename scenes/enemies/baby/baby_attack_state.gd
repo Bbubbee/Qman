@@ -10,18 +10,13 @@ func enter(_enter_params = null):
 	attack_timer = 0.8
 	actor.velocity = Vector2.ZERO
 	
-# Note: 
-# Process will eventually transition back to the wanders state. 
+# NOTE: Process will eventually transition back to the wander state so we override it here. 
 func process(_delta: float) -> void:
 	pass
 	
 func physics_process(delta: float) -> void:
 	# Handle gravity. 
-	if not actor.is_on_floor(): actor.velocity.y += actor.gravity * delta
-	
-
-	
-		
+	actor.handle_gravity(delta) 
 	actor.move_and_slide()
 	
 	# Once the baby has jumped, go back to idle. 
@@ -30,22 +25,20 @@ func physics_process(delta: float) -> void:
 		transition.emit(self, "wander") 
 	
 
-
-
 func _on_windup_timer_timeout() -> void:
+	# Get the direction of the player. 
+	var player = actor.UNITS.player
 	
+	if not player: transition.emit(self, "wander")
+	
+	var direction = player.global_position - actor.global_position
+	if direction.x > 0: 
+		actor.facing_right = true 
+	else: 
+		actor.facing_right = false 
+		
+	if actor.facing_right: actor.velocity.x = jump_force.x
+	else: actor.velocity.x = -jump_force.x
 	actor.velocity.y = -jump_force.y
 	
-	if actor.facing_right: 
-		actor.velocity.x = jump_force.x
-	else: 
-		actor.velocity.x = -jump_force.x
-	
 	has_jumped = true
-	
-	#transition.emit(self, 'follow')
-
-	
-	# Randomly generate jump force. 
-	
-	# Find the player and jump towards them. 

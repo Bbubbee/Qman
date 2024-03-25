@@ -10,8 +10,3 @@ func spawn_door():
 	animation_player.play("spawn")
 	animation_player.queue("idle")
 
-
-### The player is in the room. 
-#func _on_area_2d_area_entered(_area):
-	#player_detector.queue_free()
-	#spawn_door()

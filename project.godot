@@ -18,6 +18,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 Events="*res://scenes/main/events.gd"
+Globals="*res://utilitites/resources/globals.gd"
 
 [display]
 

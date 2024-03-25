@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8ekdnejnudmt"]
+
+[ext_resource type="Script" path="res://scenes/environment/trap_room.gd" id="1_0g2p3"]
+
+[node name="TrapRoom" type="Node2D"]
+script = ExtResource("1_0g2p3")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="TrapDoors" type="Node2D" parent="."]
+
+[node name="Actors" type="Node2D" parent="."]
+
+[connection signal="area_entered" from="PlayerDetector" to="." method="_on_player_detector_area_entered"]

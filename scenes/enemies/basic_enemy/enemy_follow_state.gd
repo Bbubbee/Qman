@@ -19,12 +19,8 @@ func physics_process(delta: float):
 	if not player: 
 		transition.emit("wander") 
 	
-	# Move towards the player. 
-	var direction = player.global_position - actor.global_position 
-	
-		
-
-	# Stop moving x pixels away from the player.
+	var direction = player.global_position - actor.global_position 	
+	# Move towards the player.
 	if direction.length() > attack_range: 
 		if direction.x > 0:
 			actor.velocity.x = 1 * actor.SPEED
@@ -32,7 +28,7 @@ func physics_process(delta: float):
 		else: 
 			actor.velocity.x = -1 * actor.SPEED  
 			actor.facing_right = false
-			
+	
 	else: 
 		actor.velocity.x = 0
 		if attack_timer.is_stopped() or has_initial_attack:

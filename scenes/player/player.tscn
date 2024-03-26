@@ -343,7 +343,7 @@ text = "State
 
 [node name="HealthComponent" parent="Components" node_paths=PackedStringArray("actor") instance=ExtResource("9_x8egt")]
 actor = NodePath("../..")
-max_health = 10.0
+max_health = 4.0
 
 [node name="Hurtbox" parent="Components" node_paths=PackedStringArray("health_component") instance=ExtResource("11_2lm7y")]
 visible = false

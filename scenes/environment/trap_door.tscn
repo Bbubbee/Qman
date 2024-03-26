@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5is6mbcsu08l"]
+[gd_scene load_steps=16 format=3 uid="uid://b5is6mbcsu08l"]
 
 [ext_resource type="Texture2D" uid="uid://fk6jnb85w7w0" path="res://assets/other/trapdoor-Sheet.png" id="1_8rfdr"]
 [ext_resource type="Script" path="res://scenes/environment/trap_door.gd" id="1_nsjw0"]
+[ext_resource type="PackedScene" uid="uid://bmqdf4kabond7" path="res://utilitites/components/hurtbox.tscn" id="3_daelq"]
+[ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://utilitites/components/health_component.tscn" id="4_1m72h"]
 
 [sub_resource type="Animation" id="Animation_8foxu"]
 length = 0.001
@@ -101,23 +103,81 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_hxpc0"]
+resource_name = "death"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rqqgy"]
 _data = {
 "RESET": SubResource("Animation_8foxu"),
+"death": SubResource("Animation_hxpc0"),
 "idle": SubResource("Animation_tm5po"),
 "inactive": SubResource("Animation_xlsll"),
 "spawn": SubResource("Animation_xxvls")
 }
 
+[sub_resource type="Animation" id="Animation_8ml03"]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1, 2.08165e-12), Vector2(-1, 2.08165e-12), Vector2(1, 2.08165e-12), Vector2(-1, 2.08165e-12), Vector2(2.08165e-12, 2.08165e-12)]
+}
+
+[sub_resource type="Animation" id="Animation_ngbcj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 2.08165e-12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_howv5"]
+_data = {
+"RESET": SubResource("Animation_ngbcj"),
+"hurt": SubResource("Animation_8ml03")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_356pv"]
+size = Vector2(14, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kaab5"]
 size = Vector2(14, 32)
 
 [node name="TrapDoor" type="Node2D"]
 script = ExtResource("1_nsjw0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 2.08165e-12)
 texture = ExtResource("1_8rfdr")
-hframes = 9
+hframes = 13
 frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -126,9 +186,32 @@ libraries = {
 }
 autoplay = "inactive"
 
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationPlayer")
+libraries = {
+"": SubResource("AnimationLibrary_howv5")
+}
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_356pv")
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_daelq")]
+visible = false
+collision_mask = 8
+health_component = NodePath("../HealthComponent")
+
+[node name="Collider" parent="Hurtbox" index="0"]
+shape = SubResource("RectangleShape2D_kaab5")
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("4_1m72h")]
+actor = NodePath("..")
+max_health = 3.0
+
+[connection signal="handle_attack" from="HealthComponent" to="." method="_on_health_component_handle_attack"]
+
+[editable path="Hurtbox"]

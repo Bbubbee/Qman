@@ -13,5 +13,5 @@ LEVEL = ExtResource("3_6vbrl")
 metadata/_edit_lock_ = true
 
 [node name="PlayerSpawner" type="Node2D" parent="."]
-position = Vector2(-115, -396)
+position = Vector2(-199, -34)
 script = ExtResource("1_cj3nj")

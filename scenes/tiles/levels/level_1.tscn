@@ -42,7 +42,7 @@ position = Vector2(-248, 2)
 [node name="Spitter" parent="Level1Actors/TrapRoom/Actors" index="0" instance=ExtResource("6_myrtp")]
 position = Vector2(251, -152)
 rotation = -1.5708
-max_babies = 3
+max_babies = 1
 
 [node name="Spitter2" parent="Level1Actors/TrapRoom/Actors" index="1" instance=ExtResource("6_myrtp")]
 position = Vector2(-220, -137)

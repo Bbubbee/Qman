@@ -1,6 +1,8 @@
 extends Node2D
 
+@onready var player_detector: Area2D = $PlayerDetector
 @onready var trap_doors = $TrapDoors
+@onready var actors: Node2D = $Actors
 
 """
 	Requirements: 
@@ -11,18 +13,25 @@ extends Node2D
 			- When all actors are defeated, the room will unlock. 
 """
 
+
+func _ready() -> void:
+	for actor in actors.get_children(): 
+		if actor.has_signal("died"): 
+			actor.died.connect(check_if_room_is_cleared)
+		elif actor.has_signal("everyones_dead"):
+			actor.everyones_dead.connect(check_if_room_is_cleared)
+
+
+func check_if_room_is_cleared():
+	print("i died")
+	
+	if actors.get_child_count()-1 <= 0: 
+		queue_free()
+
+
 ## Trap the player within the room once they touch the detector. 
 func _on_player_detector_area_entered(_area):
-	$PlayerDetector.queue_free()
+	player_detector.queue_free()
 	for door in trap_doors.get_children():
 		door.spawn_door()
-
-
-"""
-	Find a way to see if the requirements are met for the player to leave. 
-	
-	1. Could spawn all the actors in the room. When they are all defeated, 
-	unlock the room. 
-		- What if there are other ways of leaving the room? Deal with it then. 
-"""
 

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal died 
+
 ## Global resources 
 const UNITS = preload("res://utilitites/resources/units.tres")
 
@@ -57,6 +59,10 @@ func get_player_direction():
 	
 func handle_gravity(delta): 
 	if not is_on_floor(): velocity.y += gravity * delta
+
+
+func spawn_particles(amount, direction): 
+	Events.spawn_particles.emit(self.global_position, amount, direction)
 	
 	
 	

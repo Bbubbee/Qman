@@ -36,7 +36,7 @@ func _ready() -> void:
 	attack_state_machine.init(self)	
 
 func _enter_tree():
-	UNITS.player = self
+	#UNITS.player = self
 	pass
 
 func _on_health_component_handle_attack(attack: Hitbox, has_died: bool = false) -> void:

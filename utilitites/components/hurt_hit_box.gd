@@ -18,4 +18,7 @@ func _on_hitbox_entered(hitbox: Hitbox) -> void:
 	
 	# Get the direction of the hitbox. 
 	
+func disable(): 
+	monitorable = false 
+	monitoring = false
 	

@@ -1,6 +1,12 @@
 extends Node2D
 
 
+"""
+	The babies are stored within the spitter to track how many babies the 
+	spitter has made. 
+	
+	This is to prevent it from spawning an unlimited amount. 
+"""
 const BABY = preload("res://scenes/enemies/baby/baby.tscn")
 @onready var baby_spawn_marker = $BabySpawnMarker
 @onready var babies: Node = $Babies
@@ -17,8 +23,9 @@ const BABY = preload("res://scenes/enemies/baby/baby.tscn")
 @onready var sprite: Sprite2D = $Sprite
 var is_alive: bool = true
 
-signal everyones_dead
-
+signal everyones_defeated
+	# Signal used in the case that the spitter is part of a trap room. 
+	# A trap room unlocks when all enemies are defeated. 
 
 func _ready():
 	hurt_hit_box.collision_layer = 4 
@@ -48,7 +55,7 @@ func give_birth():
 	babies.add_child(baby)
 	
 	
-## When a baby has died, check if the other babies are alive. 
+## A baby has been defeated. Check if the parent should free itself. 
 func on_baby_died():
 	num_of_babies -= 1 
 	check_if_should_free()
@@ -87,12 +94,13 @@ func death(attack):
 	check_if_should_free()
 	
 
-## Only free the spitter if the spitter and babies are dead. 
+## Only free the spitter if the babies are also defeated. 
 func check_if_should_free(): 
 	if num_of_babies > 0: return
 	if is_alive: return
 	
-	everyones_dead.emit()
+	# Used in the case the spitter is part of a trap room. 
+	everyones_defeated.emit()
 	
 	queue_free()
 	

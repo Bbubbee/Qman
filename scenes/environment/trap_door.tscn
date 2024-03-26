@@ -32,6 +32,22 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_hxpc0"]
+resource_name = "death"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12]
+}
+
 [sub_resource type="Animation" id="Animation_tm5po"]
 resource_name = "idle"
 length = 0.8
@@ -103,22 +119,6 @@ tracks/1/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_hxpc0"]
-resource_name = "death"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [9, 10, 11, 12]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rqqgy"]
 _data = {
 "RESET": SubResource("Animation_8foxu"),
@@ -126,6 +126,21 @@ _data = {
 "idle": SubResource("Animation_tm5po"),
 "inactive": SubResource("Animation_xlsll"),
 "spawn": SubResource("Animation_xxvls")
+}
+
+[sub_resource type="Animation" id="Animation_ngbcj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 2.08165e-12)]
 }
 
 [sub_resource type="Animation" id="Animation_8ml03"]
@@ -142,21 +157,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2(1, 2.08165e-12), Vector2(-1, 2.08165e-12), Vector2(1, 2.08165e-12), Vector2(-1, 2.08165e-12), Vector2(2.08165e-12, 2.08165e-12)]
-}
-
-[sub_resource type="Animation" id="Animation_ngbcj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 2.08165e-12)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_howv5"]

@@ -14,12 +14,13 @@ extends Node2D
 """
 
 
+## Connect all the signals required for the trap room to operate. 
 func _ready() -> void:
 	for actor in actors.get_children(): 
 		if actor.has_signal("died"): 
 			actor.died.connect(unlock_room)
-		elif actor.has_signal("everyones_dead"):
-			actor.everyones_dead.connect(unlock_room)
+		elif actor.has_signal("everyones_defeated"):
+			actor.everyones_defeated.connect(unlock_room)
 	
 	for door in trap_doors.get_children(): 
 		door.destroyed.connect(free_room)

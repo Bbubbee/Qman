@@ -17,8 +17,6 @@ func enter(_enter_params = null):
 		actor.velocity = Vector2(x, y)
 
 func physics_process(delta: float) -> void: 		
-
-	
 	actor.handle_gravity(delta)
 	actor.handle_movement(delta)
 	actor.handle_jump()
@@ -29,6 +27,5 @@ func physics_process(delta: float) -> void:
 	
 func on_input(event: InputEvent): 
 	if event.is_action_pressed("jump") and actor.can_jump:
-		if actor.is_on_floor():
-			transition.emit(self, "jump") 
+		transition.emit(self, "jump") 
 		

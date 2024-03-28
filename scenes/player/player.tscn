@@ -304,6 +304,7 @@ texture = ExtResource("3_bosfo")
 metadata/_edit_lock_ = true
 
 [node name="Suck" parent="General/ArmPivot" instance=ExtResource("14_2n4eo")]
+visible = false
 position = Vector2(1.21998, 1.87394)
 rotation = -0.113446
 
@@ -343,7 +344,7 @@ text = "State
 
 [node name="HealthComponent" parent="Components" node_paths=PackedStringArray("actor") instance=ExtResource("9_x8egt")]
 actor = NodePath("../..")
-max_health = 20.0
+max_health = 50.0
 
 [node name="Hurtbox" parent="Components" node_paths=PackedStringArray("health_component") instance=ExtResource("11_2lm7y")]
 visible = false
@@ -368,6 +369,7 @@ offset_left = 1.0
 offset_top = 1.0
 offset_right = 22.0
 offset_bottom = 22.0
+size_flags_horizontal = 0
 theme_override_constants/separation = 2
 script = ExtResource("16_hwllt")
 health_component = NodePath("../../Components/HealthComponent")

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b70yyd1jydcfp"]
+
+[ext_resource type="Script" path="res://scenes/tiles/levels/scene_transitioner.gd" id="1_jnxh6"]
+
+[node name="SceneTransitioner" type="Node2D"]
+script = ExtResource("1_jnxh6")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

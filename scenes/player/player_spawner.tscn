@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://fykle3i3hw2r"]
+
+[ext_resource type="Script" path="res://scenes/tiles/levels/player_spawner.gd" id="1_1rev8"]
+
+[node name="PlayerSpawner" type="Node2D"]
+position = Vector2(-409, -231)
+script = ExtResource("1_1rev8")

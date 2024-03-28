@@ -62,6 +62,7 @@ autoplay = "idle"
 collision_layer = 4
 collision_mask = 8
 health_component = NodePath("../HealthComponent")
+knockback = 200.0
 
 [node name="Collider" parent="HurtHitBox" index="0"]
 position = Vector2(-1, 2)

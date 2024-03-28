@@ -15,7 +15,7 @@ func enter(_enter_params = null):
 	
 
 
-func process(delta: float) -> void:
+func process(_delta: float) -> void:
 	pass
 
 

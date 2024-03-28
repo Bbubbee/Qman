@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5d04mgv7gaqp"]
+
+[ext_resource type="Script" path="res://scenes/tiles/levels/base_level.gd" id="1_yq88a"]
+[ext_resource type="PackedScene" uid="uid://c01jlcn82vbrf" path="res://scenes/particles/particle_spawner.tscn" id="2_vom4t"]
+
+[node name="BaseLevel" type="Node2D" node_paths=PackedStringArray("actors")]
+script = ExtResource("1_yq88a")
+actors = NodePath("Actors")
+
+[node name="Actors" type="Node2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="ParticleSpawner" parent="." instance=ExtResource("2_vom4t")]

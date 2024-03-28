@@ -144,6 +144,9 @@ libraries = {
 [node name="HealthComponent" parent="Components" index="0"]
 max_health = 4.0
 
+[node name="HurtHitBox" parent="Components" index="1"]
+knockback = 300.0
+
 [node name="Collider" parent="Components/HurtHitBox" index="0"]
 position = Vector2(0, 4)
 rotation = 1.5708

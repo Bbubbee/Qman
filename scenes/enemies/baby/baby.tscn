@@ -126,14 +126,14 @@ shape = SubResource("RectangleShape2D_qx3m0")
 metadata/_edit_lock_ = true
 
 [node name="Wander" parent="StateMachine" index="0"]
-sight_range = 100.0
+sight_range = 130.0
 
 [node name="Follow" parent="StateMachine" index="1"]
 attack_range = 80.0
 
 [node name="Attack" parent="StateMachine" index="4"]
 script = ExtResource("3_33wpk")
-jump_force = Vector2(250, 170)
+jump_force = Vector2(200, 180)
 attack_duration = 1.0
 
 [node name="WindupTimer" type="Timer" parent="StateMachine/Attack" index="0"]

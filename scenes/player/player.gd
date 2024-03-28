@@ -111,6 +111,9 @@ func handle_jump():
 	# Handle coyote timer.
 	if is_on_floor() and not can_jump: 
 		can_jump = true 
+	# The player has just left the floor. 
+	# It can still jump for now. Start the coyote timer. 
+	# When it stops, the player can't jump. 
 	elif can_jump and coyote_timer.is_stopped():
 		coyote_timer.start(coyote_time)
 	
@@ -120,6 +123,7 @@ func handle_jump():
 
 func _on_coyote_timer_timeout() -> void:
 	can_jump = false
+
 
 
 

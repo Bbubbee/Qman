@@ -8,15 +8,15 @@ extends Hitbox
 # Layer - hitbox.  Looks for things to hit. 
 # Mask  - hurtbox. Looks for thing to hurt it. 
 
+signal area_collided
+
 @export var health_component: HealthComponent
 
 
 func _on_hitbox_entered(hitbox: Hitbox) -> void:
 	if not hitbox: return 
-	
 	if health_component: health_component.take_damage(hitbox)
 	
-	# Get the direction of the hitbox. 
 	
 func disable(): 
 	monitorable = false 

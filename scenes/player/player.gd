@@ -104,6 +104,7 @@ func handle_gravity(delta):
 var coyote_time: float = 0.2
 var can_jump = false
 
+
 ## Handles when the player can jump. 
 ## If the player is on the floor, they can jump. 
 ## If they walk off a platform, they have a coyote timer to jump.

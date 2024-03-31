@@ -8,6 +8,9 @@ func deplete_heart():
 	depleted = true
 	animation_player.play("deplete")
 
+## A new player is created whenever they transition scenes. 
+## They may have lost hearts before they did. 
+## This spawns the heart as depleted already. 
 func spawn_depleted(): 
 	depleted = true
-	animation_player.play("deplete")
+	animation_player.play("already_depleted")

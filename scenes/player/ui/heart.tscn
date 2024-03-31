@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://br7dhr78knlhg"]
+[gd_scene load_steps=7 format=3 uid="uid://br7dhr78knlhg"]
 
 [ext_resource type="Script" path="res://scenes/player/ui/heart.gd" id="1_75t67"]
 [ext_resource type="Texture2D" uid="uid://b8g2378swf2s2" path="res://assets/ui/heart-Sheet.png" id="1_e6xpn"]
@@ -34,9 +34,25 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
+[sub_resource type="Animation" id="Animation_rfaw6"]
+resource_name = "already_depleted"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xfxr0"]
 _data = {
 "RESET": SubResource("Animation_3aehf"),
+"already_depleted": SubResource("Animation_rfaw6"),
 "deplete": SubResource("Animation_3llxa")
 }
 

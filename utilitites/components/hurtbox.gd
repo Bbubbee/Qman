@@ -7,7 +7,10 @@ class_name Hurtbox
 
 @export var health_component: HealthComponent
 
+signal im_hit 
+
 func _on_hitbox_entered(hitbox: Hitbox) -> void:
+	im_hit.emit() 
 	if not hitbox or not health_component: return 
 	
 	health_component.take_damage(hitbox)

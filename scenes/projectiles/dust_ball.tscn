@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/projectiles/dust_ball.gd" id="2_k0ujd"]
 [ext_resource type="PackedScene" uid="uid://lge6t38xhjjm" path="res://utilitites/components/hurt_hit_box.tscn" id="3_2l01q"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_k7oh2"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_r3fuw"]
 radius = 4.0
 
 [node name="DustBall" instance=ExtResource("1_5hwhj")]
@@ -16,8 +16,6 @@ collision_layer = 4
 collision_mask = 10
 
 [node name="Collider" parent="HurtHitBox" index="0"]
-shape = SubResource("CircleShape2D_k7oh2")
-
-[connection signal="area_entered" from="HurtHitBox" to="." method="_on_hurt_hit_box_area_entered"]
+shape = SubResource("CircleShape2D_r3fuw")
 
 [editable path="HurtHitBox"]

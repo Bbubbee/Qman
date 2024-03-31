@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dpwtpkyvf7juq"]
+[gd_scene load_steps=32 format=3 uid="uid://dpwtpkyvf7juq"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_c4p7c"]
 [ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="2_jxt3h"]
@@ -228,11 +228,21 @@ _data = {
 "hurt": SubResource("Animation_xffdc")
 }
 
+[sub_resource type="Gradient" id="Gradient_m8q62"]
+offsets = PackedFloat32Array(0, 0.761702)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_otci6"]
+gradient = SubResource("Gradient_m8q62")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mpg6y"]
 radius = 3.0
 height = 14.0
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 0
 script = ExtResource("1_c4p7c")
 
@@ -339,6 +349,10 @@ offset_bottom = -8.0
 theme_override_font_sizes/font_size = 11
 text = "State
 "
+
+[node name="PointLight2D" type="PointLight2D" parent="General"]
+energy = 0.5
+texture = SubResource("GradientTexture2D_otci6")
 
 [node name="Components" type="Node2D" parent="."]
 

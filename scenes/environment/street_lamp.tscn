@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dopirn51d7qlf"]
+[gd_scene load_steps=4 format=3 uid="uid://dopirn51d7qlf"]
 
 [ext_resource type="Texture2D" uid="uid://e2be3nx8ew8c" path="res://assets/other/lamp-post.png" id="1_lox2c"]
-[ext_resource type="Texture2D" uid="uid://bp7je23532uw5" path="res://assets/other/textures/circle.png" id="2_iyy5h"]
+
+[sub_resource type="Gradient" id="Gradient_4c2ig"]
+offsets = PackedFloat32Array(0, 0.595745)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6yra4"]
+gradient = SubResource("Gradient_4c2ig")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="StreetLamp" type="Node2D"]
 
@@ -9,8 +17,11 @@
 texture = ExtResource("1_lox2c")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(0, -13)
-color = Color(0.92549, 0.27451, 0.258824, 1)
-shadow_enabled = true
-texture = ExtResource("2_iyy5h")
+z_index = -1
+position = Vector2(0.200001, 2)
+scale = Vector2(5.29167, 4.16667)
+color = Color(0.984314, 0.94902, 0.211765, 1)
+range_z_min = 100
+range_z_max = 200
+texture = SubResource("GradientTexture2D_6yra4")
 texture_scale = 0.3

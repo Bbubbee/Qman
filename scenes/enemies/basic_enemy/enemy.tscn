@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2cp54aqb1i3t"]
+[gd_scene load_steps=17 format=3 uid="uid://d2cp54aqb1i3t"]
 
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy.gd" id="1_fs0av"]
 [ext_resource type="PackedScene" uid="uid://lge6t38xhjjm" path="res://utilitites/components/hurt_hit_box.tscn" id="3_a6rne"]
@@ -65,6 +65,15 @@ _data = {
 "death": SubResource("Animation_wx3ri")
 }
 
+[sub_resource type="Gradient" id="Gradient_2unox"]
+offsets = PackedFloat32Array(0.00851064, 0.906383)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wyw7f"]
+gradient = SubResource("Gradient_2unox")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_fs0av")
@@ -88,6 +97,11 @@ libraries = {
 [node name="FloorDetectorRay" type="RayCast2D" parent="General"]
 target_position = Vector2(0, 8)
 hit_from_inside = true
+
+[node name="PointLight2D" type="PointLight2D" parent="General"]
+scale = Vector2(0.625, 0.609375)
+energy = 0.2
+texture = SubResource("GradientTexture2D_wyw7f")
 
 [node name="Components" type="Node2D" parent="."]
 metadata/_edit_lock_ = true

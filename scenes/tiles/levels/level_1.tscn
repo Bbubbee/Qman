@@ -126,7 +126,7 @@ position = Vector2(584, 216)
 position = Vector2(735, 216)
 
 [node name="Player" parent="." index="1" instance=ExtResource("7_p4g05")]
-position = Vector2(-89, 167)
+position = Vector2(-69, 124)
 
 [node name="SceneTransitioner" parent="." index="2" instance=ExtResource("8_rq4n8")]
 position = Vector2(-791, -215)
@@ -146,6 +146,28 @@ position = Vector2(-16, 176)
 
 [node name="StreetLamp3" parent="Lights" index="2" instance=ExtResource("10_lcr4i")]
 position = Vector2(176, 144)
+
+[node name="StreetLamp4" parent="Lights" index="3" instance=ExtResource("10_lcr4i")]
+position = Vector2(784, 112)
+
+[node name="StreetLamp6" parent="Lights" index="4" instance=ExtResource("10_lcr4i")]
+position = Vector2(720, 32)
+
+[node name="StreetLamp7" parent="Lights" index="5" instance=ExtResource("10_lcr4i")]
+position = Vector2(496, -16)
+
+[node name="StreetLamp9" parent="Lights" index="6" instance=ExtResource("10_lcr4i")]
+position = Vector2(356, -160)
+
+[node name="StreetLamp8" parent="Lights" index="7" instance=ExtResource("10_lcr4i")]
+position = Vector2(336, -16)
+
+[node name="StreetLamp5" parent="Lights" index="8" instance=ExtResource("10_lcr4i")]
+position = Vector2(666, 208)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Lights" index="9"]
+energy = 0.3
+blend_mode = 1
 
 [editable path="Level1Actors/TrapRoom"]
 [editable path="SceneTransitioner"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://beb10acuoygs"]
+[gd_scene load_steps=11 format=3 uid="uid://beb10acuoygs"]
 
 [ext_resource type="Texture2D" uid="uid://do3hj52unlk05" path="res://assets/enemies/tentacles/tentacle-Sheet.png" id="1_eg6d3"]
 [ext_resource type="Script" path="res://scenes/enemies/tentacle/tentacle.gd" id="2_3eyvd"]
@@ -47,7 +47,17 @@ _data = {
 radius = 5.0
 height = 14.0
 
+[sub_resource type="Gradient" id="Gradient_d4lvq"]
+offsets = PackedFloat32Array(0.00851064, 0.906383)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_evdvh"]
+gradient = SubResource("Gradient_d4lvq")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Tentacle" type="Sprite2D"]
+z_index = 110
 texture = ExtResource("1_eg6d3")
 hframes = 4
 script = ExtResource("2_3eyvd")
@@ -71,6 +81,15 @@ shape = SubResource("CapsuleShape2D_4wj0x")
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("4_f8eyn")]
 actor = NodePath("..")
 max_health = 1.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.625, 0.609375)
+energy = 0.5
+blend_mode = 1
+range_z_min = 100
+range_z_max = 200
+texture = SubResource("GradientTexture2D_evdvh")
 
 [connection signal="handle_attack" from="HealthComponent" to="." method="_on_health_component_handle_attack"]
 

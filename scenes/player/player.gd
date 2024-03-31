@@ -23,6 +23,7 @@ const friction: float = 1300.0
 ## UI 
 @onready var respawn_button = $UI/RespawnButton
 @onready var heart_container = $UI/HeartContainer
+@onready var health_component = $Components/HealthComponent
 
 signal damaged
 
@@ -34,6 +35,9 @@ func _ready() -> void:
 	respawn_button.visible = false
 	state_machine.init(self)
 	attack_state_machine.init(self)	
+	
+	health_component.init(PlayerStats.health, PlayerStats.max_health) 
+	
 
 func _enter_tree():
 	UNITS.player = self

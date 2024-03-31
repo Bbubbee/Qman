@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dpwtpkyvf7juq"]
+[gd_scene load_steps=33 format=3 uid="uid://dpwtpkyvf7juq"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_c4p7c"]
 [ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="2_jxt3h"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bmqdf4kabond7" path="res://utilitites/components/hurtbox.tscn" id="11_2lm7y"]
 [ext_resource type="Script" path="res://scenes/player/states/player_death_state.gd" id="12_balr0"]
 [ext_resource type="PackedScene" uid="uid://canmvxganapi8" path="res://scenes/player/actions/suck.tscn" id="14_2n4eo"]
+[ext_resource type="Script" path="res://utilitites/components/player_health_component.gd" id="16_dnvdm"]
 [ext_resource type="Script" path="res://scenes/player/ui/heart_container.gd" id="16_hwllt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_036ok"]
@@ -356,6 +357,7 @@ texture = SubResource("GradientTexture2D_otci6")
 [node name="Components" type="Node2D" parent="."]
 
 [node name="HealthComponent" parent="Components" node_paths=PackedStringArray("actor") instance=ExtResource("9_x8egt")]
+script = ExtResource("16_dnvdm")
 actor = NodePath("../..")
 
 [node name="Hurtbox" parent="Components" node_paths=PackedStringArray("health_component") instance=ExtResource("11_2lm7y")]

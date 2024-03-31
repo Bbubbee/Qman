@@ -1,16 +1,17 @@
-extends Node2D
-class_name HealthComponent
+extends HealthComponent
+
 
 ## Prerequisites: 
 ## 	- An actor with means to handle the handle_attack signal. 
 
-@export var actor: Node2D
-@export var max_health: float = 5.0
-@onready var health: float = max_health
 
-signal handle_attack(attack: Hitbox, has_died: bool)
+signal sync_player_health
 
 
+func init(health, max_health): 
+	self.health = health
+	self.max_health = max_health 
+	sync_player_health.emit()
 
 func take_damage(attack: Hitbox): 
 	handle_invulnerability(attack)
@@ -32,9 +33,11 @@ func take_damage(attack: Hitbox):
 func handle_invulnerability(attack: Hitbox): 
 	if "is_invulnerable" in actor: 
 		if not actor.is_invulnerable: 
+			PlayerStats.health -= 1
 			health -= attack.damage
 	else: 
 		health -= attack.damage
+		PlayerStats.health -= 1
 	
 
 			

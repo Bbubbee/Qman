@@ -1,5 +1,7 @@
-extends RigidBody2D
+extends Node2D
 class_name DustParticle
+
+@onready var body = $Body
 
 var direction: Vector2
 
@@ -15,5 +17,5 @@ func _ready() -> void:
 		
 	direction.y = randf_range(direction.y, direction.y-200)
 
-	apply_impulse(direction, self.position)
-	
+	body.apply_impulse(direction, self.position)
+

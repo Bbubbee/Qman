@@ -34,10 +34,13 @@ func handle_suck():
 	if Input.is_action_pressed('suck'):
 		var direction = (actor.get_global_mouse_position() - actor.bullet_marker.global_position)
 		
-		suck.suck(-direction, actor.bullet_marker.global_position)
+		suck.suck(direction)
 	
 
 func on_input(event: InputEvent) -> void:
+	if event.is_action_released('suck'):
+		suck.is_sucking = false
+		
 	if event.is_action_pressed('spit'):
 		if can_shoot: 
 			can_shoot = false

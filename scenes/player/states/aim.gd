@@ -38,8 +38,6 @@ func handle_suck():
 	
 
 func on_input(event: InputEvent) -> void:
-	if event.is_action_released('suck'):
-		suck.is_sucking = false
 		
 	if event.is_action_pressed('spit'):
 		if can_shoot: 

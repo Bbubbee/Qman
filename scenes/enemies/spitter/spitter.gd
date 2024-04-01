@@ -90,6 +90,8 @@ func death(attack):
 	is_alive = false 
 	pregnant_timer.stop()
 	idle_timer.stop()
+	animator.play("RESET")
+	animator_2.play("RESET")
 	
 	check_if_should_free()
 	

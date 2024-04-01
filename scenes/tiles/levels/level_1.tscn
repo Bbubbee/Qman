@@ -130,7 +130,7 @@ position = Vector2(584, 216)
 position = Vector2(735, 216)
 
 [node name="Player" parent="." index="1" instance=ExtResource("7_p4g05")]
-position = Vector2(-94, 168)
+position = Vector2(-326, -225)
 
 [node name="SceneTransitioner" parent="." index="2" instance=ExtResource("8_rq4n8")]
 position = Vector2(-791, -215)
@@ -179,7 +179,7 @@ position = Vector2(-239, -240)
 position = Vector2(-344, -208)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="Lights" index="12"]
-energy = 0.4
+energy = 0.45
 blend_mode = 1
 
 [editable path="Level1Actors/TrapRoom"]

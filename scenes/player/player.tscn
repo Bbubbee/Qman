@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dpwtpkyvf7juq"]
+[gd_scene load_steps=34 format=3 uid="uid://dpwtpkyvf7juq"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_c4p7c"]
 [ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="2_jxt3h"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://canmvxganapi8" path="res://scenes/player/actions/suck.tscn" id="14_2n4eo"]
 [ext_resource type="Script" path="res://utilitites/components/player_health_component.gd" id="16_dnvdm"]
 [ext_resource type="Script" path="res://scenes/player/ui/heart_container.gd" id="16_hwllt"]
+[ext_resource type="Script" path="res://scenes/player/dust_bar.gd" id="19_0f075"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_036ok"]
 radius = 4.0
@@ -387,6 +388,17 @@ size_flags_horizontal = 0
 theme_override_constants/separation = 2
 script = ExtResource("16_hwllt")
 health_component = NodePath("../../Components/HealthComponent")
+
+[node name="DustBar" type="ProgressBar" parent="UI"]
+custom_minimum_size = Vector2(0, 59.995)
+offset_left = 7.0
+offset_top = 51.0
+offset_right = 35.0
+offset_bottom = 111.0
+size_flags_horizontal = 0
+step = 1.0
+fill_mode = 2
+script = ExtResource("19_0f075")
 
 [connection signal="fired_weapon" from="AttackStateMachine/Aim" to="." method="_on_aim_fired_weapon"]
 [connection signal="timeout" from="AttackStateMachine/Aim/AttackTimer" to="AttackStateMachine/Aim" method="_on_attack_timer_timeout"]

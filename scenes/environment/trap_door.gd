@@ -4,6 +4,7 @@ extends Node2D
 @onready var static_body_2d = $StaticBody2D
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var animation_player_2: AnimationPlayer = $AnimationPlayer2
+@onready var point_light_2d = $PointLight2D
 
 signal destroyed
 
@@ -22,6 +23,7 @@ func spawn_door():
 
 
 func disable(): 
+	point_light_2d.enabled = false
 	animation_player.play("death")
 	hurtbox.monitoring = true
 	hurtbox.monitorable = true

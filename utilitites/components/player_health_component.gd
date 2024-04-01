@@ -8,9 +8,9 @@ extends HealthComponent
 signal sync_player_health
 
 
-func init(health, max_health): 
-	self.health = health
-	self.max_health = max_health 
+func init(hp, max_hp): 
+	self.health = hp
+	self.max_health = max_hp 
 	sync_player_health.emit()
 
 func take_damage(attack: Hitbox): 

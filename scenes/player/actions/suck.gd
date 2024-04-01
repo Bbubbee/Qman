@@ -13,9 +13,15 @@ func suck(direction: Vector2):
 		i.apply_central_force(-(direction*force))
 
 
-
-
-
-
 func _on_collection_zone_body_entered(body):
+	if not is_sucking: return
+	if not body is DustParticle: return
+	
+	PlayerStats.dust_particles += 1
 	body.queue_free()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_released('suck'):
+		await get_tree().create_timer(0.25).timeout
+		print("stop sucking") 
+		is_sucking = false

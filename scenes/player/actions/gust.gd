@@ -4,7 +4,7 @@ class_name Gust
 @export var speed = 125.0
 var direction: Vector2 
 @onready var hitbox = $Hitbox
-var force = 1500
+var force = 1300
 
 
 func init(dir: Vector2, pos: Vector2): 

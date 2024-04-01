@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var area_2d = $Area2D
-var force = 25
+var force = 20
 var is_sucking: bool = false
 @onready var collection_zone = $CollectionZone
 

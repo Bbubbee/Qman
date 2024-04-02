@@ -289,6 +289,10 @@ wait_time = 0.4
 one_shot = true
 autostart = true
 
+[node name="ChargeAttackTimer" type="Timer" parent="AttackStateMachine/Aim"]
+wait_time = 4.0
+one_shot = true
+
 [node name="General" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="General"]
@@ -397,7 +401,7 @@ offset_right = 35.0
 offset_bottom = 111.0
 size_flags_horizontal = 0
 step = 1.0
-fill_mode = 2
+fill_mode = 3
 script = ExtResource("19_0f075")
 
 [connection signal="fired_weapon" from="AttackStateMachine/Aim" to="." method="_on_aim_fired_weapon"]

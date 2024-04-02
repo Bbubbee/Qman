@@ -1,7 +1,7 @@
 extends State
 
 const GUST = preload('res://scenes/player/actions/gust.tscn')
-signal fired_weapon(direction: Vector2)
+signal fired_weapon(knockback_data: Dictionary)
 var can_shoot: bool = true
 @onready var attack_timer: Timer = $AttackTimer
 
@@ -29,6 +29,7 @@ func physics_process(_delta: float):
 		actor.arm_pivot.position.x = 1
 
 	handle_suck()
+	handle_charged_attack()
 
 func handle_suck(): 
 	if Input.is_action_pressed('suck'):
@@ -40,21 +41,53 @@ func handle_suck():
 func on_input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed('spit'):
-		if can_shoot: 
-			can_shoot = false
-			attack_timer.start()
+		
+		# Handle charge attack. 
+		charge_attack_timer.start(charge_attack_length)
+		
+		# Handle regular attack. 
+		spit_attack()
 			
-			var gust = GUST.instantiate()
 			
-			var direction = (actor.get_global_mouse_position() - actor.global_position).normalized()
-			gust.init(direction, actor.bullet_marker.global_position)
-			
-			var root = get_tree().get_root()
-			root.add_child(gust)
-			
-			fired_weapon.emit(direction)
 	
-
 
 func _on_attack_timer_timeout() -> void:
 	can_shoot = true
+
+
+@onready var charge_attack_timer: Timer = $ChargeAttackTimer
+var charge_attack_length: float = 1.5
+func handle_charged_attack(): 
+	if Input.is_action_just_released('spit'):		
+		
+		# If charge attack timer is done, do charge attack.
+		# Else don't do anything
+		if charge_attack_timer.is_stopped():
+			print("charge attack")
+			spit_attack(true)
+		else:
+			print("no charge attack")
+		
+		charge_attack_timer.stop()
+
+func spit_attack(is_charged: bool = false): 
+	if not can_shoot: return 
+	
+	can_shoot = false
+	attack_timer.start()
+	
+	var gust = GUST.instantiate()
+			
+	var direction = (actor.get_global_mouse_position() - actor.global_position).normalized()
+	gust.init(direction, actor.bullet_marker.global_position)
+	
+	var root = get_tree().get_root()
+	root.add_child(gust)
+	
+	var knockback_data = {"direction": direction, "is charged attack": is_charged}
+	fired_weapon.emit(knockback_data)
+	
+
+"""
+	Check if the player is holding left click. 
+"""

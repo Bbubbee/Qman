@@ -23,5 +23,4 @@ func _on_collection_zone_body_entered(body):
 func _input(event: InputEvent) -> void:
 	if event.is_action_released('suck'):
 		await get_tree().create_timer(0.25).timeout
-		print("stop sucking") 
 		is_sucking = false

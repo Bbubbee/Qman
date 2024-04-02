@@ -6,10 +6,19 @@ var direction: Vector2
 
 
 func enter(_enter_params = null): 
-	direction = _enter_params
+	direction = _enter_params["direction"]
 	
-	var x = -direction.x * force
-	var y = -direction.y * force
+	var is_charged = _enter_params["is charged attack"]
+	
+	var x
+	var y 
+	
+	if is_charged: 
+		x = -direction.x * force * 2
+		y = -direction.y * force * 2
+	else: 
+		x = -direction.x * force * 1
+		y = -direction.y * force * 1
 	
 	# Only knockback if player is not on the floor 
 	# and is shooting steeply into the ground.

@@ -67,7 +67,12 @@ func _on_invulnerable_timer_timeout() -> void:
 ## Fire particles in the direction of the air bullet. 
 func _on_aim_fired_weapon(knockback_data) -> void:
 	state_machine.force_transition("knockback", knockback_data)
-	arm_pivot.fire_particles()
+	var size 
+	if knockback_data["is charged attack"]:
+		size = 16
+	else: 
+		size = 10
+	arm_pivot.fire_particles(size)
 
 
 func die(): 

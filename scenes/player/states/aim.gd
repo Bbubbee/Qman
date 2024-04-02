@@ -33,6 +33,9 @@ func physics_process(_delta: float):
 
 func handle_suck(): 
 	if Input.is_action_pressed('suck'):
+		if is_charging_attack:
+			is_charging_attack = false 
+			
 		var direction = (actor.get_global_mouse_position() - actor.bullet_marker.global_position)
 		
 		suck.suck(direction)
@@ -44,6 +47,7 @@ func on_input(event: InputEvent) -> void:
 		
 		# Handle charge attack. 
 		charge_attack_timer.start(charge_attack_length)
+		is_charging_attack = true
 		
 		# Handle regular attack. 
 		spit_attack()
@@ -57,17 +61,23 @@ func _on_attack_timer_timeout() -> void:
 
 @onready var charge_attack_timer: Timer = $ChargeAttackTimer
 var charge_attack_length: float = 1.5
+var is_charging_attack: bool = false
 func handle_charged_attack(): 
-	if Input.is_action_just_released('spit'):		
+	if Input.is_action_just_released('spit'):	
+		# A charge attack can be cancelled if right mb is pressed. 	
+		if not is_charging_attack: 
+			return
+			
+		is_charging_attack = false 
 		
 		# If charge attack timer is done, do charge attack.
 		# Else don't do anything
-		if charge_attack_timer.is_stopped():
-			print("charge attack")
+		if charge_attack_timer.is_stopped() and PlayerStats.can_charge_attack():
 			spit_attack(true)
-		else:
-			print("no charge attack")
-		
+			PlayerStats.dust_particles -= 40
+		else: 
+			spit_attack(false)
+
 		charge_attack_timer.stop()
 
 func spit_attack(is_charged: bool = false): 
@@ -87,7 +97,3 @@ func spit_attack(is_charged: bool = false):
 	var knockback_data = {"direction": direction, "is charged attack": is_charged}
 	fired_weapon.emit(knockback_data)
 	
-
-"""
-	Check if the player is holding left click. 
-"""

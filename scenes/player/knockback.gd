@@ -13,6 +13,7 @@ func enter(_enter_params = null):
 	var x
 	var y 
 	
+	
 	if is_charged: 
 		x = -direction.x * force * 2
 		y = -direction.y * force * 2

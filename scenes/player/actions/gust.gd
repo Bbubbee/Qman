@@ -13,10 +13,11 @@ var direction: Vector2
 # NOTE: Must call AFTER adding this node to the tree.
 # This is because we need the hitbox to ready before initialising. 
 # Can't initialise a null node. 
-func init(dir: Vector2, pos: Vector2, dmg: float): 
+func init(dir: Vector2, pos: Vector2, dmg: float, knockback: float): 
 	self.direction = dir
 	self.global_position = pos 
 	self.hitbox.damage = dmg
+	self.hitbox.knockback = knockback
 	
 
 func _physics_process(delta: float) -> void:

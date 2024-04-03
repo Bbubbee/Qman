@@ -69,7 +69,7 @@ func _on_aim_fired_weapon(knockback_data) -> void:
 	state_machine.force_transition("knockback", knockback_data)
 	var size 
 	if knockback_data["is charged attack"]:
-		size = 16
+		size = 19
 	else: 
 		size = 10
 	arm_pivot.fire_particles(size)

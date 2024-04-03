@@ -22,6 +22,8 @@ var dust_particles: int = 0:
 
 var attack_dmg: float = 1
 var charge_attack_dmg: float = 2
+var attack_knockback_force_enemy: float = 200
+var charge_attack_knockback_force_enemy: float = 300
 func can_charge_attack() -> bool: 
 	if dust_particles >= 40: 
 		return true

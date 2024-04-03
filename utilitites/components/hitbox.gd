@@ -13,11 +13,11 @@ Remember:
 		queue_free() when the signal fires. 
 """
 
+var test
 @export var damage: float = 1.0
 @export var knockback: float = 100.0
 var direction
 	# The direction in which actors will be knocked back.
-
 
 
 

@@ -20,6 +20,8 @@ var dust_particles: int = 0:
 		dust_particles = clamp(val, 0, max_dust_particles)
 		emit_signal("dust_particles_changed", dust_particles)
 
+var attack_dmg: float = 1
+var charge_attack_dmg: float = 2
 func can_charge_attack() -> bool: 
 	if dust_particles >= 40: 
 		return true

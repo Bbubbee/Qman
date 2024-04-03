@@ -50,17 +50,17 @@ func on_input(event: InputEvent) -> void:
 		is_charging_attack = true
 		
 		# Handle regular attack. 
-		spit_attack()
-			
-			
+		spit_attack(PlayerStats.attack_dmg)
 	
 
 func _on_attack_timer_timeout() -> void:
 	can_shoot = true
 
-
+"""
+	Handle charge attack. 
+"""
 @onready var charge_attack_timer: Timer = $ChargeAttackTimer
-var charge_attack_length: float = 1.5
+var charge_attack_length: float = 1
 var is_charging_attack: bool = false
 func handle_charged_attack(): 
 	if Input.is_action_just_released('spit'):	
@@ -73,26 +73,25 @@ func handle_charged_attack():
 		# If charge attack timer is done, do charge attack.
 		# Else don't do anything
 		if charge_attack_timer.is_stopped() and PlayerStats.can_charge_attack():
-			spit_attack(true)
+			spit_attack(PlayerStats.charge_attack_dmg, true)
 			PlayerStats.dust_particles -= 40
 		else: 
-			spit_attack(false)
+			spit_attack(PlayerStats.attack_dmg, false)
 
 		charge_attack_timer.stop()
 
-func spit_attack(is_charged: bool = false): 
+func spit_attack(dmg: float, is_charged: bool = false): 
 	if not can_shoot: return 
 	
 	can_shoot = false
 	attack_timer.start()
 	
 	var gust = GUST.instantiate()
-			
-	var direction = (actor.get_global_mouse_position() - actor.global_position).normalized()
-	gust.init(direction, actor.bullet_marker.global_position)
-	
 	var root = get_tree().get_root()
 	root.add_child(gust)
+	
+	var direction = (actor.get_global_mouse_position() - actor.global_position).normalized()
+	gust.init(direction, actor.bullet_marker.global_position, dmg)
 	
 	var knockback_data = {"direction": direction, "is charged attack": is_charged}
 	fired_weapon.emit(knockback_data)

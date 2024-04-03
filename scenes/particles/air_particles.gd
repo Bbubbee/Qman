@@ -4,11 +4,9 @@ extends GPUParticles2D
 func _ready() -> void:
 	emitting = true
 
-func init(scale): 
-
-	#scale_min = scale
-	process_material.scale_min = scale
-	process_material.scale_max = scale
+func init(size): 
+	process_material.scale_min = size
+	process_material.scale_max = size
 	
 
 func _on_finished() -> void:

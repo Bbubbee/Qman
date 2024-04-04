@@ -18,5 +18,8 @@ func disable():
 	
 
 func _on_hitbox_entered(hitbox: Hitbox):
+	
 	if not hitbox: return 
 	if health_component: health_component.take_damage(hitbox)
+	else:
+		queue_free()

@@ -110,7 +110,7 @@ func handle_gravity(delta):
 		- Check if can_jump before jumping. 
 """
 @onready var coyote_timer: Timer = $General/CoyoteTimer
-var coyote_time: float = 0.2
+var coyote_time: float = 0.5
 var can_jump = false
 
 
@@ -128,11 +128,22 @@ func handle_jump():
 		coyote_timer.start(coyote_time)
 	
 	# Don't let the player fall during coyote time. 
-	if coyote_timer.time_left > 0: 
+	if not coyote_timer.is_stopped(): 
 		velocity.y = 0 
 
 func _on_coyote_timer_timeout() -> void:
 	can_jump = false
+	
+"""
+	If youre on the floor and can't jump,
+		you are allowed to jump 
+	
+	Else if you still can jump and the coyote timer is of, 
+		start the coyote timer.
+	
+	Once the coyote timer time outs, 
+		You can't jump. 
+"""
 
 
 

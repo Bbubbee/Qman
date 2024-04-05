@@ -110,7 +110,7 @@ func handle_gravity(delta):
 		- Check if can_jump before jumping. 
 """
 @onready var coyote_timer: Timer = $General/CoyoteTimer
-var coyote_time: float = 0.5
+var coyote_time: float = 0.2
 var can_jump = false
 
 

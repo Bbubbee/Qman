@@ -265,7 +265,7 @@ script = ExtResource("6_cqvk3")
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("7_tk513")
-jump_height = 225.0
+jump_height = 250.0
 
 [node name="Damaged" type="Node" parent="StateMachine"]
 script = ExtResource("8_8xkh7")

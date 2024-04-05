@@ -11,7 +11,7 @@ const BABY = preload("res://scenes/enemies/baby/baby.tscn")
 @onready var baby_spawn_marker = $BabySpawnMarker
 @onready var babies: Node = $Babies
 @export var max_babies: int = 2
-@onready var num_of_babies: int = max_babies
+var num_of_babies: int = 0
 
 @onready var animator = $Animator
 @onready var animator_2 = $Animator2
@@ -53,6 +53,7 @@ func give_birth():
 	baby.position = baby_spawn_marker.global_position 
 	baby.died.connect(on_baby_died)
 	babies.add_child(baby)
+	num_of_babies += 1
 	
 	
 ## A baby has been defeated. Check if the parent should free itself. 

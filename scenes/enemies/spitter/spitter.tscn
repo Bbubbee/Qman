@@ -133,7 +133,6 @@ height = 28.0
 
 [node name="Spitter" type="Node2D"]
 script = ExtResource("1_on0dd")
-max_babies = 5
 
 [node name="Sprite" type="Sprite2D" parent="."]
 skew = 0.113446

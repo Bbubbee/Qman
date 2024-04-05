@@ -52,13 +52,13 @@ position = Vector2(-248, 2)
 [node name="Spitter" parent="Level1Actors/TrapRoom/Actors" index="0" instance=ExtResource("6_myrtp")]
 position = Vector2(251, -152)
 rotation = -1.5708
-max_babies = 2
+max_babies = 1
 
 [node name="Spitter2" parent="Level1Actors/TrapRoom/Actors" index="1" instance=ExtResource("6_myrtp")]
 position = Vector2(-220, -137)
 rotation = -1.57079
 scale = Vector2(1, -1)
-max_babies = 2
+max_babies = 1
 
 [node name="Baby3" parent="Level1Actors/TrapRoom/Actors" index="2" instance=ExtResource("5_p1rpk")]
 z_index = 0
@@ -130,7 +130,7 @@ position = Vector2(584, 216)
 position = Vector2(735, 216)
 
 [node name="Player" parent="." index="1" instance=ExtResource("7_p4g05")]
-position = Vector2(-118, 161)
+position = Vector2(-128, 142)
 
 [node name="SceneTransitioner" parent="." index="2" instance=ExtResource("8_rq4n8")]
 position = Vector2(-791, -215)

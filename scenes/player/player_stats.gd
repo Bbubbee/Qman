@@ -20,7 +20,7 @@ var dust_particles: int = 0:
 		dust_particles = clamp(val, 0, max_dust_particles)
 		emit_signal("dust_particles_changed", dust_particles)
 
-var attack_dmg: float = 1
+var attack_dmg: float = 7
 var charge_attack_dmg: float = 2
 var attack_knockback_force_enemy: float = 200
 var charge_attack_knockback_force_enemy: float = 300

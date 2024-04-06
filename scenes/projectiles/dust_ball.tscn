@@ -2,20 +2,28 @@
 
 [ext_resource type="PackedScene" uid="uid://sixg7r07na5k" path="res://scenes/projectiles/base_projectile.tscn" id="1_5hwhj"]
 [ext_resource type="Script" path="res://scenes/projectiles/dust_ball.gd" id="2_k0ujd"]
-[ext_resource type="PackedScene" uid="uid://lge6t38xhjjm" path="res://utilitites/components/hurt_hit_box.tscn" id="3_2l01q"]
+[ext_resource type="Script" path="res://scenes/projectiles/dust_ball_hitbox.gd" id="3_2lm5y"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_r3fuw"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_16syl"]
 radius = 4.0
 
 [node name="DustBall" instance=ExtResource("1_5hwhj")]
+z_index = 100
 script = ExtResource("2_k0ujd")
 speed = 70.0
 
-[node name="HurtHitBox" parent="." index="1" instance=ExtResource("3_2l01q")]
+[node name="DestroyTimer" type="Timer" parent="." index="1"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="Hitbox" type="Area2D" parent="." index="2"]
 collision_layer = 4
 collision_mask = 10
+script = ExtResource("3_2lm5y")
 
-[node name="Collider" parent="HurtHitBox" index="0"]
-shape = SubResource("CircleShape2D_r3fuw")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_16syl")
 
-[editable path="HurtHitBox"]
+[connection signal="timeout" from="DestroyTimer" to="." method="_on_destroy_timer_timeout"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

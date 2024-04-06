@@ -37,9 +37,6 @@ func _physics_process(delta: float) -> void:
 			
 			i.apply_central_force(Vector2(direction.x*force, y*force))
 	
-	
-func _on_area_entered(_area: Area2D) -> void:
-	queue_free()
 
 
 func _on_timer_timeout() -> void:

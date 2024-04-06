@@ -2,14 +2,16 @@ extends Node
 
 func _ready():
 	Events.start_level.connect(reset_player_stats) 
-	
-# Health
-var max_health: int = 4
-@onready var health: int = max_health
 
 func reset_player_stats(): 
 	health = max_health
 	dust_particles = 0 
+	
+# Health
+var max_health: int = 10
+@onready var health: int = max_health
+
+
 	
 
 # Dust sucked. 
@@ -20,7 +22,7 @@ var dust_particles: int = 0:
 		dust_particles = clamp(val, 0, max_dust_particles)
 		emit_signal("dust_particles_changed", dust_particles)
 
-var attack_dmg: float = 7
+var attack_dmg: float = 1
 var charge_attack_dmg: float = 2
 var attack_knockback_force_enemy: float = 200
 var charge_attack_knockback_force_enemy: float = 300

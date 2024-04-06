@@ -13,6 +13,7 @@ const DUST_PARTICLE = preload("res://scenes/dust_particles/dust_particle.tscn")
 @onready var animator: AnimationPlayer = $General/Animator
 @onready var hurt_hit_box: HurtHitBox = $Components/HurtHitBox
 @onready var floor_detector_ray = $General/FloorDetectorRay
+@onready var state_label = $General/StateLabel
 
 
 var facing_right: bool = true 

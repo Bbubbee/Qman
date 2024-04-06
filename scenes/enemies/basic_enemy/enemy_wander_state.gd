@@ -11,6 +11,7 @@ func enter(_enter_params = null):
 	# Randomly move left or right. 
 	move_direction = randi_range(0, 1)
 	if move_direction < 1: move_direction = -1 
+	actor.state_label.text = str("wander")
 	
 
 func physics_process(delta: float) -> void:

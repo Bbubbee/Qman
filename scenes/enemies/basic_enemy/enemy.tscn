@@ -104,6 +104,13 @@ scale = Vector2(0.625, 0.609375)
 energy = 0.2
 texture = SubResource("GradientTexture2D_wyw7f")
 
+[node name="StateLabel" type="Label" parent="General"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 8
+text = "State"
+
 [node name="Components" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 

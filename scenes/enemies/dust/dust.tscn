@@ -141,6 +141,9 @@ libraries = {
 "": SubResource("AnimationLibrary_ykw1s")
 }
 
+[node name="FloorDetectorRay" parent="General" index="2"]
+target_position = Vector2(11, 9)
+
 [node name="HealthComponent" parent="Components" index="0"]
 max_health = 4.0
 
@@ -153,10 +156,10 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2npwt")
 
 [node name="Wander" parent="StateMachine" index="0"]
-sight_range = 130.0
+sight_range = 150.0
 
 [node name="Follow" parent="StateMachine" index="1"]
-attack_range = 80.0
+attack_range = 125.0
 
 [node name="AttackTimer" parent="StateMachine/Follow" index="0"]
 wait_time = 1.0
@@ -165,6 +168,8 @@ autostart = false
 [node name="Attack" parent="StateMachine" index="4"]
 script = ExtResource("3_eli6g")
 attack_duration = 2.0
+
+[node name="AttackTimer" type="Timer" parent="StateMachine/Attack" index="0"]
 
 [node name="AttackMarker" type="Marker2D" parent="." index="4"]
 position = Vector2(-10, 2)

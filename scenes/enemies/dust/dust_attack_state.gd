@@ -7,12 +7,17 @@ const DUST_BALL = preload("res://scenes/projectiles/dust_ball.tscn")
 func enter(_enter_params = null):
 	actor.animator.play("attack")
 	actor.velocity.x = 0
+	actor.state_label.text = str("attack")
+	
 	
 	attack_timer = attack_duration 
 	
-	# NOTE: May have to call this one in process instead of in enter. 
-	
-	
+	# Face the player.
+	var direction = (actor.UNITS.player.global_position - actor.global_position)
+	if direction > Vector2.ZERO:
+		actor.facing_right = true
+	else: 
+		actor.facing_right = false 
 
 
 func process(_delta: float) -> void:
@@ -23,7 +28,6 @@ func physics_process(delta: float) -> void:
 	# Handle gravity. 
 	if not actor.is_on_floor(): actor.velocity.y += actor.gravity * delta
 	actor.move_and_slide()
-
 
 func fire_attack(): 
 	# Get player.
@@ -37,7 +41,10 @@ func fire_attack():
 	# Flip the marker. 
 	var attack_marker_pos = attack_marker.global_position
 	if direction > Vector2.ZERO:
-		attack_marker_pos.x += 20 
+		attack_marker_pos.x += 20
+		actor.facing_right = true
+	else: 
+		actor.facing_right = false 
 	
 	dust_ball.init(direction, attack_marker_pos)
 	

@@ -7,6 +7,7 @@ var has_initial_attack: bool = true
 
 func enter(_enter_params = null):
 	attack_timer.start()
+	actor.state_label.text = str("follow")
 
 func physics_process(delta: float):
 	# Handle gravity. 
@@ -29,6 +30,7 @@ func physics_process(delta: float):
 			actor.velocity.x = -1 * actor.SPEED  
 			actor.facing_right = false
 	
+	# Attack the player. 
 	else: 
 		actor.velocity.x = 0
 		if attack_timer.is_stopped() or has_initial_attack:
@@ -36,11 +38,9 @@ func physics_process(delta: float):
 			transition.emit(self, "attack")
 
 	# Once the player is too far away, go to the idle state. 
-	if direction.length() > 100:
+	if direction.length() > 150:
 		transition.emit(self, "wander") 
 
 
-#func exit():
-	#attack_timer
 	
 

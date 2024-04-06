@@ -1,0 +1,105 @@
+[gd_scene load_steps=11 format=3 uid="uid://ce4i2826vdc65"]
+
+[ext_resource type="Script" path="res://scenes/enemies/spike/still_spikes.gd" id="1_fdfqc"]
+[ext_resource type="Texture2D" uid="uid://38mh21jnca4" path="res://assets/enemies/spikes/spikes-Sheet.png" id="1_qtrh3"]
+[ext_resource type="PackedScene" uid="uid://lge6t38xhjjm" path="res://utilitites/components/hurt_hit_box.tscn" id="2_e8is7"]
+[ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://utilitites/components/health_component.tscn" id="3_05eol"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04vvh"]
+size = Vector2(14, 12)
+
+[sub_resource type="Gradient" id="Gradient_d4lvq"]
+offsets = PackedFloat32Array(0.00851064, 0.906383)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_whmgj"]
+gradient = SubResource("Gradient_d4lvq")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_4mtmg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iqk23"]
+resource_name = "hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1, 0), Vector2(1, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wu8kk"]
+_data = {
+"RESET": SubResource("Animation_4mtmg"),
+"hit": SubResource("Animation_iqk23")
+}
+
+[node name="StillSpikes" type="Node2D"]
+script = ExtResource("1_fdfqc")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_qtrh3")
+
+[node name="HurtHitBox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_e8is7")]
+collision_layer = 4
+collision_mask = 8
+health_component = NodePath("../HealthComponent")
+knockback = 200.0
+
+[node name="Collider" parent="HurtHitBox" index="0"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_04vvh")
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("3_05eol")]
+actor = NodePath("..")
+max_health = 2.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.625, 0.609375)
+energy = 0.5
+blend_mode = 1
+range_z_max = 99
+texture = SubResource("GradientTexture2D_whmgj")
+metadata/_edit_lock_ = true
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wu8kk")
+}
+
+[connection signal="handle_attack" from="HealthComponent" to="." method="_on_health_component_handle_attack"]
+
+[editable path="HurtHitBox"]

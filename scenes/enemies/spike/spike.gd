@@ -18,22 +18,21 @@ func _on_player_detector_area_entered(_area):
 	# Free after some time. 
 	await get_tree().create_timer(5).timeout
 	call_deferred("destroy")
-	queue_free()
+	
 
 
 func fall(): 
 	triggered = true
 	
-
 func _on_hitbox_area_entered(_area):
 	call_deferred("destroy")
-	queue_free()
-
-
+	
 func destroy(): 
 	Events.spawn_particles.emit(self.global_position, 8, Vector2(0, -10))
-
+	queue_free()
 
 func _on_animator_animation_finished(anim_name):
 	if anim_name == "shake":
 		fall()
+
+

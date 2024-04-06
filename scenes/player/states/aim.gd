@@ -91,11 +91,15 @@ func spit_attack(dmg: float, is_charged: bool = false):
 	root.add_child(gust)
 	
 	var direction = (actor.get_global_mouse_position() - actor.global_position).normalized()
+	
 	var enemy_knockback: float
 	if is_charged: enemy_knockback = PlayerStats.charge_attack_knockback_force_enemy
 	else: enemy_knockback = PlayerStats.attack_knockback_force_enemy
+	
+	
 	gust.init(direction, actor.bullet_marker.global_position, dmg, enemy_knockback)
 	
+	# Knocks back the player when you shoot gust. 
 	var knockback_data = {"direction": direction, "is charged attack": is_charged}
 	fired_weapon.emit(knockback_data)
 	

@@ -1,31 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://2nms0c32yrq5"]
+[gd_scene load_steps=12 format=3 uid="uid://2nms0c32yrq5"]
 
 [ext_resource type="Script" path="res://scenes/enemies/spike/spike.gd" id="1_htqjf"]
 [ext_resource type="Texture2D" uid="uid://r8k855fjma3t" path="res://assets/enemies/spike/spike.png" id="2_auq55"]
-[ext_resource type="PackedScene" uid="uid://b8odsjult6uvb" path="res://utilitites/components/hitbox.tscn" id="3_p6ik3"]
+[ext_resource type="Script" path="res://scenes/projectiles/dust_ball_hitbox.gd" id="3_ml8du"]
 
 [sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_rbmv8"]
-length = 40.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oiioa"]
-radius = 4.0
-height = 12.0
-
-[sub_resource type="Animation" id="Animation_x3y3u"]
-resource_name = "shake"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(-2, 0), Vector2(0, 0), Vector2(2, 0), Vector2(0, 0), Vector2(-2, 0), Vector2(0, 0)]
-}
+length = 60.0
 
 [sub_resource type="Animation" id="Animation_huxp0"]
 length = 0.001
@@ -45,12 +25,40 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_x3hqp"]
 resource_name = "idle"
 
+[sub_resource type="Animation" id="Animation_x3y3u"]
+resource_name = "shake"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-2, 0), Vector2(0, 0), Vector2(2, 0), Vector2(0, 0), Vector2(-2, 0), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rxt0j"]
 _data = {
 "RESET": SubResource("Animation_huxp0"),
 "idle": SubResource("Animation_x3hqp"),
 "shake": SubResource("Animation_x3y3u")
 }
+
+[sub_resource type="Gradient" id="Gradient_pnafl"]
+offsets = PackedFloat32Array(0.00851064, 0.906383)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_602sf"]
+gradient = SubResource("Gradient_pnafl")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykali"]
+size = Vector2(10, 11)
 
 [node name="Spike" type="Node2D"]
 script = ExtResource("1_htqjf")
@@ -66,23 +74,29 @@ collision_mask = 2
 [node name="Ray" type="CollisionShape2D" parent="PlayerDetector"]
 shape = SubResource("SeparationRayShape2D_rbmv8")
 
-[node name="Hitbox" parent="." instance=ExtResource("3_p6ik3")]
-collision_layer = 4
-collision_mask = 2
-knockback = 100.0
-
-[node name="Collider" parent="Hitbox" index="0"]
-position = Vector2(0, -3)
-shape = SubResource("CapsuleShape2D_oiioa")
-
 [node name="Animator" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_rxt0j")
 }
 autoplay = "idle"
 
-[connection signal="area_entered" from="PlayerDetector" to="." method="_on_player_detector_area_entered"]
-[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="animation_finished" from="Animator" to="." method="_on_animator_animation_finished"]
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.625, 0.609375)
+energy = 0.5
+blend_mode = 1
+range_z_max = 99
+texture = SubResource("GradientTexture2D_602sf")
 
-[editable path="Hitbox"]
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 10
+script = ExtResource("3_ml8du")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_ykali")
+
+[connection signal="area_entered" from="PlayerDetector" to="." method="_on_player_detector_area_entered"]
+[connection signal="animation_finished" from="Animator" to="." method="_on_animator_animation_finished"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dpwtpkyvf7juq"]
+[gd_scene load_steps=37 format=3 uid="uid://dpwtpkyvf7juq"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_c4p7c"]
 [ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="2_jxt3h"]
@@ -18,7 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://canmvxganapi8" path="res://scenes/player/actions/suck.tscn" id="14_2n4eo"]
 [ext_resource type="Script" path="res://utilitites/components/player_health_component.gd" id="16_dnvdm"]
 [ext_resource type="Script" path="res://scenes/player/ui/heart_container.gd" id="16_hwllt"]
+[ext_resource type="PackedScene" uid="uid://b8odsjult6uvb" path="res://utilitites/components/hitbox.tscn" id="18_lywof"]
 [ext_resource type="Script" path="res://scenes/player/dust_bar.gd" id="19_0f075"]
+[ext_resource type="FontFile" uid="uid://cd2q4l3f8t1vu" path="res://assets/font/PixelRPG.ttf" id="19_m1062"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_036ok"]
 radius = 4.0
@@ -243,12 +245,17 @@ fill_from = Vector2(0.5, 0.5)
 radius = 3.0
 height = 14.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h6ke1"]
+radius = 2.0
+height = 12.0
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 100
 collision_layer = 0
 script = ExtResource("1_c4p7c")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_036ok")
 
@@ -373,13 +380,30 @@ health_component = NodePath("../HealthComponent")
 [node name="Collider" parent="Components/Hurtbox" index="0"]
 shape = SubResource("CapsuleShape2D_mpg6y")
 
+[node name="EnemyProjectilesHitbox" parent="Components" instance=ExtResource("18_lywof")]
+collision_layer = 2
+
+[node name="Collider" parent="Components/EnemyProjectilesHitbox" index="0"]
+shape = SubResource("CapsuleShape2D_h6ke1")
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="RespawnButton" type="Button" parent="UI"]
-offset_left = 108.0
-offset_top = 48.0
-offset_right = 186.0
-offset_bottom = 79.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -10.0
+offset_right = 23.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("19_m1062")
+theme_override_font_sizes/font_size = 6
 text = "Respawn"
 
 [node name="HeartContainer" type="HBoxContainer" parent="UI" node_paths=PackedStringArray("health_component")]
@@ -393,12 +417,17 @@ script = ExtResource("16_hwllt")
 health_component = NodePath("../../Components/HealthComponent")
 
 [node name="DustBar" type="ProgressBar" parent="UI"]
-custom_minimum_size = Vector2(0, 59.995)
-offset_left = 7.0
-offset_top = 51.0
-offset_right = 35.0
-offset_bottom = 111.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -19.5
+offset_right = 34.0
+offset_bottom = 19.5
+grow_vertical = 2
 size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("19_m1062")
+theme_override_font_sizes/font_size = 6
 step = 1.0
 fill_mode = 3
 script = ExtResource("19_0f075")
@@ -412,3 +441,4 @@ script = ExtResource("19_0f075")
 [connection signal="pressed" from="UI/RespawnButton" to="." method="_on_respawn_button_pressed"]
 
 [editable path="Components/Hurtbox"]
+[editable path="Components/EnemyProjectilesHitbox"]

@@ -3,21 +3,33 @@ class_name Gust
 
 @export var speed = 125.0
 @onready var hitbox = $Hitbox
+@onready var timer = $Timer
 
 var direction: Vector2 
+var duration: float 
 
 # Force for knocking back particles. 
 @export var force = 1300
 
 
+
+
+
 # NOTE: Must call AFTER adding this node to the tree.
 # This is because we need the hitbox to ready before initialising. 
 # Can't initialise a null node. 
-func init(dir: Vector2, pos: Vector2, dmg: float, knockback: float): 
+func init(dir: Vector2, pos: Vector2, dmg: float, knockback: float, charged: bool = false): 
 	self.direction = dir
 	self.global_position = pos 
 	self.hitbox.damage = dmg
 	self.hitbox.knockback = knockback
+	if charged: 
+		timer.start(0.6) 
+	else: 
+		timer.start(0.3)
+		
+	
+	
 	
 
 func _physics_process(delta: float) -> void:

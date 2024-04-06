@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://3a4330t3ia27"]
+[gd_scene load_steps=14 format=3 uid="uid://3a4330t3ia27"]
 
 [ext_resource type="PackedScene" uid="uid://dm62js8kc86u2" path="res://scenes/tiles/tile_map.tscn" id="1_hnoqa"]
 [ext_resource type="PackedScene" uid="uid://beb10acuoygs" path="res://scenes/enemies/tentacle/tentacle.tscn" id="3_37r8l"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b70yyd1jydcfp" path="res://scenes/tiles/levels/scene_transitioner.tscn" id="8_rq4n8"]
 [ext_resource type="PackedScene" uid="uid://dsyl5w71it15s" path="res://scenes/tiles/levels/level_2.tscn" id="9_r26gt"]
 [ext_resource type="PackedScene" uid="uid://dopirn51d7qlf" path="res://scenes/environment/street_lamp.tscn" id="10_lcr4i"]
+[ext_resource type="PackedScene" uid="uid://bixn8hd87n7tb" path="res://scenes/environment/lights/darkening_light.tscn" id="11_bgp5u"]
 
 [sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_a68nu"]
 length = 229.0
@@ -128,7 +129,7 @@ position = Vector2(584, 216)
 position = Vector2(735, 216)
 
 [node name="Player" parent="." index="1" instance=ExtResource("7_p4g05")]
-position = Vector2(-128, 142)
+position = Vector2(-190, 148)
 
 [node name="SceneTransitioner" parent="." index="2" instance=ExtResource("8_rq4n8")]
 position = Vector2(-791, -215)
@@ -176,9 +177,7 @@ position = Vector2(-239, -240)
 [node name="StreetLamp12" parent="Lights" index="11" instance=ExtResource("10_lcr4i")]
 position = Vector2(-344, -208)
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Lights" index="12"]
-energy = 0.45
-blend_mode = 1
+[node name="DarkeningLight" parent="Lights" index="12" instance=ExtResource("11_bgp5u")]
 
 [editable path="Level1Actors/TrapRoom"]
 [editable path="SceneTransitioner"]

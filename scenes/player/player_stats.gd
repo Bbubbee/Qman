@@ -5,10 +5,10 @@ func _ready():
 
 func reset_player_stats(): 
 	health = max_health
-	dust_particles = 0 
+	dust_particles = 0
 	
 # Health
-var max_health: int = 10
+var max_health: int = 4
 @onready var health: int = max_health
 
 
@@ -25,7 +25,7 @@ var dust_particles: int = 0:
 var attack_dmg: float = 1
 var charge_attack_dmg: float = 2
 var attack_knockback_force_enemy: float = 200
-var charge_attack_knockback_force_enemy: float = 300
+var charge_attack_knockback_force_enemy: float = 325
 func can_charge_attack() -> bool: 
 	if dust_particles >= 40: 
 		return true

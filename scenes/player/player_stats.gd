@@ -11,9 +11,6 @@ func reset_player_stats():
 var max_health: int = 4
 @onready var health: int = max_health
 
-
-	
-
 # Dust sucked. 
 signal dust_particles_changed 
 var max_dust_particles: int = 100

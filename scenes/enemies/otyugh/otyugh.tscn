@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnevv0vtyx4c8"]
+
+[ext_resource type="Script" path="res://scenes/enemies/otyugh/otyugh.gd" id="1_vjne1"]
+[ext_resource type="Texture2D" uid="uid://d3n1edjpl2oti" path="res://assets/enemies/bosses/otyugh-Sheet.png" id="2_5voo4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckasc"]
+size = Vector2(53, 8)
+
+[sub_resource type="Animation" id="Animation_uhb6w"]
+resource_name = "idle"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_4cfwr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1rpmq"]
+_data = {
+"RESET": SubResource("Animation_4cfwr"),
+"idle": SubResource("Animation_uhb6w")
+}
+
+[node name="Otyugh" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_vjne1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 13)
+shape = SubResource("RectangleShape2D_ckasc")
+
+[node name="General" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="General"]
+texture = ExtResource("2_5voo4")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="General"]
+libraries = {
+"": SubResource("AnimationLibrary_1rpmq")
+}
+autoplay = "idle"

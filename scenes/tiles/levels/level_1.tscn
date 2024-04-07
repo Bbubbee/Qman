@@ -129,7 +129,7 @@ position = Vector2(584, 216)
 position = Vector2(735, 216)
 
 [node name="Player" parent="." index="1" instance=ExtResource("7_p4g05")]
-position = Vector2(-515, -241)
+position = Vector2(-85, 163)
 
 [node name="SceneTransitioner" parent="." index="2" instance=ExtResource("8_rq4n8")]
 position = Vector2(-791, -215)

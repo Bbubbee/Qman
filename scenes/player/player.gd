@@ -111,7 +111,7 @@ func handle_gravity(delta):
 """
 @onready var coyote_timer: Timer = $General/CoyoteTimer
 var coyote_time: float = 0.2
-var can_jump = false
+var can_jump = true
 
 
 ## Handles when the player can jump. 

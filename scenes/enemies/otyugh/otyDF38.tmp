@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bnevv0vtyx4c8"]
+[gd_scene load_steps=11 format=3 uid="uid://bnevv0vtyx4c8"]
 
 [ext_resource type="Script" path="res://scenes/enemies/otyugh/otyugh.gd" id="1_vjne1"]
 [ext_resource type="Texture2D" uid="uid://d3n1edjpl2oti" path="res://assets/enemies/bosses/otyugh-Sheet.png" id="2_5voo4"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cgrg84ajjemmf" path="res://utilitites/components/velocity_component.tscn" id="3_sehyb"]
 [ext_resource type="Script" path="res://scenes/enemies/otyugh/idle_state.gd" id="4_y6sbu"]
 [ext_resource type="Script" path="res://scenes/enemies/otyugh/follow_state.gd" id="6_abpqq"]
-[ext_resource type="Script" path="res://scenes/enemies/otyugh/tentacle_attack.gd" id="7_bcrgu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ckasc"]
 size = Vector2(53, 8)
@@ -74,8 +73,7 @@ autoplay = "idle"
 [node name="VelocityComponent" parent="Components" node_paths=PackedStringArray("actor") instance=ExtResource("3_sehyb")]
 actor = NodePath("../..")
 speed = 65.0
-acceleration = 100.0
-friction = 100.0
+acceleration = 55.0
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_7xoob")
@@ -86,7 +84,3 @@ script = ExtResource("4_y6sbu")
 
 [node name="Follow" type="Node" parent="StateMachine"]
 script = ExtResource("6_abpqq")
-tentacle_attack_range = 70.0
-
-[node name="TentacleAttack" type="Node" parent="StateMachine"]
-script = ExtResource("7_bcrgu")

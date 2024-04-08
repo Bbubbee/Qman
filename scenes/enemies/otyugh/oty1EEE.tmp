@@ -74,8 +74,8 @@ autoplay = "idle"
 [node name="VelocityComponent" parent="Components" node_paths=PackedStringArray("actor") instance=ExtResource("3_sehyb")]
 actor = NodePath("../..")
 speed = 65.0
-acceleration = 100.0
-friction = 100.0
+acceleration = 500.0
+friction = 500.0
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_7xoob")
@@ -86,7 +86,7 @@ script = ExtResource("4_y6sbu")
 
 [node name="Follow" type="Node" parent="StateMachine"]
 script = ExtResource("6_abpqq")
-tentacle_attack_range = 70.0
+tentacle_attack_range = 50.0
 
 [node name="TentacleAttack" type="Node" parent="StateMachine"]
 script = ExtResource("7_bcrgu")

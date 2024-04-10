@@ -3,6 +3,9 @@ extends State
 var direction: int = 1
 
 
+func enter(_enter_params = null):
+	actor.animator.play("idle")
+
 func physics_process(delta):
 	actor.handle_gravity(delta) 
 	

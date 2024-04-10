@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scenes/projectiles/dust_ball_hitbox.gd" id="3_2lm5y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_16syl"]
-radius = 4.0
+radius = 9.0
 
 [node name="DustBall" instance=ExtResource("1_5hwhj")]
 z_index = 100

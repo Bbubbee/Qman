@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cieswy101gevv"]
+
+[ext_resource type="PackedScene" uid="uid://c8gn2ld6v3oa4" path="res://scenes/projectiles/dust_ball.tscn" id="1_3u7g4"]
+[ext_resource type="Script" path="res://scenes/projectiles/othyugh_dust_ball.gd" id="2_cl4ap"]
+
+[node name="OthyughDustBall" instance=ExtResource("1_3u7g4")]
+script = ExtResource("2_cl4ap")
+health = 2
+speed = 125.0
+
+[node name="VisibilityTimer" type="Timer" parent="." index="0"]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="Sprite" parent="." index="1"]
+scale = Vector2(2, 2)
+
+[connection signal="timeout" from="VisibilityTimer" to="." method="_on_visibility_timer_timeout"]

@@ -156,13 +156,9 @@ tentacle_attack_range = 70.0
 [node name="AttackDecider" type="Node" parent="StateMachine"]
 script = ExtResource("9_t12l6")
 
-[node name="SpitTimer" type="Timer" parent="StateMachine/AttackDecider"]
-autostart = true
-
 [node name="SpitAttack" type="Node" parent="StateMachine"]
 script = ExtResource("7_bcrgu")
 
 [connection signal="handle_attack" from="Components/HealthComponent" to="." method="_on_health_component_handle_attack"]
-[connection signal="timeout" from="StateMachine/AttackDecider/SpitTimer" to="StateMachine/AttackDecider" method="_on_spit_timer_timeout"]
 
 [editable path="Components/HurtHitBox"]

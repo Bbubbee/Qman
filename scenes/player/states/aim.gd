@@ -60,7 +60,7 @@ func _on_attack_timer_timeout() -> void:
 	Handle charge attack. 
 """
 @onready var charge_attack_timer: Timer = $ChargeAttackTimer
-var charge_attack_length: float = 1
+var charge_attack_length: float = 0.6
 var is_charging_attack: bool = false
 func handle_charged_attack(): 
 	if Input.is_action_just_released('spit'):	

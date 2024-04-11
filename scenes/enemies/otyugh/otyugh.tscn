@@ -139,7 +139,7 @@ shape = SubResource("RectangleShape2D_bnmbj")
 
 [node name="HealthComponent" parent="Components" node_paths=PackedStringArray("actor") instance=ExtResource("5_bumfo")]
 actor = NodePath("../..")
-max_health = 10.0
+max_health = 16.0
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_7xoob")

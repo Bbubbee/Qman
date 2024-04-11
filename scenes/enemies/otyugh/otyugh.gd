@@ -15,7 +15,7 @@ func _ready():
 	state_machine.init(self) 
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	face_forward()
 
 """

@@ -48,7 +48,7 @@ func _on_health_component_handle_attack(attack: Hitbox, has_died: bool = false) 
 	# Invulnernable state. 
 	if is_invulnerable: return
 	
-	heart_container.deplete_heart()	
+	#heart_container.deplete_heart()	
 	if has_died: 
 		state_machine.force_transition("death", attack)
 	else: 
@@ -101,6 +101,11 @@ func handle_movement(delta):
 
 func handle_gravity(delta):
 	if not is_on_floor(): velocity.y += gravity * delta
+	
+func heal(): 
+	if PlayerStats.can_heal():
+		PlayerStats.dust_particles -= PlayerStats.heal_cost
+		health_component.heal()
 	
 """
 	Handle Jump

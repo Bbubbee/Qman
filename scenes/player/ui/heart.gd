@@ -4,6 +4,10 @@ extends Panel
 
 var depleted: bool = false
 
+func regenerate_heart(): 
+	depleted = false 
+	animation_player.play("regenerate")
+
 func deplete_heart(): 
 	depleted = true
 	animation_player.play("deplete")

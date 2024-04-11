@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://br7dhr78knlhg"]
+[gd_scene load_steps=8 format=3 uid="uid://br7dhr78knlhg"]
 
 [ext_resource type="Script" path="res://scenes/player/ui/heart.gd" id="1_75t67"]
 [ext_resource type="Texture2D" uid="uid://b8g2378swf2s2" path="res://assets/ui/heart-Sheet.png" id="1_e6xpn"]
@@ -18,6 +18,21 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_rfaw6"]
+resource_name = "already_depleted"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+
 [sub_resource type="Animation" id="Animation_3llxa"]
 resource_name = "deplete"
 length = 10.0
@@ -34,8 +49,9 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
-[sub_resource type="Animation" id="Animation_rfaw6"]
-resource_name = "already_depleted"
+[sub_resource type="Animation" id="Animation_lywnu"]
+resource_name = "regenerate"
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -43,17 +59,18 @@ tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [9]
+"values": [10, 11, 12, 13, 14, 15]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xfxr0"]
 _data = {
 "RESET": SubResource("Animation_3aehf"),
 "already_depleted": SubResource("Animation_rfaw6"),
-"deplete": SubResource("Animation_3llxa")
+"deplete": SubResource("Animation_3llxa"),
+"regenerate": SubResource("Animation_lywnu")
 }
 
 [node name="Heart" type="Panel"]
@@ -67,7 +84,7 @@ script = ExtResource("1_75t67")
 position = Vector2(-2, -3)
 texture = ExtResource("1_e6xpn")
 centered = false
-hframes = 10
+hframes = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

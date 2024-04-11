@@ -10,7 +10,7 @@ func enter(_enter_params = null):
 	var attack = _enter_params
 	animator = actor.animator
 	#actor.velocity.x = 0
-	animator.play("damaged") 
+	#animator.play("damaged") 
 	timer = cooldown
 	
 	# Knockback. 

@@ -9,6 +9,21 @@ const HEART = preload("res://scenes/player/ui/heart.tscn")
 
 func _ready():
 	health_component.sync_player_health.connect(init)
+	health_component.heal_heart.connect(regenerate_heart)
+	health_component.deplete_heart.connect(deplete_heart)
+	
+	
+func regenerate_heart(): 
+	if not get_child_count():
+		return 
+	
+	# Get the last heart and deplete it. 
+	for i in range(get_child_count()):
+		var heart = get_child(i) 
+		if heart.depleted: 
+			heart.regenerate_heart() 
+			break
+
 
 func init():
 	if not health_component: return 

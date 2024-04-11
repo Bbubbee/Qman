@@ -133,6 +133,7 @@ func handle_jump():
 
 func _on_coyote_timer_timeout() -> void:
 	can_jump = false
+
 	
 """
 	If youre on the floor and can't jump,

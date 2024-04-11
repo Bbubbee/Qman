@@ -29,8 +29,8 @@ func enter(_enter_params = null):
 func physics_process(delta: float) -> void: 		
 	actor.handle_gravity(delta)
 	actor.handle_movement(delta)
-	actor.handle_jump()
 	actor.move_and_slide()
+	actor.handle_jump()
 	
 	if actor.is_on_floor(): transition.emit(self, "move") 
 	

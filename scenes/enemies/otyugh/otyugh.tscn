@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bnevv0vtyx4c8"]
+[gd_scene load_steps=17 format=3 uid="uid://bnevv0vtyx4c8"]
 
 [ext_resource type="Script" path="res://scenes/enemies/otyugh/otyugh.gd" id="1_vjne1"]
 [ext_resource type="Texture2D" uid="uid://d3n1edjpl2oti" path="res://assets/enemies/bosses/otyugh-Sheet.png" id="2_5voo4"]
@@ -8,8 +8,7 @@
 [ext_resource type="Script" path="res://scenes/enemies/otyugh/idle_state.gd" id="4_y6sbu"]
 [ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://utilitites/components/health_component.tscn" id="5_bumfo"]
 [ext_resource type="Script" path="res://scenes/enemies/otyugh/follow_state.gd" id="6_abpqq"]
-[ext_resource type="Script" path="res://scenes/enemies/otyugh/tentacle_attack.gd" id="7_bcrgu"]
-[ext_resource type="Script" path="res://scenes/enemies/otyugh/attack_decider.gd" id="9_t12l6"]
+[ext_resource type="Script" path="res://scenes/enemies/otyugh/spit_attack.gd" id="7_bcrgu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ckasc"]
 size = Vector2(53, 8)
@@ -151,18 +150,17 @@ script = ExtResource("4_y6sbu")
 
 [node name="Follow" type="Node" parent="StateMachine"]
 script = ExtResource("6_abpqq")
-tentacle_attack_range = 70.0
+spit_attack_range = 120.0
 
-[node name="AttackDecider" type="Node" parent="StateMachine"]
-script = ExtResource("9_t12l6")
+[node name="Cooldowns" type="Node" parent="StateMachine/Follow"]
 
-[node name="SpitTimer" type="Timer" parent="StateMachine/AttackDecider"]
-autostart = true
+[node name="SpitCooldown" type="Timer" parent="StateMachine/Follow/Cooldowns"]
+wait_time = 2.0
+one_shot = true
 
 [node name="SpitAttack" type="Node" parent="StateMachine"]
 script = ExtResource("7_bcrgu")
 
 [connection signal="handle_attack" from="Components/HealthComponent" to="." method="_on_health_component_handle_attack"]
-[connection signal="timeout" from="StateMachine/AttackDecider/SpitTimer" to="StateMachine/AttackDecider" method="_on_spit_timer_timeout"]
 
 [editable path="Components/HurtHitBox"]

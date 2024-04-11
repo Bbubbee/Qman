@@ -15,8 +15,8 @@ func enter(_enter_params = null):
 
 
 func physics_process(_delta: float) -> void:
-	actor.handle_jump()
 	actor.move_and_slide()	
+	actor.handle_jump()	
 	transition.emit(self, "move")  
 
 

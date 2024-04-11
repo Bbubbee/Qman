@@ -19,8 +19,8 @@ func on_input(event: InputEvent):
 func physics_process(delta: float) -> void:
 	actor.handle_gravity(delta) 
 	actor.handle_movement(delta)
-	actor.handle_jump() 
 	actor.move_and_slide()
+	actor.handle_jump() 
 	
 	#if actor.attack_incoming: 
 		#transition.emit(self, "damaged")

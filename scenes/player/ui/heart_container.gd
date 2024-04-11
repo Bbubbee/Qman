@@ -5,6 +5,8 @@ const HEART = preload("res://scenes/player/ui/heart.tscn")
 
 @export var health_component: HealthComponent
 
+# TODO: Heal animation 
+
 func _ready():
 	health_component.sync_player_health.connect(init)
 

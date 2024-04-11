@@ -28,6 +28,9 @@ func face_forward():
 	elif velocity.x < 0:
 		sprite.flip_h = true
 
+# Forcibly position the sprite. Used during spit attacks.
+func face_right(right: bool): 
+	sprite.flip_h = not right
 
 func get_direction_of_player(): 
 	if not UNITS.player: return
@@ -56,3 +59,6 @@ func handle_gravity(delta):
 
 func _on_health_component_handle_attack(_attack, has_died):
 	if has_died: queue_free()
+
+
+# TODO: Health bar

@@ -10,6 +10,8 @@ signal start_level()
 
 ## Handle Dust Particles. 
 
+signal explode_dust_particles(pos: Vector2, count: int) 
+
 signal spawn_particles(pos: Vector2, count: int, dir: Vector2)
 
 func spawn_particles_generator(pos, count, dir): 

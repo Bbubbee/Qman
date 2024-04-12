@@ -16,8 +16,4 @@ autostart = true
 [node name="Sprite" parent="." index="1"]
 scale = Vector2(2, 2)
 
-[node name="Hitbox" parent="." index="3"]
-monitoring = false
-monitorable = false
-
 [connection signal="timeout" from="VisibilityTimer" to="." method="_on_visibility_timer_timeout"]

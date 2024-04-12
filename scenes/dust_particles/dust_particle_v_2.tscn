@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://ow8bw2nq6oca"]
+
+[ext_resource type="PackedScene" uid="uid://ct7roso4rgv7o" path="res://scenes/dust_particles/dust_particle.tscn" id="1_o1a1a"]
+[ext_resource type="Script" path="res://scenes/dust_particles/dust_particle_v_2.gd" id="2_trbe7"]
+
+[node name="DustParticleV2" instance=ExtResource("1_o1a1a")]
+script = ExtResource("2_trbe7")

@@ -117,7 +117,7 @@ layer_0/tile_data = PackedInt32Array(1703976, 131072, 5, 1638440, 65536, 1, 1572
 [node name="DarkeningLight" parent="TileMap" instance=ExtResource("5_d7h68")]
 
 [node name="Player" parent="." instance=ExtResource("2_r0v2k")]
-position = Vector2(643, 80)
+position = Vector2(-601, 1023)
 
 [node name="ParticleSpawner" parent="." instance=ExtResource("5_vbk8i")]
 

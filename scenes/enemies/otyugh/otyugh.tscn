@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bnevv0vtyx4c8"]
+[gd_scene load_steps=19 format=3 uid="uid://bnevv0vtyx4c8"]
 
 [ext_resource type="Script" path="res://scenes/enemies/otyugh/otyugh.gd" id="1_vjne1"]
 [ext_resource type="Texture2D" uid="uid://d3n1edjpl2oti" path="res://assets/enemies/bosses/otyugh-Sheet.png" id="2_5voo4"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://utilitites/components/health_component.tscn" id="5_bumfo"]
 [ext_resource type="Script" path="res://scenes/enemies/otyugh/follow_state.gd" id="6_abpqq"]
 [ext_resource type="Script" path="res://scenes/enemies/otyugh/spit_attack.gd" id="7_bcrgu"]
+[ext_resource type="Script" path="res://scenes/enemies/otyugh/death.gd" id="8_fetvr"]
+[ext_resource type="Script" path="res://scenes/enemies/otyugh/charge_attack.gd" id="10_ibs0n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ckasc"]
 size = Vector2(53, 8)
@@ -148,6 +150,9 @@ initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_y6sbu")
 
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("8_fetvr")
+
 [node name="Follow" type="Node" parent="StateMachine"]
 script = ExtResource("6_abpqq")
 spit_attack_range = 120.0
@@ -158,8 +163,15 @@ spit_attack_range = 120.0
 wait_time = 2.0
 one_shot = true
 
+[node name="ChargeCooldown" type="Timer" parent="StateMachine/Follow/Cooldowns"]
+wait_time = 10.0
+one_shot = true
+
 [node name="SpitAttack" type="Node" parent="StateMachine"]
 script = ExtResource("7_bcrgu")
+
+[node name="ChargeAttack" type="Node" parent="StateMachine"]
+script = ExtResource("10_ibs0n")
 
 [connection signal="handle_attack" from="Components/HealthComponent" to="." method="_on_health_component_handle_attack"]
 

@@ -42,8 +42,6 @@ func get_direction_of_player():
 		return Vector2.LEFT 
 	
 	
-
-
 func can_detect_player(): 
 	var player = UNITS.player
 	if not player: return false
@@ -58,7 +56,5 @@ func handle_gravity(delta):
 	if not is_on_floor(): velocity.y += gravity * delta
 
 func _on_health_component_handle_attack(_attack, has_died):
-	if has_died: queue_free()
+	if has_died: state_machine.force_transition("death")
 
-
-# TODO: Health bar

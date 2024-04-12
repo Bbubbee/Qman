@@ -139,18 +139,6 @@ func handle_jump():
 func _on_coyote_timer_timeout() -> void:
 	can_jump = false
 
-	
-"""
-	If youre on the floor and can't jump,
-		you are allowed to jump 
-	
-	Else if you still can jump and the coyote timer is of, 
-		start the coyote timer.
-	
-	Once the coyote timer time outs, 
-		You can't jump. 
-"""
-
 
 
 

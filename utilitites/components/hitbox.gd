@@ -17,6 +17,9 @@ Remember:
 @export var knockback: float = 100.0
 var direction
 	# The direction in which actors will be knocked back.
-
+	
+func disable(): 
+	monitorable = false 
+	monitoring = false
 
 

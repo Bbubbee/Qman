@@ -3,9 +3,7 @@ extends Node
 
 signal player_died() 
 signal start_level()
-
-
-## Global Functions.
+signal screen_shake()
 
 
 ## Handle Dust Particles. 

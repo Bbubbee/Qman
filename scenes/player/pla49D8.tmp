@@ -319,9 +319,6 @@ position = Vector2(2.08165e-12, -20)
 scale = Vector2(0.75, 0.75)
 position_smoothing_speed = 10.0
 script = ExtResource("2_jxt3h")
-NOISE_SHAKE_SPEED = 15.0
-NOISE_SHAKE_STRENGTH = 15.0
-RANDOM_SHAKE_STRENGTH = 15.0
 metadata/_edit_lock_ = true
 
 [node name="Sprite" type="Sprite2D" parent="General"]

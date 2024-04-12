@@ -8,6 +8,7 @@ func enter(_enter_params = null):
 	
 
 func die(): 
+	Events.screen_shake.emit()
 	Events.explode_dust_particles.emit(actor.position, 70)
 	actor.queue_free()
 

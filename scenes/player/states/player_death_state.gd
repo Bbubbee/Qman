@@ -13,11 +13,13 @@ func die():
 	print('calling die')
 	actor.animator.pause()
 	Events.explode_dust_particles.emit(actor.global_position, 25)
+	Events.screen_shake.emit()	
 	actor.sprite.visible = false
 	actor.respawn_button.visible = true
 	
 
 func disable(): 
+	actor.disable()
 	actor.state_machine.disabled = true 
 	actor.attack_state_machine.disabled = true 
 	#actor.respawn_button.visible = true

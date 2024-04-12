@@ -20,6 +20,9 @@ const friction: float = 1300.0
 @onready var arm_sprite: Sprite2D = $General/ArmPivot/ArmSprite
 @onready var animator_2: AnimationPlayer = $General/Animator2
 
+@onready var hurtbox = $Components/Hurtbox
+@onready var enemy_projectiles_hitbox = $Components/EnemyProjectilesHitbox
+
 ## UI 
 @onready var respawn_button = $UI/RespawnButton
 @onready var heart_container = $UI/HeartContainer
@@ -134,5 +137,8 @@ func _on_coyote_timer_timeout() -> void:
 	can_jump = false
 
 
-
+# Disables all hit and hurtboxes. 
+func disable(): 
+	hurtbox.disable()
+	enemy_projectiles_hitbox.disable()
 

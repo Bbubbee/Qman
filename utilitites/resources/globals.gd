@@ -11,3 +11,5 @@ func get_distance_between_two_targets(a: Node2D, b: Node2D) -> float:
 func get_direction_to_target(subject: Node2D, target: Node2D): 
 	return (target.global_position - subject.global_position).normalized()
 
+func get_height_difference(subject: Node2D, target: Node2D):
+	return subject.global_position.y - target.global_position.y 

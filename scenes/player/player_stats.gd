@@ -8,7 +8,7 @@ func reset_player_stats():
 	dust_particles = 0
 	
 # Health
-var max_health: int = 4
+var max_health: int = 1
 @onready var health: int = max_health
 signal health_changed
 var heal_cost: int = 40

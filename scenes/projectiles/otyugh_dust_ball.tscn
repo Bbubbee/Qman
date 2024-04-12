@@ -6,6 +6,7 @@
 [node name="OtyughDustBall" instance=ExtResource("1_uwe85")]
 script = ExtResource("2_u7jwx")
 health = 2
+dust = 10
 speed = 125.0
 
 [node name="VisibilityTimer" type="Timer" parent="." index="0"]

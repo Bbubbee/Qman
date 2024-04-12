@@ -74,12 +74,6 @@ func _on_aim_fired_weapon(knockback_data) -> void:
 		size = 10
 	arm_pivot.fire_particles(size)
 
-
-func die(): 
-	state_machine.disabled = true 
-	attack_state_machine.disabled = true 
-	respawn_button.visible = true
-	Events.player_died.emit()
 	
 func custom_deferred(func_name: StringName):
 	call_deferred(func_name) 

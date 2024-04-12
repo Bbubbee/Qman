@@ -24,7 +24,12 @@ func attack_decider():
 	
 @onready var charge_cooldown: Timer = $Cooldowns/ChargeCooldown
 
+
 func charge_attack(distance): 
+	# Only charge if player is on ground level. 
+	var height = Globals.get_height_difference(actor, actor.UNITS.player)
+	if height > 25: return
+	
 	if distance < 200 and charge_cooldown.is_stopped():
 		charge_cooldown.start() 
 		transition.emit(self, "chargeattack")
@@ -34,7 +39,6 @@ func charge_attack(distance):
 @onready var spit_cooldown: Timer = $Cooldowns/SpitCooldown
 
 func spit_attack(distance): 
-	return
 	if distance < spit_attack_range and spit_cooldown.is_stopped(): 
 		spit_cooldown.start()
 		transition.emit(self, "spitattack")

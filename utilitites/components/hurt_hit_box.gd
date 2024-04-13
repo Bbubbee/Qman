@@ -15,7 +15,10 @@ extends Hitbox
 func disable(): 
 	monitorable = false 
 	monitoring = false
-	
+
+func enable(): 
+	monitorable = true 
+	monitoring = true
 
 func _on_hitbox_entered(hitbox: Hitbox):
 	if not hitbox: return 

@@ -62,11 +62,11 @@ func _on_attack_timer_timeout() -> void:
 @onready var charge_attack_timer: Timer = $ChargeAttackTimer
 var charge_attack_length: float = 0.6
 var is_charging_attack: bool = false
+
 func handle_charged_attack(): 
 	if Input.is_action_just_released('spit'):	
 		# A charge attack can be cancelled if right mb is pressed. 	
-		if not is_charging_attack: 
-			return
+		if not is_charging_attack: return
 			
 		is_charging_attack = false 
 		
@@ -74,7 +74,7 @@ func handle_charged_attack():
 		# Else don't do anything
 		if charge_attack_timer.is_stopped() and PlayerStats.can_charge_attack():
 			spit_attack(PlayerStats.charge_attack_dmg, true)
-			PlayerStats.dust_particles -= 40
+			PlayerStats.dust_particles -= PlayerStats.charge_attack_cost
 		else: 
 			spit_attack(PlayerStats.attack_dmg, false)
 
@@ -83,20 +83,23 @@ func handle_charged_attack():
 func spit_attack(dmg: float, is_charged: bool = false): 
 	if not can_shoot: return 
 	
+	# Start attack cooldown. 
 	can_shoot = false
 	attack_timer.start()
 	
+	# Add the attack to the main scene. 
 	var gust = GUST.instantiate()
 	var root = get_tree().get_root()
 	root.add_child(gust)
 	
 	var direction = (actor.get_global_mouse_position() - actor.global_position).normalized()
 	
+	# Determine the knockback the attack does to an enemy. 
 	var enemy_knockback: float
 	if is_charged: enemy_knockback = PlayerStats.charge_attack_knockback_force_enemy
 	else: enemy_knockback = PlayerStats.attack_knockback_force_enemy
 	
-	
+	# The attack is ready to be intialised. 
 	gust.init(direction, actor.bullet_marker.global_position, dmg, enemy_knockback)
 	
 	# Knocks back the player when you shoot gust. 

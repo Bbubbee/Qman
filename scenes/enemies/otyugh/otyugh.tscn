@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bnevv0vtyx4c8"]
+[gd_scene load_steps=26 format=3 uid="uid://bnevv0vtyx4c8"]
 
 [ext_resource type="Script" path="res://scenes/enemies/otyugh/otyugh.gd" id="1_vjne1"]
 [ext_resource type="Texture2D" uid="uid://d3n1edjpl2oti" path="res://assets/enemies/bosses/otyugh-Sheet.png" id="2_5voo4"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scenes/enemies/otyugh/follow_state.gd" id="6_abpqq"]
 [ext_resource type="Script" path="res://scenes/enemies/otyugh/spit_attack.gd" id="7_bcrgu"]
 [ext_resource type="Script" path="res://scenes/enemies/otyugh/death.gd" id="8_fetvr"]
+[ext_resource type="Script" path="res://scenes/enemies/otyugh/spawn.gd" id="8_mr2ad"]
 [ext_resource type="Script" path="res://scenes/enemies/otyugh/charge_attack.gd" id="10_ibs0n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ckasc"]
@@ -28,6 +29,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_xqxyy"]
@@ -126,14 +139,67 @@ tracks/0/keys = {
 "values": [4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_x1tf2"]
+resource_name = "spawn"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1rpmq"]
 _data = {
 "RESET": SubResource("Animation_4cfwr"),
 "charge": SubResource("Animation_xqxyy"),
 "death": SubResource("Animation_b8qxb"),
 "idle": SubResource("Animation_uhb6w"),
+"spawn": SubResource("Animation_x1tf2"),
 "spit_attack": SubResource("Animation_4kbd4"),
 "tentacle_attack": SubResource("Animation_hr7vw")
+}
+
+[sub_resource type="Animation" id="Animation_u4s3k"]
+resource_name = "spawn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_oyjtj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ox8v7"]
+_data = {
+"RESET": SubResource("Animation_oyjtj"),
+"spawn": SubResource("Animation_u4s3k")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_346j1"]
@@ -151,6 +217,7 @@ shape = SubResource("RectangleShape2D_ckasc")
 [node name="Misc" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite2D" parent="Misc"]
+modulate = Color(1, 1, 1, 0)
 texture = ExtResource("2_5voo4")
 hframes = 12
 
@@ -159,6 +226,11 @@ libraries = {
 "": SubResource("AnimationLibrary_1rpmq")
 }
 autoplay = "idle"
+
+[node name="Animator2" type="AnimationPlayer" parent="Misc"]
+libraries = {
+"": SubResource("AnimationLibrary_ox8v7")
+}
 
 [node name="Components" type="Node2D" parent="."]
 
@@ -174,7 +246,7 @@ collision_mask = 8
 health_component = NodePath("../HealthComponent")
 
 [node name="Collider" parent="Components/HurtHitBox" index="0"]
-position = Vector2(-3, 4)
+position = Vector2(3, 4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_346j1")
 
@@ -184,10 +256,13 @@ max_health = 16.0
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_7xoob")
-initial_state = NodePath("Idle")
+initial_state = NodePath("Spawn")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_y6sbu")
+
+[node name="Spawn" type="Node" parent="StateMachine"]
+script = ExtResource("8_mr2ad")
 
 [node name="Death" type="Node" parent="StateMachine"]
 script = ExtResource("8_fetvr")
@@ -207,7 +282,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="ChargeCooldown" type="Timer" parent="StateMachine/Follow/Cooldowns"]
-wait_time = 10.0
+wait_time = 7.0
 one_shot = true
 
 [node name="SpitAttack" type="Node" parent="StateMachine"]

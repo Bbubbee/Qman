@@ -2,7 +2,6 @@ extends State
 
 
 var direction: Vector2
-@export var force: float = 100
 
 
 func enter(_enter_params = null): 
@@ -15,11 +14,11 @@ func enter(_enter_params = null):
 	
 	
 	if is_charged: 
-		x = -direction.x * force * 2
-		y = -direction.y * force * 2
+		x = -direction.x * PlayerStats.charge_attack_knockback_force
+		y = -direction.y * PlayerStats.charge_attack_knockback_force
 	else: 
-		x = -direction.x * force * 1
-		y = -direction.y * force * 1
+		x = -direction.x * PlayerStats.attack_knockback_force
+		y = -direction.y * PlayerStats.attack_knockback_force
 	
 	# Only knockback if player is not on the floor 
 	# and is shooting steeply into the ground.

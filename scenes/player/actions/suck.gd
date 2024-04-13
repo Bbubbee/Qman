@@ -4,6 +4,7 @@ extends Node2D
 var force = 20
 var is_sucking: bool = false
 @onready var collection_zone = $CollectionZone
+@onready var player = $"../../.."
 
 
 func suck(direction: Vector2): 

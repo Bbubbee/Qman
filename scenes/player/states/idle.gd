@@ -15,8 +15,8 @@ func on_input(event: InputEvent):
 	if event.is_action_pressed("jump") and actor.can_jump:
 		transition.emit(self, "jump") 
 	
-	if event.is_action_pressed("heal"):
-		actor.heal()
+	if event.is_action_pressed("heal") and PlayerStats.can_heal():
+		transition.emit(self, "heal")
 	
 
 func physics_process(delta: float) -> void:

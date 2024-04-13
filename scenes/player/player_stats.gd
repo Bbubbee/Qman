@@ -11,7 +11,7 @@ func reset_player_stats():
 var max_health: int = 4
 @onready var health: int = max_health
 signal health_changed
-var heal_cost: int = 40
+var heal_cost: int = 50
 func can_heal(): 
 	if dust_particles >= heal_cost: return true
 	else: return false
@@ -27,6 +27,8 @@ var dust_particles: int = 0:
 # Attacks. 
 var attack_dmg: float = 1
 var charge_attack_dmg: float = 2
+var attack_knockback_force: float = 205
+var charge_attack_knockback_force: float = 405
 var attack_knockback_force_enemy: float = 200
 var charge_attack_knockback_force_enemy: float = 325
 var charge_attack_cost: int = 35

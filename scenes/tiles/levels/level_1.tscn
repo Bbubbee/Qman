@@ -7,16 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://c1tmlhlu2k430" path="res://scenes/enemies/baby/baby.tscn" id="5_p1rpk"]
 [ext_resource type="PackedScene" uid="uid://cb38f1uj1rfpp" path="res://scenes/enemies/spitter/spitter.tscn" id="6_myrtp"]
 [ext_resource type="PackedScene" uid="uid://dpwtpkyvf7juq" path="res://scenes/player/player.tscn" id="7_p4g05"]
-[ext_resource type="PackedScene" uid="uid://b70yyd1jydcfp" path="res://scenes/tiles/levels/scene_transitioner.tscn" id="8_rq4n8"]
-[ext_resource type="PackedScene" uid="uid://dsyl5w71it15s" path="res://scenes/tiles/levels/level_2.tscn" id="9_r26gt"]
+[ext_resource type="Script" path="res://scenes/tiles/levels/go_to_level_2.gd" id="10_i6qi8"]
 [ext_resource type="PackedScene" uid="uid://dopirn51d7qlf" path="res://scenes/environment/street_lamp.tscn" id="10_lcr4i"]
 [ext_resource type="PackedScene" uid="uid://bixn8hd87n7tb" path="res://scenes/environment/lights/darkening_light.tscn" id="11_bgp5u"]
+[ext_resource type="PackedScene" uid="uid://bdo0rfj7lwnr3" path="res://scenes/player/player_camera.tscn" id="11_muaq3"]
 
 [sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_a68nu"]
 length = 229.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hplu"]
-size = Vector2(52, 34)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovisb"]
+size = Vector2(54, 27)
 
 [node name="Level1" instance=ExtResource("1_hnoqa")]
 position = Vector2(81, 12)
@@ -40,7 +40,7 @@ position = Vector2(-344, -210)
 position = Vector2(0, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level1Actors/TrapRoom/PlayerDetector" index="0"]
-position = Vector2(-4, -206)
+position = Vector2(216, -207)
 shape = SubResource("SeparationRayShape2D_a68nu")
 debug_color = Color(0, 0.639216, 0.341176, 0.419608)
 
@@ -129,17 +129,12 @@ position = Vector2(584, 216)
 position = Vector2(735, 216)
 
 [node name="Player" parent="." index="1" instance=ExtResource("7_p4g05")]
-position = Vector2(-85, 163)
+position = Vector2(-184, 180)
 
-[node name="SceneTransitioner" parent="." index="2" instance=ExtResource("8_rq4n8")]
-position = Vector2(-791, -215)
-scene_to_go_to = ExtResource("9_r26gt")
+[node name="RemoteTransform2D" parent="Player" index="6"]
+remote_path = NodePath("../../PlayerCamera")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTransitioner/Area2D" index="0"]
-position = Vector2(-17, 7)
-shape = SubResource("RectangleShape2D_1hplu")
-
-[node name="Lights" type="Node2D" parent="." index="3"]
+[node name="Lights" type="Node2D" parent="." index="2"]
 
 [node name="StreetLamp" parent="Lights" index="0" instance=ExtResource("10_lcr4i")]
 position = Vector2(-160, 176)
@@ -179,5 +174,21 @@ position = Vector2(-344, -208)
 
 [node name="DarkeningLight" parent="Lights" index="12" instance=ExtResource("11_bgp5u")]
 
+[node name="GoToLevel2" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 10
+script = ExtResource("10_i6qi8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoToLevel2" index="0"]
+position = Vector2(-805, -206)
+shape = SubResource("RectangleShape2D_ovisb")
+debug_color = Color(0, 0.627451, 0.486275, 0.419608)
+
+[node name="PlayerCamera" parent="." index="4" instance=ExtResource("11_muaq3")]
+
+[connection signal="area_entered" from="GoToLevel2" to="GoToLevel2" method="_on_area_entered"]
+
 [editable path="Level1Actors/TrapRoom"]
-[editable path="SceneTransitioner"]
+[editable path="Player"]
+[editable path="Player/Components/Hurtbox"]
+[editable path="Player/Components/EnemyProjectilesHitbox"]

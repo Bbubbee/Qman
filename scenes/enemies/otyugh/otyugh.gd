@@ -5,11 +5,13 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var sprite = $Misc/Sprite
 const UNITS = preload("res://utilitites/resources/units.tres")
 @onready var animator = $Misc/Animator
+@onready var hurt_hit_box = $Components/HurtHitBox
+@onready var animator_2 = $Misc/Animator2
 
 ## Components. 
 @onready var velocity_component = $Components/VelocityComponent
 
-
+signal died
 
 func _ready():
 	state_machine.init(self) 
@@ -32,15 +34,6 @@ func face_forward():
 func face_right(right: bool): 
 	sprite.flip_h = not right
 
-func get_direction_of_player(): 
-	if not UNITS.player: return
-	
-	var dir = global_position.x - UNITS.player.global_position.x
-	if dir > 0: 
-		return Vector2.RIGHT
-	else:
-		return Vector2.LEFT 
-	
 	
 func can_detect_player(): 
 	var player = UNITS.player
@@ -57,4 +50,11 @@ func handle_gravity(delta):
 
 func _on_health_component_handle_attack(_attack, has_died):
 	if has_died: state_machine.force_transition("death")
+
+
+# The player is in the trap room. Time to spawn.
+func spawn():
+	$StateMachine/Spawn.spawn()
+
+
 

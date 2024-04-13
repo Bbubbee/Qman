@@ -1,10 +1,11 @@
-[gd_scene load_steps=37 format=3 uid="uid://dpwtpkyvf7juq"]
+[gd_scene load_steps=40 format=3 uid="uid://dpwtpkyvf7juq"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_c4p7c"]
 [ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="2_jxt3h"]
 [ext_resource type="Texture2D" uid="uid://cpa4hj6a8x5mq" path="res://assets/player/player_hand_export.png" id="3_bosfo"]
 [ext_resource type="Texture2D" uid="uid://dnecivjvqvi" path="res://assets/player/qman-Sheet.png" id="3_wud74"]
 [ext_resource type="Script" path="res://scenes/player/arm_pivot.gd" id="4_6uptp"]
+[ext_resource type="Script" path="res://scenes/player/heal.gd" id="4_p1m4q"]
 [ext_resource type="Script" path="res://scenes/player/states/state_machine.gd" id="4_rnkx0"]
 [ext_resource type="Script" path="res://scenes/player/states/idle.gd" id="5_yjn2x"]
 [ext_resource type="Script" path="res://scenes/player/states/move.gd" id="6_cqvk3"]
@@ -157,6 +158,23 @@ tracks/0/keys = {
 "values": [7]
 }
 
+[sub_resource type="Animation" id="Animation_nw3ro"]
+resource_name = "jump_squat"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("General/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [5, 6]
+}
+
 [sub_resource type="Animation" id="Animation_oerio"]
 resource_name = "run"
 length = 0.3
@@ -181,6 +199,7 @@ _data = {
 "hurt": SubResource("Animation_oquhl"),
 "idle": SubResource("Animation_qrxqo"),
 "jump": SubResource("Animation_1abkr"),
+"jump_squat": SubResource("Animation_nw3ro"),
 "run": SubResource("Animation_oerio")
 }
 
@@ -239,10 +258,28 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.988235, 0.313726, 0.313726, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_y0m0h"]
+resource_name = "immune"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("General/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.494118), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vfjjg"]
 _data = {
 "RESET": SubResource("Animation_2ihtw"),
-"hurt": SubResource("Animation_xffdc")
+"hurt": SubResource("Animation_xffdc"),
+"immune": SubResource("Animation_y0m0h")
 }
 
 [sub_resource type="Gradient" id="Gradient_m8q62"]
@@ -279,6 +316,13 @@ initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("5_yjn2x")
 
+[node name="Heal" type="Node" parent="StateMachine"]
+script = ExtResource("4_p1m4q")
+
+[node name="HealTimer" type="Timer" parent="StateMachine/Heal"]
+wait_time = 0.5
+one_shot = true
+
 [node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource("6_cqvk3")
 
@@ -291,7 +335,6 @@ script = ExtResource("8_8xkh7")
 
 [node name="Knockback" type="Node" parent="StateMachine"]
 script = ExtResource("10_4n77r")
-force = 185.0
 
 [node name="Death" type="Node" parent="StateMachine"]
 script = ExtResource("12_balr0")
@@ -313,16 +356,6 @@ autostart = true
 one_shot = true
 
 [node name="General" type="Node2D" parent="."]
-
-[node name="Camera2D" type="Camera2D" parent="General"]
-position = Vector2(2.08165e-12, -20)
-scale = Vector2(0.75, 0.75)
-position_smoothing_speed = 10.0
-script = ExtResource("2_jxt3h")
-NOISE_SHAKE_SPEED = 15.0
-NOISE_SHAKE_STRENGTH = 15.0
-RANDOM_SHAKE_STRENGTH = 15.0
-metadata/_edit_lock_ = true
 
 [node name="Sprite" type="Sprite2D" parent="General"]
 texture = ExtResource("3_wud74")
@@ -364,7 +397,7 @@ libraries = {
 one_shot = true
 
 [node name="InvulnerableTimer" type="Timer" parent="General"]
-wait_time = 1.5
+wait_time = 0.8
 one_shot = true
 
 [node name="Label" type="Label" parent="General"]
@@ -380,6 +413,18 @@ text = "State
 [node name="PointLight2D" type="PointLight2D" parent="General"]
 energy = 0.5
 texture = SubResource("GradientTexture2D_otci6")
+
+[node name="Camera2D" type="Camera2D" parent="General"]
+visible = false
+position = Vector2(2.08165e-12, -20)
+scale = Vector2(0.75, 0.75)
+enabled = false
+position_smoothing_speed = 10.0
+script = ExtResource("2_jxt3h")
+NOISE_SHAKE_SPEED = 15.0
+NOISE_SHAKE_STRENGTH = 15.0
+RANDOM_SHAKE_STRENGTH = 15.0
+metadata/_edit_lock_ = true
 
 [node name="Components" type="Node2D" parent="."]
 visible = false
@@ -448,9 +493,14 @@ step = 1.0
 fill_mode = 3
 script = ExtResource("19_0f075")
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+position = Vector2(0, -20)
+
+[connection signal="timeout" from="StateMachine/Heal/HealTimer" to="StateMachine/Heal" method="_on_heal_timer_timeout"]
 [connection signal="fired_weapon" from="AttackStateMachine/Aim" to="." method="_on_aim_fired_weapon"]
 [connection signal="timeout" from="AttackStateMachine/Aim/AttackTimer" to="AttackStateMachine/Aim" method="_on_attack_timer_timeout"]
 [connection signal="animation_finished" from="General/Animator" to="StateMachine/Move" method="_on_animator_animation_finished"]
+[connection signal="animation_finished" from="General/Animator" to="StateMachine/Jump" method="_on_animator_animation_finished"]
 [connection signal="timeout" from="General/CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="General/InvulnerableTimer" to="." method="_on_invulnerable_timer_timeout"]
 [connection signal="handle_attack" from="Components/HealthComponent" to="." method="_on_health_component_handle_attack"]

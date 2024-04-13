@@ -28,6 +28,8 @@ const friction: float = 1300.0
 @onready var heart_container = $UI/HeartContainer
 @onready var health_component = $Components/HealthComponent
 
+var is_dead: bool = false
+
 signal damaged
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -61,9 +63,12 @@ func _on_health_component_handle_attack(attack: Hitbox, has_died: bool = false) 
 var is_invulnerable: bool = false
 func enter_invulnerable_state():
 	is_invulnerable = true
+	await animator_2.animation_finished
+	animator_2.play("immune")
 	invulnerable_timer.start() 
 
 func _on_invulnerable_timer_timeout() -> void:
+	animator_2.play("RESET")	
 	is_invulnerable = false
 
 

@@ -20,6 +20,7 @@ config/icon="res://assets/icon.svg"
 Events="*res://scenes/main/events.gd"
 Globals="*res://utilitites/resources/globals.gd"
 PlayerStats="*res://scenes/player/player_stats.gd"
+SceneTransition="*res://utilitites/resources/scene_transition.tscn"
 
 [display]
 

@@ -4,16 +4,16 @@ var direction
 
 
 func enter(_enter_params = null):
-	actor.animator.play("death")
 	direction = _enter_params.direction
 	actor.call_deferred("disable_hitbox")
-	actor.call_deferred("spawn_particles", 10, direction)		
-		
+	actor.call_deferred("spawn_particles", 10, direction)
+	call_deferred("die")
 
-func _on_animator_animation_finished(anim_name: StringName) -> void:	
-	if anim_name == "death": 
-		actor.died.emit()				
-		actor.queue_free()
+func die(): 
+	actor.died.emit()				
+	actor.queue_free()
+
+		
 		
 		
 		

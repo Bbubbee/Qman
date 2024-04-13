@@ -6,7 +6,7 @@ var can_shoot: bool = true
 @onready var attack_timer: Timer = $AttackTimer
 
 @export var suck: Node2D
-
+var facing_right = false 
 
 func physics_process(_delta: float):
 	var mouse_pos = actor.get_global_mouse_position()
@@ -19,11 +19,18 @@ func physics_process(_delta: float):
 	actor.arm_pivot.look_at(mouse_pos)
 	
 	# Flip the sprite to face the correct direction.
-	if mouse_pos.x+10 > pos.x:
+	if not facing_right and mouse_pos.x-20 > pos.x: 
+		facing_right = true
+	elif facing_right and mouse_pos.x+20 < pos.x: 
+		facing_right = false
+	
+	if facing_right: 
+		# Facing right. 
 		actor.sprite.flip_h = false
 		actor.arm_sprite.flip_h = false
 		actor.arm_pivot.position.x = -1
 	else: 
+		# Facing left. 
 		actor.sprite.flip_h = true
 		actor.arm_sprite.flip_h = true
 		actor.arm_pivot.position.x = 1
@@ -82,6 +89,8 @@ func handle_charged_attack():
 
 func spit_attack(dmg: float, is_charged: bool = false): 
 	if not can_shoot: return 
+	
+	$"../../General/Audio/Gust".play()
 	
 	# Start attack cooldown. 
 	can_shoot = false

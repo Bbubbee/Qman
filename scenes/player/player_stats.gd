@@ -25,7 +25,7 @@ var dust_particles: int = 0:
 		emit_signal("dust_particles_changed", dust_particles)
 
 # Attacks. 
-var attack_dmg: float = 1
+var attack_dmg: float = 10
 var charge_attack_dmg: float = 2
 var attack_knockback_force: float = 205
 var charge_attack_knockback_force: float = 405

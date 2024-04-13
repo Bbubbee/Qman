@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2cp54aqb1i3t"]
+[gd_scene load_steps=18 format=3 uid="uid://d2cp54aqb1i3t"]
 
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy/enemy.gd" id="1_fs0av"]
+[ext_resource type="AudioStream" uid="uid://804fysobtyxx" path="res://assets/audio/dmg.mp3" id="2_wypuc"]
 [ext_resource type="PackedScene" uid="uid://lge6t38xhjjm" path="res://utilitites/components/hurt_hit_box.tscn" id="3_a6rne"]
 [ext_resource type="PackedScene" uid="uid://dv0lxnync3vjn" path="res://utilitites/components/health_component.tscn" id="4_6btmt"]
 [ext_resource type="Script" path="res://scenes/player/states/state_machine.gd" id="5_clrhi"]
@@ -110,6 +111,11 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 8
 text = "State"
+
+[node name="Audio" type="Node2D" parent="General"]
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="General/Audio"]
+stream = ExtResource("2_wypuc")
 
 [node name="Components" type="Node2D" parent="."]
 metadata/_edit_lock_ = true

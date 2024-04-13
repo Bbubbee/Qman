@@ -13,6 +13,7 @@ func enter(_enter_params = null):
 	#animator.play("damaged") 
 	timer = cooldown
 	
+	
 	# Knockback. 
 	actor.velocity = attack.direction * attack.knockback
 	

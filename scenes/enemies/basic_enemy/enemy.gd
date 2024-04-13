@@ -28,6 +28,7 @@ func _ready() -> void:
 	
 
 func _on_health_component_handle_attack(attack: Hitbox, has_died: bool = false) -> void:	
+	call_deferred("play_sound_effect")
 	if has_died: state_machine.force_transition("death", attack)
 	else: state_machine.force_transition("damaged", attack)
 
@@ -52,18 +53,17 @@ func face_player():
 	else:
 		sprite_2d.flip_h = false 
 		floor_detector_ray.scale.x = -1
-
-
-func get_player_direction(): 
-	pass
-	
-	
+		
 func handle_gravity(delta): 
 	if not is_on_floor(): velocity.y += gravity * delta
 
 
 func spawn_particles(amount, direction): 
 	Events.spawn_particles.emit(self.global_position, amount, direction)
+
+@onready var hit = $General/Audio/Hit
+func play_sound_effect(): 
+	hit.play()
 	
 	
 	

@@ -15,6 +15,9 @@ const DUST_PARTICLE = preload("res://scenes/dust_particles/dust_particle.tscn")
 @onready var floor_detector_ray = $General/FloorDetectorRay
 @onready var state_label = $General/StateLabel
 
+# Sound effects. 
+var hit_sfx = preload("res://scenes/audio/hit.tscn")
+
 
 var facing_right: bool = true 
 
@@ -28,9 +31,15 @@ func _ready() -> void:
 	
 
 func _on_health_component_handle_attack(attack: Hitbox, has_died: bool = false) -> void:	
-	call_deferred("play_sound_effect")
-	if has_died: state_machine.force_transition("death", attack)
-	else: state_machine.force_transition("damaged", attack)
+	
+	if has_died: 
+		Globals.play_hurt_sfx(global_position)
+		Globals.play_explosion_sfx(global_position) 
+		state_machine.force_transition("death", attack)
+	else:
+		Globals.play_hurt_sfx(global_position)
+		
+		state_machine.force_transition("damaged", attack)
 
 
 func disable_hitbox():

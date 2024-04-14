@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqm6yh186wsvg"]
+
+[ext_resource type="AudioStream" uid="uid://dsh66nmy23j7c" path="res://assets/audio/zap.wav" id="1_0f6oo"]
+
+[node name="Zap" type="AudioStreamPlayer"]
+stream = ExtResource("1_0f6oo")
+volume_db = -34.0
+pitch_scale = 1.5

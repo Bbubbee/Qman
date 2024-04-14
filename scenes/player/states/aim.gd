@@ -37,7 +37,8 @@ func physics_process(_delta: float):
 
 	handle_suck()
 	handle_charged_attack()
-
+	
+@onready var vacuum = $"../../General/Audio/Vacuum"
 func handle_suck(): 
 	if Input.is_action_pressed('suck'):
 		if is_charging_attack:

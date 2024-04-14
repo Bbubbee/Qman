@@ -7,6 +7,7 @@ var cooldown_timer: float
 
 
 func enter(_enter_params = null):
+	Globals.play_hurt_sfx(actor.global_position)
 	var attack = _enter_params
 	cooldown_timer = cooldown
 	actor.animator_2.play("hurt")

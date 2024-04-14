@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy2uf3n6hw2rw"]
+
+[ext_resource type="AudioStream" uid="uid://bpl5sq1dtn6jy" path="res://assets/audio/explosion.mp3" id="1_h5veq"]
+
+[node name="ExplosionSfx" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_h5veq")
+volume_db = -25.0
+pitch_scale = 0.5

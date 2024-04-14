@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dpwtpkyvf7juq"]
+[gd_scene load_steps=42 format=3 uid="uid://dpwtpkyvf7juq"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_c4p7c"]
 [ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="2_jxt3h"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://utilitites/components/player_health_component.gd" id="16_dnvdm"]
 [ext_resource type="AudioStream" uid="uid://c8chj68sjte4m" path="res://assets/audio/gust.mp3" id="16_dvcct"]
 [ext_resource type="Script" path="res://scenes/player/ui/heart_container.gd" id="16_hwllt"]
+[ext_resource type="AudioStream" uid="uid://2go3h3io3kot" path="res://assets/audio/vacuum-cleaner.mp3" id="17_3akux"]
 [ext_resource type="PackedScene" uid="uid://b8odsjult6uvb" path="res://utilitites/components/hitbox.tscn" id="18_lywof"]
 [ext_resource type="Script" path="res://scenes/player/dust_bar.gd" id="19_0f075"]
 [ext_resource type="FontFile" uid="uid://cd2q4l3f8t1vu" path="res://assets/font/PixelRPG.ttf" id="19_m1062"]
@@ -431,8 +432,12 @@ metadata/_edit_lock_ = true
 
 [node name="Gust" type="AudioStreamPlayer" parent="General/Audio"]
 stream = ExtResource("16_dvcct")
-volume_db = -10.0
+volume_db = -15.0
 pitch_scale = 0.51
+
+[node name="Vacuum" type="AudioStreamPlayer" parent="General/Audio"]
+stream = ExtResource("17_3akux")
+volume_db = -25.0
 
 [node name="Components" type="Node2D" parent="."]
 visible = false

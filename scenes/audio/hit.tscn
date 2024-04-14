@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bulw0v1821lsd"]
+
+[ext_resource type="AudioStream" uid="uid://804fysobtyxx" path="res://assets/audio/dmg.mp3" id="1_55p5n"]
+
+[node name="Hit" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_55p5n")
+volume_db = -7.0

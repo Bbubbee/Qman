@@ -78,6 +78,7 @@ func _on_animator_2_animation_finished(anim_name):
 ## The spitter has taken damage. Ouch! 
 func _on_health_component_handle_attack(attack, has_died):
 	animator_2.play("hurt")
+	Globals.play_hurt_sfx(self.global_position)
 	if has_died: 
 		call_deferred("death", attack)
 

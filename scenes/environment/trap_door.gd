@@ -31,6 +31,7 @@ func disable():
 
 
 func _on_health_component_handle_attack(attack: Hitbox, has_died: bool) -> void:
+	Globals.play_hurt_sfx(self.global_position)
 	if has_died: 
 		call_deferred("particle_ass_booty", attack)
 		destroyed.emit()

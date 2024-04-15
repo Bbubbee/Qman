@@ -129,7 +129,7 @@ position = Vector2(584, 216)
 position = Vector2(735, 216)
 
 [node name="Player" parent="." index="1" instance=ExtResource("7_p4g05")]
-position = Vector2(-121, -256)
+position = Vector2(-184, 180)
 
 [node name="RemoteTransform2D" parent="Player" index="6"]
 remote_path = NodePath("../../PlayerCamera")
@@ -185,7 +185,6 @@ shape = SubResource("RectangleShape2D_ovisb")
 debug_color = Color(0, 0.627451, 0.486275, 0.419608)
 
 [node name="PlayerCamera" parent="." index="4" instance=ExtResource("11_muaq3")]
-position = Vector2(-121, -276)
 limit_left = -755
 limit_top = -540
 limit_right = 1120

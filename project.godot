@@ -35,9 +35,9 @@ mouse_cursor/custom_image_hotspot=Vector2(18, 18)
 [file_customization]
 
 folder_colors={
-"res://assets/": "green",
-"res://scenes/": "red",
-"res://utilitites/": "blue"
+"res://assets/": "pink",
+"res://scenes/": "purple",
+"res://utilitites/": "teal"
 }
 
 [input]
